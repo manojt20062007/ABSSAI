@@ -38,7 +38,7 @@ export default function StudentMap() {
 
     socket.on('connect', () => {
       console.log('Connected to Live Tracking Socket');
-      socket.emit('join_room', 'tracking'); // If backend requires joining
+      socket.emit('join:tracking'); 
     });
 
     socket.on('bus_location_update', (data: any) => {
