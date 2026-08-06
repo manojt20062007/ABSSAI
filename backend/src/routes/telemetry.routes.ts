@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { getIO } from '../socket';
 import { ResponseHandler } from '../utils/response';
 import { authenticate } from '../middleware/auth';
+import prisma from '../config/database';
 
 const router = Router();
 // Optionally use authenticate if drivers are sending this via a logged-in app
@@ -31,8 +32,17 @@ router.post('/location', async (req: Request, res: Response, next: NextFunction)
       tripId
     };
 
-    // 1. You could save this to a database (e.g., a LocationHistory table) or Redis here
-    // await prisma.locationHistory.create({ data: locationUpdate });
+    // 1. Save this to the database for Geofencing validation
+    await prisma.gPSLog.create({
+      data: {
+        busId,
+        latitude: Number(lat),
+        longitude: Number(lng),
+        speed: Number(speed || 0),
+        heading: Number(heading || 0),
+        timestamp: new Date()
+      }
+    });
     
     // 2. Broadcast the update to all clients in the 'tracking' room
     const io = getIO();
