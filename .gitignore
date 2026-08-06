@@ -30,6 +30,8 @@ Thumbs.db
 
 # Prisma
 backend/prisma/migrations/
+backend/prisma/*.js
+backend/prisma/*.d.ts*
 
 # Docker
 docker-data/
