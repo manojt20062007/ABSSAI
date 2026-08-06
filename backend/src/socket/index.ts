@@ -43,8 +43,8 @@ export const initSocketIO = (server: HttpServer): Server => {
     });
   });
 
-  // Start GPS simulation
-  gpsSimulator.start();
+  // Start GPS simulation (Disabled - using live phone telemetry)
+  // gpsSimulator.start();
 
   logger.info('🔌 Socket.IO initialized');
   return io;

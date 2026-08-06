@@ -27,14 +27,11 @@ router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
   } catch (error) { next(error); }
 });
 
-router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'DEPOT_MANAGER'), async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const bus = await BusService.create(req.body);
-    ResponseHandler.created(res, bus);
-  } catch (error) { next(error); }
+router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'TRANSPORT_ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
+  try { ResponseHandler.created(res, await BusService.create(req.body)); } catch (error) { next(error); }
 });
 
-router.put('/:id', authorize('SUPER_ADMIN', 'ADMIN', 'DEPOT_MANAGER'), async (req: Request, res: Response, next: NextFunction) => {
+router.put('/:id', authorize('SUPER_ADMIN', 'ADMIN', 'TRANSPORT_ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
   try {
     const bus = await BusService.update(req.params.id as string, req.body);
     ResponseHandler.success(res, bus, 'Bus updated');

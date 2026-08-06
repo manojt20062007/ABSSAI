@@ -21,11 +21,11 @@ router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
   try { ResponseHandler.success(res, await DriverService.getById(req.params.id as string)); } catch (error) { next(error); }
 });
 
-router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'DEPOT_MANAGER'), async (req: Request, res: Response, next: NextFunction) => {
+router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'TRANSPORT_ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
   try { ResponseHandler.created(res, await DriverService.create(req.body)); } catch (error) { next(error); }
 });
 
-router.put('/:id', authorize('SUPER_ADMIN', 'ADMIN', 'DEPOT_MANAGER'), async (req: Request, res: Response, next: NextFunction) => {
+router.put('/:id', authorize('SUPER_ADMIN', 'ADMIN', 'TRANSPORT_ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
   try { ResponseHandler.success(res, await DriverService.update(req.params.id as string, req.body), 'Driver updated'); } catch (error) { next(error); }
 });
 

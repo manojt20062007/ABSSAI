@@ -2,12 +2,10 @@ import prisma from '../config/database';
 import { AppError } from '../utils/errors';
 
 export class BusService {
-  static async getAll(params: {
-    page?: number; limit?: number; search?: string;
-    status?: string; depotId?: string; fuelType?: string;
-    sortBy?: string; sortOrder?: 'asc' | 'desc';
-  }) {
-    const { page = 1, limit = 10, search, status, depotId, fuelType, sortBy = 'createdAt', sortOrder = 'desc' } = params;
+  static async getAll(params: any) {
+    const page = Number(params.page) || 1;
+    const limit = Number(params.limit) || 10;
+    const { search, status, depotId, fuelType, sortBy = 'createdAt', sortOrder = 'desc' } = params;
     const where: any = {};
 
     if (search) {

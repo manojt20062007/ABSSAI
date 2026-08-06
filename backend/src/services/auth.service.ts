@@ -27,7 +27,7 @@ export class AuthService {
         firstName: data.firstName,
         lastName: data.lastName,
         phone: data.phone,
-        role: (data.role as any) || 'PASSENGER',
+        role: (data.role as any) || 'STUDENT',
         otpCode,
         otpExpiresAt: new Date(Date.now() + 10 * 60 * 1000),
       },
@@ -144,7 +144,7 @@ export class AuthService {
       select: {
         id: true, email: true, firstName: true, lastName: true, phone: true,
         avatar: true, role: true, isActive: true, isVerified: true,
-        lastLoginAt: true, createdAt: true, driver: true,
+        lastLoginAt: true, createdAt: true, driver: true, studentProfile: true,
       },
     });
     if (!user) throw AppError.notFound('User not found');

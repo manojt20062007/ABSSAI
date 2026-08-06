@@ -3,10 +3,12 @@ import { AppError } from '../utils/errors';
 
 export class RouteService {
   static async getAll(params: {
-    page?: number; limit?: number; search?: string;
+    page?: number | string; limit?: number | string; search?: string;
     isActive?: boolean; sortBy?: string; sortOrder?: 'asc' | 'desc';
   }) {
-    const { page = 1, limit = 10, search, isActive, sortBy = 'routeNumber', sortOrder = 'asc' } = params;
+    const page = Number(params.page) || 1;
+    const limit = Number(params.limit) || 10;
+    const { search, isActive, sortBy = 'routeNumber', sortOrder = 'asc' } = params;
     const where: any = {};
 
     if (search) {
@@ -84,9 +86,11 @@ export class RouteService {
 
 export class StopService {
   static async getAll(params: {
-    page?: number; limit?: number; search?: string; sortBy?: string; sortOrder?: 'asc' | 'desc';
+    page?: number | string; limit?: number | string; search?: string; sortBy?: string; sortOrder?: 'asc' | 'desc';
   }) {
-    const { page = 1, limit = 10, search, sortBy = 'name', sortOrder = 'asc' } = params;
+    const page = Number(params.page) || 1;
+    const limit = Number(params.limit) || 10;
+    const { search, sortBy = 'name', sortOrder = 'asc' } = params;
     const where: any = {};
 
     if (search) {
