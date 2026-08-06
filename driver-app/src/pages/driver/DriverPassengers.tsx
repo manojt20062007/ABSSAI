@@ -20,15 +20,18 @@ export default function DriverPassengers() {
   const maxSeats = 50;
 
   useEffect(() => {
+    // Extract base URL from VITE_API_URL (e.g. remove /api)
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+    const socketUrl = apiUrl.replace('/api', '');
+
     // Connect to Socket.IO Server
-    const socket: Socket = io('http://localhost:3001', {
+    const socket: Socket = io(socketUrl, {
       transports: ['websocket', 'polling'],
-      path: '/socket.io', // If you have proxy setup, or we connect to backend directly if on 3000
     });
-    // In our vite setup, /socket.io is proxied to the backend.
 
     socket.on('connect', () => {
       console.log('Connected to real-time sync');
+      socket.emit('join:dashboard'); // Join the dashboard room
     });
 
     // Listen for ALL boarding events (global broadcast) for the MVP 
