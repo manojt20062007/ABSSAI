@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import { Navigation } from 'lucide-react';
+import { io } from 'socket.io-client';
 
 // Fix for default marker icon in Leaflet with bundlers
 import icon from 'leaflet/dist/images/marker-icon.png';
@@ -25,15 +26,31 @@ export default function StudentMap() {
   const startLocation: [number, number] = [28.6139, 77.2090]; // New Delhi
   const [busLocation, setBusLocation] = useState<[number, number]>(startLocation);
 
-  // Mock a moving bus for demonstration
+  // Connect to live socket telemetry
   useEffect(() => {
-    const interval = setInterval(() => {
-      setBusLocation((prev) => [
-        prev[0] + (Math.random() - 0.5) * 0.001,
-        prev[1] + (Math.random() - 0.5) * 0.001,
-      ]);
-    }, 3000);
-    return () => clearInterval(interval);
+    // Extract base URL from VITE_API_URL (e.g. remove /api)
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+    const socketUrl = apiUrl.replace('/api', '');
+    
+    const socket = io(socketUrl, {
+      transports: ['websocket', 'polling'],
+    });
+
+    socket.on('connect', () => {
+      console.log('Connected to Live Tracking Socket');
+      socket.emit('join_room', 'tracking'); // If backend requires joining
+    });
+
+    socket.on('bus_location_update', (data: any) => {
+      // Assuming payload has { lat, lng, busId }
+      if (data && data.lat && data.lng) {
+        setBusLocation([data.lat, data.lng]);
+      }
+    });
+
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   return (
