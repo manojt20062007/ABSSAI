@@ -118,6 +118,48 @@ router.post('/scan', async (req: Request, res: Response, next: NextFunction) => 
 });
 
 // Endpoint for driver to get logs for their active trip
+router.get('/logs/active', authenticate, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    // 1. Find the active trip for the logged-in driver
+    const activeTrip = await prisma.trip.findFirst({
+      where: { 
+        driverId: req.user!.userId, // The driver's ID
+        status: { in: ['IN_PROGRESS', 'SCHEDULED'] } 
+      },
+      orderBy: { departureTime: 'asc' }
+    });
+
+    if (!activeTrip) {
+      return ResponseHandler.success(res, []);
+    }
+
+    // 2. Return logs for this trip
+    const logs = await prisma.boardingLog.findMany({
+      where: { tripId: activeTrip.id },
+      include: {
+        student: {
+          include: { user: { select: { firstName: true, lastName: true } } }
+        }
+      },
+      orderBy: { timestamp: 'desc' }
+    });
+
+    // Format logs to match frontend expectations
+    const formattedLogs = logs.map(log => ({
+      id: log.id,
+      studentId: log.student.studentId,
+      name: `${log.student.user.firstName} ${log.student.user.lastName}`,
+      boardingPoint: log.student.boardingPoint,
+      destination: log.student.destination,
+      timestamp: log.timestamp
+    }));
+
+    ResponseHandler.success(res, formattedLogs);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/logs/:tripId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const logs = await prisma.boardingLog.findMany({
