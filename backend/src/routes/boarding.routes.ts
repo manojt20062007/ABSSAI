@@ -121,7 +121,7 @@ router.post('/scan', async (req: Request, res: Response, next: NextFunction) => 
 router.get('/logs/:tripId', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const logs = await prisma.boardingLog.findMany({
-      where: { tripId: req.params.tripId },
+      where: { tripId: req.params.tripId as string },
       include: {
         student: {
           include: { user: { select: { firstName: true, lastName: true } } }
