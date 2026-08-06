@@ -35,7 +35,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
 router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const trip = await prisma.trip.findUnique({
-      where: { id: req.params.id },
+      where: { id: req.params.id as string },
       include: { bus: true, driver: { include: { user: true } }, route: { include: { stops: { include: { stop: true } } } }, schedule: true },
     });
     ResponseHandler.success(res, trip);
@@ -48,7 +48,7 @@ router.patch('/:id/status', async (req: Request, res: Response, next: NextFuncti
     const data: any = { status };
     if (status === 'IN_PROGRESS') data.actualDeparture = new Date();
     if (status === 'COMPLETED') data.actualArrival = new Date();
-    const trip = await prisma.trip.update({ where: { id: req.params.id }, data });
+    const trip = await prisma.trip.update({ where: { id: req.params.id as string }, data });
     ResponseHandler.success(res, trip, 'Trip status updated');
   } catch (e) { next(e); }
 });

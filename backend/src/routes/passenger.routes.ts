@@ -48,7 +48,7 @@ router.get('/routes/:id/schedule', async (req: Request, res: Response, next: Nex
     const today = new Date(); today.setHours(0, 0, 0, 0);
     const tomorrow = new Date(today); tomorrow.setDate(tomorrow.getDate() + 1);
     const trips = await prisma.trip.findMany({
-      where: { routeId: req.params.id, departureTime: { gte: today, lt: tomorrow } },
+      where: { routeId: req.params.id as string, departureTime: { gte: today, lt: tomorrow } },
       orderBy: { departureTime: 'asc' },
       include: { bus: { select: { busNumber: true } } },
     });

@@ -14,7 +14,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
 });
 
 router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
-  try { ResponseHandler.success(res, await RouteService.getById(req.params.id)); } catch (error) { next(error); }
+  try { ResponseHandler.success(res, await RouteService.getById(req.params.id as string)); } catch (error) { next(error); }
 });
 
 router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'SCHEDULER'), async (req: Request, res: Response, next: NextFunction) => {
@@ -22,11 +22,11 @@ router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'SCHEDULER'), async (req: Req
 });
 
 router.put('/:id', authorize('SUPER_ADMIN', 'ADMIN', 'SCHEDULER'), async (req: Request, res: Response, next: NextFunction) => {
-  try { ResponseHandler.success(res, await RouteService.update(req.params.id, req.body), 'Route updated'); } catch (error) { next(error); }
+  try { ResponseHandler.success(res, await RouteService.update(req.params.id as string, req.body), 'Route updated'); } catch (error) { next(error); }
 });
 
 router.delete('/:id', authorize('SUPER_ADMIN', 'ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
-  try { await RouteService.delete(req.params.id); ResponseHandler.success(res, null, 'Route deleted'); } catch (error) { next(error); }
+  try { await RouteService.delete(req.params.id as string); ResponseHandler.success(res, null, 'Route deleted'); } catch (error) { next(error); }
 });
 
 export default router;

@@ -19,7 +19,7 @@ router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'DEPOT_MANAGER'), async (req:
 });
 
 router.put('/:id', authorize('SUPER_ADMIN', 'ADMIN', 'DEPOT_MANAGER'), async (req: Request, res: Response, next: NextFunction) => {
-  try { ResponseHandler.success(res, await MaintenanceService.update(req.params.id, req.body), 'Updated'); } catch (e) { next(e); }
+  try { ResponseHandler.success(res, await MaintenanceService.update(req.params.id as string, req.body), 'Updated'); } catch (e) { next(e); }
 });
 
 export default router;

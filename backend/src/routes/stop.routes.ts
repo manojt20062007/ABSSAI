@@ -19,7 +19,7 @@ router.get('/nearby', async (req: Request, res: Response, next: NextFunction) =>
 });
 
 router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
-  try { ResponseHandler.success(res, await StopService.getById(req.params.id)); } catch (e) { next(e); }
+  try { ResponseHandler.success(res, await StopService.getById(req.params.id as string)); } catch (e) { next(e); }
 });
 
 router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'SCHEDULER'), async (req: Request, res: Response, next: NextFunction) => {
@@ -27,11 +27,11 @@ router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'SCHEDULER'), async (req: Req
 });
 
 router.put('/:id', authorize('SUPER_ADMIN', 'ADMIN', 'SCHEDULER'), async (req: Request, res: Response, next: NextFunction) => {
-  try { ResponseHandler.success(res, await StopService.update(req.params.id, req.body), 'Stop updated'); } catch (e) { next(e); }
+  try { ResponseHandler.success(res, await StopService.update(req.params.id as string, req.body), 'Stop updated'); } catch (e) { next(e); }
 });
 
 router.delete('/:id', authorize('SUPER_ADMIN', 'ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
-  try { await StopService.delete(req.params.id); ResponseHandler.success(res, null, 'Stop deleted'); } catch (e) { next(e); }
+  try { await StopService.delete(req.params.id as string); ResponseHandler.success(res, null, 'Stop deleted'); } catch (e) { next(e); }
 });
 
 export default router;

@@ -15,21 +15,19 @@ import DashboardPage from './pages/dashboard/DashboardPage';
 import BusListPage from './pages/buses/BusListPage';
 import DriverListPage from './pages/drivers/DriverListPage';
 import RouteListPage from './pages/routes/RouteListPage';
+import StopListPage from './pages/stops/StopListPage';
 import DepotListPage from './pages/depots/DepotListPage';
 import SchedulingPage from './pages/scheduling/SchedulingPage';
+import PredictionsPage from './pages/predictions/PredictionsPage';
 import TrackingPage from './pages/tracking/TrackingPage';
 import MaintenancePage from './pages/maintenance/MaintenancePage';
 import FuelPage from './pages/fuel/FuelPage';
 import AttendancePage from './pages/attendance/AttendancePage';
 import AnalyticsPage from './pages/analytics/AnalyticsPage';
+import ReportsPage from './pages/reports/ReportsPage';
 import NotificationsPage from './pages/notifications/NotificationsPage';
+import SettingsPage from './pages/settings/SettingsPage';
 import NotFoundPage from './pages/NotFoundPage';
-import PlaceholderPage from './pages/PlaceholderPage';
-
-// Icons
-import {
-  MapPin, Brain, FileText, Settings,
-} from 'lucide-react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -75,18 +73,18 @@ export default function App() {
               <Route path="/buses" element={<BusListPage />} />
               <Route path="/drivers" element={<DriverListPage />} />
               <Route path="/routes" element={<RouteListPage />} />
-              <Route path="/stops" element={<PlaceholderPage title="Bus Stops" description="Manage bus stop locations, amenities, and accessibility" icon={MapPin} color="#f97316" />} />
+              <Route path="/stops" element={<StopListPage />} />
               <Route path="/depots" element={<DepotListPage />} />
               <Route path="/scheduling" element={<SchedulingPage />} />
-              <Route path="/predictions" element={<PlaceholderPage title="AI Predictions" description="AI-powered demand forecasting and optimization" icon={Brain} color="#a855f7" />} />
+              <Route path="/predictions" element={<PredictionsPage />} />
               <Route path="/tracking" element={<TrackingPage />} />
               <Route path="/maintenance" element={<MaintenancePage />} />
               <Route path="/fuel" element={<FuelPage />} />
               <Route path="/attendance" element={<AttendancePage />} />
               <Route path="/analytics" element={<AnalyticsPage />} />
-              <Route path="/reports" element={<PlaceholderPage title="Reports" description="Generate and export daily, weekly, and monthly reports" icon={FileText} color="#6366f1" />} />
+              <Route path="/reports" element={<ReportsPage />} />
               <Route path="/notifications" element={<NotificationsPage />} />
-              <Route path="/settings" element={<PlaceholderPage title="Settings" description="System configuration and preferences" icon={Settings} color="#64748b" />} />
+              <Route path="/settings" element={<SettingsPage />} />
             </Route>
           </Route>
 

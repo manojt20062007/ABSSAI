@@ -18,7 +18,7 @@ router.get('/stats', async (_req: Request, res: Response, next: NextFunction) =>
 });
 
 router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
-  try { ResponseHandler.success(res, await DriverService.getById(req.params.id)); } catch (error) { next(error); }
+  try { ResponseHandler.success(res, await DriverService.getById(req.params.id as string)); } catch (error) { next(error); }
 });
 
 router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'DEPOT_MANAGER'), async (req: Request, res: Response, next: NextFunction) => {
@@ -26,11 +26,11 @@ router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'DEPOT_MANAGER'), async (req:
 });
 
 router.put('/:id', authorize('SUPER_ADMIN', 'ADMIN', 'DEPOT_MANAGER'), async (req: Request, res: Response, next: NextFunction) => {
-  try { ResponseHandler.success(res, await DriverService.update(req.params.id, req.body), 'Driver updated'); } catch (error) { next(error); }
+  try { ResponseHandler.success(res, await DriverService.update(req.params.id as string, req.body), 'Driver updated'); } catch (error) { next(error); }
 });
 
 router.delete('/:id', authorize('SUPER_ADMIN', 'ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
-  try { await DriverService.delete(req.params.id); ResponseHandler.success(res, null, 'Driver deleted'); } catch (error) { next(error); }
+  try { await DriverService.delete(req.params.id as string); ResponseHandler.success(res, null, 'Driver deleted'); } catch (error) { next(error); }
 });
 
 export default router;

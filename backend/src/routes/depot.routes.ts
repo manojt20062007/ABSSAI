@@ -11,7 +11,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
 });
 
 router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
-  try { ResponseHandler.success(res, await DepotService.getById(req.params.id)); } catch (e) { next(e); }
+  try { ResponseHandler.success(res, await DepotService.getById(req.params.id as string)); } catch (e) { next(e); }
 });
 
 router.post('/', authorize('SUPER_ADMIN', 'ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
@@ -19,11 +19,11 @@ router.post('/', authorize('SUPER_ADMIN', 'ADMIN'), async (req: Request, res: Re
 });
 
 router.put('/:id', authorize('SUPER_ADMIN', 'ADMIN', 'DEPOT_MANAGER'), async (req: Request, res: Response, next: NextFunction) => {
-  try { ResponseHandler.success(res, await DepotService.update(req.params.id, req.body), 'Depot updated'); } catch (e) { next(e); }
+  try { ResponseHandler.success(res, await DepotService.update(req.params.id as string, req.body), 'Depot updated'); } catch (e) { next(e); }
 });
 
 router.delete('/:id', authorize('SUPER_ADMIN', 'ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
-  try { await DepotService.delete(req.params.id); ResponseHandler.success(res, null, 'Depot deleted'); } catch (e) { next(e); }
+  try { await DepotService.delete(req.params.id as string); ResponseHandler.success(res, null, 'Depot deleted'); } catch (e) { next(e); }
 });
 
 export default router;

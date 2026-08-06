@@ -30,7 +30,7 @@ router.get('/unread-count', async (req: Request, res: Response, next: NextFuncti
 
 router.patch('/:id/read', async (req: Request, res: Response, next: NextFunction) => {
   try {
-    await prisma.notification.update({ where: { id: req.params.id }, data: { isRead: true } });
+    await prisma.notification.update({ where: { id: req.params.id as string }, data: { isRead: true } });
     ResponseHandler.success(res, null, 'Marked as read');
   } catch (e) { next(e); }
 });

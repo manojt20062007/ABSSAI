@@ -28,7 +28,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
 router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const schedule = await prisma.schedule.findUnique({
-      where: { id: req.params.id },
+      where: { id: req.params.id as string },
       include: {
         trips: {
           orderBy: { tripNumber: 'asc' },
@@ -61,15 +61,15 @@ router.post('/generate', authorize('SUPER_ADMIN', 'ADMIN', 'SCHEDULER'), async (
 
 router.patch('/:id/publish', authorize('SUPER_ADMIN', 'ADMIN', 'SCHEDULER'), async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const schedule = await prisma.schedule.update({ where: { id: req.params.id }, data: { status: 'PUBLISHED' } });
+    const schedule = await prisma.schedule.update({ where: { id: req.params.id as string }, data: { status: 'PUBLISHED' } });
     ResponseHandler.success(res, schedule, 'Schedule published');
   } catch (e) { next(e); }
 });
 
 router.delete('/:id', authorize('SUPER_ADMIN', 'ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
   try {
-    await prisma.trip.deleteMany({ where: { scheduleId: req.params.id } });
-    await prisma.schedule.delete({ where: { id: req.params.id } });
+    await prisma.trip.deleteMany({ where: { scheduleId: req.params.id as string } });
+    await prisma.schedule.delete({ where: { id: req.params.id as string } });
     ResponseHandler.success(res, null, 'Schedule deleted');
   } catch (e) { next(e); }
 });
