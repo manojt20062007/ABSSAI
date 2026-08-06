@@ -33,21 +33,78 @@ async function main() {
     data: { email: 'superadmin@abssai.com', password: hashedPassword, firstName: 'Super', lastName: 'Admin', role: 'SUPER_ADMIN', isActive: true, isVerified: true, phone: '+91-9000000001' },
   });
 
+  const driverUser = await prisma.user.create({
+    data: { email: 'driver@abssai.com', password: hashedPassword, firstName: 'Rajesh', lastName: 'Kumar', role: 'DRIVER', isActive: true, isVerified: true, phone: '+91-9000000002' },
+  });
+
+  const studentUser = await prisma.user.create({
+    data: { email: 'student@abssai.com', password: hashedPassword, firstName: 'Aarav', lastName: 'Sharma', role: 'STUDENT', isActive: true, isVerified: true, phone: '+91-9000000003' },
+  });
+
+  // ============ DEPOTS & ROUTES ============
+  const depot = await prisma.depot.create({
+    data: { name: 'Central Depot', code: 'DEP-01', address: '123 Main St', capacity: 50 },
+  });
+
+  const route = await prisma.route.create({
+    data: { routeNumber: 'R-101', name: 'Campus Express', source: 'City Center', destination: 'University Campus', distance: 15.5, estimatedTime: 45, fare: 20 },
+  });
+
+  // ============ BUSES ============
+  const bus = await prisma.bus.create({
+    data: {
+      busNumber: 'BUS-1001',
+      registrationNumber: 'DL-1P-1001',
+      capacity: 55,
+      model: 'Tata Starbus',
+      manufacturer: 'Tata Motors',
+      depotId: depot.id,
+    },
+  });
+
+  // ============ PROFILES ============
+  await prisma.driver.create({
+    data: {
+      userId: driverUser.id,
+      employeeId: 'DRV-001',
+      licenseNumber: 'DL-LIC-001',
+      licenseExpiry: new Date('2030-12-31'),
+      depotId: depot.id,
+    },
+  });
+
+  await prisma.studentProfile.create({
+    data: {
+      userId: studentUser.id,
+      studentId: 'STU-001',
+      department: 'Computer Science',
+      section: 'A',
+      year: '3rd Year',
+      boardingPoint: 'City Center',
+      destination: 'University Campus',
+      validUntil: new Date('2027-12-31'),
+      routeId: route.id,
+      assignedBusId: bus.id,
+    },
+  });
+
   // ============ SETTINGS ============
   await prisma.setting.createMany({
     data: [
-      { key: 'organization_name', value: 'Delhi Transport Corporation', description: 'Organization name', category: 'general' },
+      { key: 'organization_name', value: 'ABSSAI Transport', description: 'Organization name', category: 'general' },
     ],
   });
 
-  console.log('✅ Base users created successfully!');
+  console.log('✅ Users and test data created successfully!');
   console.log(`
 📊 Summary:
-  - Users: 1 (SuperAdmin)
-  - All other data is empty. Production ready.
+  - Users: 3 (Admin, Driver, Student)
+  - Buses: 1
   
-🔑 Login Credentials:
-  - superadmin@abssai.com (password: password123)
+🔑 Login Credentials (password for all is 'password123'):
+  - Admin:   superadmin@abssai.com
+  - Driver:  driver@abssai.com
+  - Student: student@abssai.com
   `);
 }
 
