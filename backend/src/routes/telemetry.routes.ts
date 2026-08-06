@@ -16,14 +16,22 @@ router.post('/location', async (req: Request, res: Response, next: NextFunction)
   try {
     const { busId, lat, lng, speed, heading, tripId } = req.body;
 
-    if (!busId || lat === undefined || lng === undefined) {
+    let actualBusId = busId;
+
+    // If busId isn't a valid CUID, assume it's a busNumber and look it up
+    if (busId && !busId.startsWith('c')) {
+      const bus = await prisma.bus.findFirst({ where: { busNumber: busId } });
+      if (bus) actualBusId = bus.id;
+    }
+
+    if (!actualBusId || lat === undefined || lng === undefined) {
       ResponseHandler.badRequest(res, 'Missing required telemetry fields: busId, lat, lng');
       return;
     }
 
     // Prepare payload mimicking what the tracker/simulator expects
     const locationUpdate = {
-      busId,
+      busId: actualBusId,
       lat: Number(lat),
       lng: Number(lng),
       speed: Number(speed || 0),
@@ -35,7 +43,7 @@ router.post('/location', async (req: Request, res: Response, next: NextFunction)
     // 1. Save this to the database for Geofencing validation
     await prisma.gPSLog.create({
       data: {
-        busId,
+        busId: actualBusId,
         latitude: Number(lat),
         longitude: Number(lng),
         speed: Number(speed || 0),

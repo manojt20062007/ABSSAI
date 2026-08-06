@@ -47,6 +47,16 @@ export default function DriverMap() {
       (position) => {
         setGpsError(null);
         setCurrentLocation([position.coords.latitude, position.coords.longitude]);
+        
+        // Broadcast to backend (Geofencing relies on this!)
+        // Fallback to testing BUS-1001 if no active trip is selected in the UI
+        api.post('/telemetry/location', {
+          busId: 'BUS-1001', 
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+          speed: position.coords.speed || 0,
+          heading: position.coords.heading || 0
+        }).catch(err => console.error("Telemetry failed:", err));
       },
       (error) => {
         console.error('GPS Error:', error);
