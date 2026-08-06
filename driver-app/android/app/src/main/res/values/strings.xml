@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ABSSAI Driver</string>
+    <string name="title_activity_main">ABSSAI Driver</string>
+    <string name="package_name">com.abssai.driver</string>
+    <string name="custom_url_scheme">com.abssai.driver</string>
+</resources>
