@@ -20,6 +20,16 @@ export default function DriverPassengers() {
   const maxSeats = 50;
 
   useEffect(() => {
+    // 1. Fetch Initial Data
+    api.get('/boarding/logs/active').then(res => {
+      if (res.data?.data) {
+        setRecentLogs(res.data.data);
+        setPassengers(Math.min(res.data.data.length, maxSeats));
+      }
+    }).catch(err => {
+      console.error("Failed to load initial passenger logs", err);
+    });
+
     // Extract base URL from VITE_API_URL (e.g. remove /api)
     const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
     const socketUrl = apiUrl.replace('/api', '');
