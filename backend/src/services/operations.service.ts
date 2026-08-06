@@ -2,8 +2,10 @@ import prisma from '../config/database';
 import { AppError } from '../utils/errors';
 
 export class MaintenanceService {
-  static async getAll(params: { page?: number; limit?: number; busId?: string; status?: string; type?: string }) {
-    const { page = 1, limit = 10, busId, status, type } = params;
+  static async getAll(params: any) {
+    const page = Number(params.page) || 1;
+    const limit = Number(params.limit) || 10;
+    const { busId, status, type, sortBy = 'date', sortOrder = 'desc' } = params;
     const where: any = {};
     if (busId) where.busId = busId;
     if (status) where.status = status;
@@ -43,8 +45,10 @@ export class MaintenanceService {
 }
 
 export class FuelService {
-  static async getAll(params: { page?: number; limit?: number; busId?: string; dateFrom?: string; dateTo?: string }) {
-    const { page = 1, limit = 10, busId, dateFrom, dateTo } = params;
+  static async getAll(params: any) {
+    const page = Number(params.page) || 1;
+    const limit = Number(params.limit) || 10;
+    const { busId, dateFrom, dateTo } = params;
     const where: any = {};
     if (busId) where.busId = busId;
     if (dateFrom || dateTo) {
@@ -83,8 +87,10 @@ export class FuelService {
 }
 
 export class AttendanceService {
-  static async getAll(params: { page?: number; limit?: number; driverId?: string; date?: string; status?: string }) {
-    const { page = 1, limit = 10, driverId, date, status } = params;
+  static async getAll(params: any) {
+    const page = Number(params.page) || 1;
+    const limit = Number(params.limit) || 10;
+    const { driverId, date, status } = params;
     const where: any = {};
     if (driverId) where.driverId = driverId;
     if (date) where.date = new Date(date);

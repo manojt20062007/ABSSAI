@@ -3,11 +3,13 @@ import { AppError } from '../utils/errors';
 
 export class DriverService {
   static async getAll(params: {
-    page?: number; limit?: number; search?: string;
+    page?: number | string; limit?: number | string; search?: string;
     shift?: string; depotId?: string; isAvailable?: boolean;
     sortBy?: string; sortOrder?: 'asc' | 'desc';
   }) {
-    const { page = 1, limit = 10, search, shift, depotId, isAvailable, sortBy = 'createdAt', sortOrder = 'desc' } = params;
+    const page = Number(params.page) || 1;
+    const limit = Number(params.limit) || 10;
+    const { search, shift, depotId, isAvailable, sortBy = 'createdAt', sortOrder = 'desc' } = params;
     const where: any = {};
 
     if (search) {

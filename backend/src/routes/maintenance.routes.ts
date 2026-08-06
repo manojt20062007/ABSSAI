@@ -14,11 +14,11 @@ router.get('/upcoming', async (req: Request, res: Response, next: NextFunction) 
   try { ResponseHandler.success(res, await MaintenanceService.getUpcoming(Number(req.query.days) || 7)); } catch (e) { next(e); }
 });
 
-router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'DEPOT_MANAGER'), async (req: Request, res: Response, next: NextFunction) => {
+router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'TRANSPORT_ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
   try { ResponseHandler.created(res, await MaintenanceService.create(req.body)); } catch (e) { next(e); }
 });
 
-router.put('/:id', authorize('SUPER_ADMIN', 'ADMIN', 'DEPOT_MANAGER'), async (req: Request, res: Response, next: NextFunction) => {
+router.put('/:id', authorize('SUPER_ADMIN', 'ADMIN', 'TRANSPORT_ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
   try { ResponseHandler.success(res, await MaintenanceService.update(req.params.id as string, req.body), 'Updated'); } catch (e) { next(e); }
 });
 

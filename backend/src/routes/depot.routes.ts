@@ -14,11 +14,11 @@ router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
   try { ResponseHandler.success(res, await DepotService.getById(req.params.id as string)); } catch (e) { next(e); }
 });
 
-router.post('/', authorize('SUPER_ADMIN', 'ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
-  try { ResponseHandler.created(res, await DepotService.create(req.body)); } catch (e) { next(e); }
+router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'TRANSPORT_ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
+  try { ResponseHandler.created(res, await DepotService.create(req.body)); } catch (error) { next(error); }
 });
 
-router.put('/:id', authorize('SUPER_ADMIN', 'ADMIN', 'DEPOT_MANAGER'), async (req: Request, res: Response, next: NextFunction) => {
+router.put('/:id', authorize('SUPER_ADMIN', 'ADMIN', 'TRANSPORT_ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
   try { ResponseHandler.success(res, await DepotService.update(req.params.id as string, req.body), 'Depot updated'); } catch (e) { next(e); }
 });
 

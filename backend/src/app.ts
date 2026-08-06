@@ -25,6 +25,8 @@ import reportRoutes from './routes/report.routes';
 import notificationRoutes from './routes/notification.routes';
 import passengerRoutes from './routes/passenger.routes';
 import analyticsRoutes from './routes/analytics.routes';
+import telemetryRoutes from './routes/telemetry.routes';
+import boardingRoutes from './routes/boarding.routes';
 
 const app = express();
 
@@ -79,6 +81,8 @@ app.use('/api/reports', reportRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/passenger', passengerRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/telemetry', telemetryRoutes);
+app.use('/api/boarding', boardingRoutes);
 
 // Error handling
 app.use(notFoundHandler);

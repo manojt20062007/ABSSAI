@@ -14,7 +14,7 @@ router.get('/analytics', async (req: Request, res: Response, next: NextFunction)
   try { ResponseHandler.success(res, await FuelService.getAnalytics(req.query.busId as string)); } catch (e) { next(e); }
 });
 
-router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'DEPOT_MANAGER'), async (req: Request, res: Response, next: NextFunction) => {
+router.post('/', authorize('SUPER_ADMIN', 'ADMIN', 'TRANSPORT_ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
   try { ResponseHandler.created(res, await FuelService.create(req.body)); } catch (e) { next(e); }
 });
 
