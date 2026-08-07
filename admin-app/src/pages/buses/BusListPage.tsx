@@ -112,7 +112,7 @@ export default function BusListPage() {
                     <td className="text-slate-400">{bus.depot?.name || '—'}</td>
                     <td><span className={`badge ${statusColors[bus.status]}`}>{bus.status}</span></td>
                     <td className="text-slate-300 font-medium">{bus.route ? bus.route.routeNumber : '—'}</td>
-                    <td className="text-slate-300">{bus.currentDriver?.user?.name || '—'}</td>
+                    <td className="text-slate-300">{bus.currentDriver?.user ? `${bus.currentDriver.user.firstName} ${bus.currentDriver.user.lastName}` : '—'}</td>
                     <td>
                       <div className="flex items-center gap-2">
                         <button onClick={() => { setQrBus(bus); setShowQRModal(true); }} title="View QR Code"
@@ -297,7 +297,7 @@ function BusFormModal({ bus, onClose }: { bus: any; onClose: () => void }) {
                 className="input-field">
                 <option value="">No Driver Assigned</option>
                 {driversData?.map((driver: any) => (
-                  <option key={driver.id} value={driver.id}>{driver.user?.name || driver.employeeId}</option>
+                  <option key={driver.id} value={driver.id}>{driver.user ? `${driver.user.firstName} ${driver.user.lastName}` : driver.employeeId}</option>
                 ))}
               </select>
             </div>
