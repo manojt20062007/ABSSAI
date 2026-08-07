@@ -16,6 +16,7 @@ import StudentHome from './pages/student/StudentHome';
 import StudentMap from './pages/student/StudentMap';
 import StudentPass from './pages/student/StudentPass';
 import StudentScanner from './pages/student/StudentScanner';
+import StudentProfile from './pages/student/StudentProfile';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -72,6 +73,7 @@ export default function App() {
               <Route path="/student/map" element={<StudentMap />} />
               <Route path="/student/pass" element={<StudentPass />} />
               <Route path="/student/scan" element={<StudentScanner />} />
+              <Route path="/student/profile" element={<StudentProfile />} />
             </Route>
           </Route>
 
