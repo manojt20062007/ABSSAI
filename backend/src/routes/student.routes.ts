@@ -13,6 +13,13 @@ router.get('/', authorize('SUPER_ADMIN', 'ADMIN'), async (req: Request, res: Res
   } catch (error) { next(error); }
 });
 
+router.post('/', authorize('SUPER_ADMIN', 'ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const student = await StudentService.create(req.body);
+    ResponseHandler.created(res, student, 'Student created successfully');
+  } catch (error) { next(error); }
+});
+
 router.put('/:id/assignment', authorize('SUPER_ADMIN', 'ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { routeId, assignedBusId, boardingPoint } = req.body;
