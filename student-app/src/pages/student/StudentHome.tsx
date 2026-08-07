@@ -75,6 +75,13 @@ export default function StudentHome() {
             </h4>
             <p className="text-xs text-slate-400 -mt-2 ml-7">{route.name}</p>
             
+            {profile.assignedBus && (
+              <div className="flex items-center gap-2 mt-1 ml-7 border border-white/10 bg-white/5 px-2 py-1 rounded-md w-fit">
+                <Bus size={12} className="text-slate-400" />
+                <span className="text-xs font-semibold text-slate-300">{profile.assignedBus.busNumber}</span>
+              </div>
+            )}
+            
             <div className="relative pl-6 border-l-2 border-indigo-500/30 space-y-6 py-2 ml-3 mt-2">
               <div className="relative">
                 <div className="absolute -left-[31px] w-4 h-4 rounded-full bg-indigo-500 border-4 border-slate-900" />
