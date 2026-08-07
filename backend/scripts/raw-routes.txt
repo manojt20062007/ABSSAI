@@ -1,0 +1,597 @@
+ROUTE NO V1
+KOTTIVAKKAM V1
+Pickup Point Road Route Morning Pickup Evening Drop
+Kottivakkam East Cost Road R3 5.45 5.45 PM
+Srinivasa Nagar East Cost Road R3 5.50
+Thiruvanmiyur L.B. Road R3 5.52
+Indira Nagar 3rd Avenue R3 5.55
+Vannanturai Mahatma Gandhi Road R3 5.57
+Besant Nagar Besant 2nd & 3rd Avenue R3 5.59
+Adayar Signals Sardar Patel Road R3 6.02
+CLRI & IIT Sardar Patel Road R3 6.05
+Kotturpuram Gandhi Mandapam Road R3 6.10
+Nandanam Extn. Chamiers Road R3 6.15
+Nadanam Arts College. Mount Road R3 6.17
+CIT Nagar South Usman Road R3 6.20
+Aranganathan Subway New Boag Road R3 6.22
+West Mambalam Govindan Road R3 6.25
+Ashok Nagar 10th Avenue R3 6.27
+Udayam Complex Anna Main Road R3 6.28
+Vadapalani Javaharlal Nehru Road R3 6.36
+M.M.D.A Javaharlal Nehru Road R3 6.38
+Arumbakkam poonamallee High road R3 6.41
+Thirumangalam Bazar Road R2 6.50
+Collectror Nagar Bazar Road R2 6.55
+Ambatur Tele.Exchange C.T.H. Road R2 7.10
+Dunlop C.T.H. Road R2 7.15
+Ambattur OT C.T.H. Road R2 7.15
+Thirumullaivoyal C.T.H. Road R2 7.25
+Avadi C.T.H. Road R1 7.30
+Vel Tech Univ Veltech - Alamathi Road R2 7.40
+Vel Tech Anna campus Veltech - Alamathi Road R2 7.45 3.45 pm
+
+ROUTE NO V2
+MADIPAKKAM V2
+Pickup Point Road Route Morning Pickup Evening Drop
+Madipakkam Main road R3 5.45 AM 5.45 PM
+Pallikaranai Main road R3 5.50
+Kamatchi Hospital Main road R3 5.52
+Kilkattalai MTC B.T Medavakkam Main Road R3 5.52
+Ullagaram Medavakkam Main Road R3 5.56
+Vanuvampet Medavakkam Main Road R3 5.58
+Nanganallur West Karikalan Street R3 6.00
+Meenambakkam G.S.T. Road R3 6.05
+Trisoolam G.S.T. Road R3 6.12
+Pallavaram B.S G.S.T. Road R3 6.20
+Pallavaram Mars Hotel Pammal Main Road R3 6.25
+Anakaputhur Kamaraj Salai R3 6.30
+Kundrathur Jawaharlal Nehru MainRd R3 6.35
+Chikkarayapuram Kundrathur Main Road R2 6.42
+Mangadu Kundrathur Main Road R2 6.48
+Kumanan Chavadi Kundrathur Main Road R2 6.50
+Karayan Chavadi Avadi-Poonamallee Road R2 6.55
+Viraraghavapuram Avadi-Poonamallee Road R2 6.58
+Paruthipattu Avadi-Poonamallee Road R2 7.04
+Avadi Market Kamaraj Nagar Main Rd. R2 7.06
+Avadi Ramarathna Avadi-Poonamallee Road R2 7.15
+Avadi Bus Terminus C.T.H. Road R1 7.35
+Vel Tech Univ Veltech - Alamathi Road R1 7.42
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.45 3.45 PM
+
+ROUTE NOV3
+THIRUVOTTRIYUR V3
+Pickup Point Road Route Morning Pickup Evening Drop
+Ernavoor Kathivakkam High Road R3 5.50
+Mullainagar Thiruvottriyur High Road R3 5.52
+Lift gate Thiruvottriyur High Road R3 5.55
+Wimco Thiruvottriyur High Road R3 5.57
+Ajax Thiruvottriyur High Road R3 6.00
+Periyar Nagar Thiruvottriyur High Road R3 6.03
+Thiruvottriyur Thiruvottriyur High Road R3 6.05
+Theradi Thiruvottriyur High Road R3 6.06
+Ellaiamman Koil Thiruvottriyur High Road R3 6.10
+Kaladipet Thiruvottriyur High Road R3 6.12
+Rajakadai Thiruvottriyur High Road R3 6.14
+Thangal Thiruvottriyur High Road R3 6.16
+Toll gate Thiruvottriyur High Road R3 6.20
+Lakshmi Koil Thiruvottriyur High Road R3 6.22
+Thandaiyarpet depot Thiruvottriyur High Road R3 6.25
+Appollo Thiruvottriyur High Road R3 6.28
+Old Wahermenpet Thiruvottriyur High Road R3 6.32
+Manikoondu Thiruvottriyur High Road R3 6.34
+Maharani Post office Thiruvottriyur High Road R3 6.36
+Thyagaraja College Thiruvottriyur High Road R3 6.38
+Mint Thiruvottriyur High Road R3 6.40
+Basinbridge Main road R3 6.42
+Sharma nagar G.N.T. Road R3 6.44
+Erukkancherry G.N.T. Road R3 6.48
+Moolakadai G.N.T. Road R3 7.05
+Madhavaram Ring Road 100 Ft. Road R2 7.20
+Old Wahermenpet G.N.T. Road R2 7.25
+Redhills G.N.T. Road R1 7.30
+Veltech Univ Veltech-Alamathi Road R1 7.40
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.45 3.45 PM
+
+ROUTE NO V3A
+Medavakkam - East Thambaram V3A
+Pickup Point Road Route Morning Pickup Evening Drop
+Medavakkam MEDAVAKKAM MAIN ROAD R3 5.45 5.30
+Santhosapuram Main Road R3 5.50
+Sempakkam Main Road R3 5.52
+Kamarajapuram Main Road R3 5.54
+Selaiyur Camp road R3 5.56
+Camp Road Signal Camp road R3 5.58
+East Thambaram Camp road R3 6.00
+Tambaram Rly. Station G.S.T. Road R3 6.02
+Chrompet MIT G.S.T. Road R3 6.10
+Chrompet B.S. G.S.T. Road R3 6.18
+Thiruneermalai Main Road R3 6.25
+Anakaputhur Kamaraj Salai R3 6.28
+Moondram kattalai Kamaraj Salai R3 6.30
+Kovur Kunrathur Main Road R3 6.32
+Bai Kadai Kunrathur Main Road R3 6.35
+Madhanandhapuram Kunrathur Main Road R3 6.38
+Porur Mount-Poonamallee Road R3 6.42
+Ayyappathangal Mount-Poonamallee Road R2 6.48
+Kumanan Chavadi Mount-Poonamallee Road R2 6.55
+Karayan Chavadi Mount-Poonamallee Road R2 6.58
+Senneer kuppam Avadi Road R2 7.04
+Govardhanagiri Avadi Road R2 7.06
+Avadi Market Avadi-Poonamallee Road R2 7.10
+Avadi Ramarathna C.T.H. Road R2 7.35
+Avadi Bus Terminus Avadi - Veltech Road R1 7.38
+Vel Junction (North) Veltech-Alamathi Road R1 7.40
+Veltech Univ Veltech-Alamathi Road R1 7.42
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.45 3.45
+
+ROUTE NO V4&V4S
+MELUR-MINJUR-PONNERI V4
+Pickup Point Road Route Morning Pickup Evening Drop
+Melur Ponneri Road R3 6.10 5.25
+Nandhiyambakkam Ponneri Road R3 6.12
+B.D.O Office Ponneri Road R3 6.15
+Minjur Rly.Station Ponneri Road R3 6.17
+Minjur Ponneri Road R3 6.20
+Kesavapuram Ponneri Road R3 6.23
+Nalur Ponneri Road R3 6.25
+Mettupalayam Ponneri Road R3 6.28
+Pulikulam Ponneri Road R3 6.30
+Vembakkam Ponneri Road R3 6.35
+Ponneri Thatchur Road R3 6.40
+Krishnapuram Thatchur Road R3 6.42
+Andarkuppam Thatchur Road R3 6.41
+Thatchur G.N.T. Road R2 6.43
+Thatchur Koot Road G.N.T. Road R2 6.45
+Pancheti G.N.T. Road R2 6.50
+Karanodai G.N.T. Road R2 6.55
+Padianallur G.N.T. Road R2 7.15
+Redhills Redhills Main Road R1 7.20
+Redhills Tel. Exchange Thiruvallur Redhills Road R1 7.25
+Redhills Gandhi Nagar Thiruvallur Redhills Road R1 7.35
+Veltech Univ Veltech-Alamathi Road R1 7.45
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.50 3.45
+
+ROUTE NO V4A
+PATTINAPAKKAM V4A
+Pickup Point Road Route Morning Pickup Evening Drop
+Pattinapakkam Santhome High Road R3 5.50 5.30
+Mandaveli Venkatakrishna Road R3 5.52
+Mylapore Tank R.K. Mutt Road R3 5.54
+Mylapore Luz Corner Kutchery Road R3 5.56
+Santhome Church Santhome High Road R3 5.58
+All India Radio Santhome High Road R3 6.00
+Vivekananda House Besant Road R3 6.02
+Jam Bazar Triplicane High Road R3 6.04
+Star Theatre Triplicane High Road R3 6.06
+Adam Market Triplicane High Road R3 6.10
+Kalaivanar Arangam Walaja Road R3 6.12
+Chepauk Stadium Walaja Road R3 6.15
+Madras University Kamarajar Salai R3 6.20
+R.B.I. Rajaji Salai R3 6.22
+Beach station Rajaji Salai R3 6.24
+Mannady Rajaji Salai R3 6.26
+Muthalpet Ebrahim Sahib Street R3 6.28
+Mint Basin Bridge Road R3 6.32
+Vyasarpadi Erukanchery High Road R3 6.38
+Ambedhkar college G.N.T. Road R3 6.45
+Sharma nagar G.N.T. Road R3 6.47
+Erukkancherry G.N.T. Road R3 6.50
+Moolakadai G.N.T. Road R3 6.52
+Madhavaram Ring Road G.N.T. Road R2 6.54
+Puzhal G.N.T. Road R2 7.00
+Red Hills Thiruvallur Redhills Road R1 7.10
+Vel Junction (South) Veltech - Alamathi Road R1 7.35
+Vel Tech High Tech campus Veltech - Alamathi Road R1 7.40 3.45
+
+ROUTE NO V5
+ENNORE V5
+Pickup Point Road Route Morning Pickup Evening Drop
+Ennore Barma nagar Kathivakkam Road R3 5.50 AM 5.45 PM
+Chinnakuppam Kathivakkam Road R3 5.52
+Periyakuppam Kathivakkam Road R3 5.54
+Thalanguppam Kathivakkam Road R3 5.55
+High school Ennore High Road R3 5.58
+Ennore depot Ennore High Road R3 6.00
+Foundry Ennore High Road R3 6.02
+Ashok Ley Land Ennore High Road R3 6.04
+Anna nagar Ennore High Road R3 6.06
+E.T.P.S Ennore High Road R3 6.08
+Ernavoor Ennore High Road R3 6.10
+Murugan Koil Ennore High Road R3 6.12
+Mullai Nagar Manali High Road R3 6.14
+Murugappa nagar Manali High Road R3 6.18
+Sadaiyankuppam Manali High Road R3 6.20
+CPCL Manali High Road R3 6.22
+Manali Market Nedunchezian Road R3 6.24
+MMDA Kamarajar Salai R3 6.28
+Mathur Kamarajar Salai R3 6.30
+Kosappur Main road R3 6.33
+Vadaperumpakkam Kamarajar Salai R2 6.40
+Grand lIne Kamarajar Salai R2 6.48
+Vadakarai Kamarajar Salai R2 7.00
+Redhills Thiruvallur Redhills Road R1 7.10
+Vel Junction(South) Veltech-Alamathi Road R1 7.35
+Veltech Univ Veltech-Alamathi Road R1 7.40
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.45 3.45 PM
+
+ROUTE NO V5A
+KASI MEDU V5A
+Pickup Point Road Route Morning Pickup Evening Drop
+Kasimedu Mannarsamy Koil Street R3 5.50 5.35
+Flag street Main Road Mannarsamy Koil Street R3 5.52
+Kalmandapam Mannarsamy Koil Street R3 5.55
+Royapuram Mannarsamy Koil Street R3 6.00
+Stanely Old Jail Road R3 6.05
+Mint Old Jail Road R3 6.10
+Basin Bridge Main Road R3 6.15
+Choolai post office Thiru Narayana Road R3 6.18
+Puliyanthope Perambur Barracks Road R3 6.20
+Barracks Road Perambur Barracks Road R3 6.23
+Dowtton Perambur Barracks Road R3 6.25
+Otteri Perambur Barracks Road R3 6.28
+Binny Mills Cooks Road R3 6.30
+Jamaliya Perambur High Road R3 6.32
+Sembiyum Perambur High Road R3 6.34
+Venus Perambur High Road R3 6.36
+Agaram Perambur High Road R3 6.38
+Peravallur Paper Mills Road R3 6.40
+Kolathur Welding shop Paper Mills Road R3 6.42
+Kolathur Moogambiga Paper Mills Road R2 6.44
+Retteri Signal Paper Mills Road R2 6.50
+Madhavaram Ring Road 100 Ft. Road R2 6.54
+Puzhal G.N.T. Road R2 7.00
+Redhills G.N.T. Road R1 7.10
+Veltech Univ Veltech-Alamathi Road R1 7.38
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.40 3.45
+
+ROUTE NO V6
+VELACHERY - GUINDY - SPIC V6
+Pickup Point Road Route Morning Pickup Evening Drop
+Velachery Velachery Main Road R3 5.45 5.45
+Guindy -SPIC G.S.T. Road R3 5.53
+Guindy Rly. Station G.S.T. Road R3 5.57
+Guindy Jawaharlal Nehru Road R3 6.00
+Ambal Nagar-Ekattuthangal Jawaharlal Nehru Road R3 6.03
+Jafferkhanpet Jawaharlal Nehru Road R3 6.05
+Kasi Theatre Jawaharlal Nehru Road R3 6.10
+K.K. Nagar East Vannier Street R3 6.13
+Pondichery House Vannier Street R3 6.15
+Virugambakkam Avichi Arcot Road R3 6.20
+Elango Nagar Kaliamman Koil Street R3 6.22
+Sai Nagar Kaliamman Koil Street R3 6.25
+Sri Ayyappan Nagar Kaliamman Koil Street R3 6.28
+Chinmaya Nagar Kaliamman Koil Street R3 6.30
+Koyambedu Rountana Poonamallee High Road R2 6.35
+Nerkundram Poonamallee High Road R2 6.38
+Madhuravoyal Poonamallee High Road R2 6.40
+Vanagaram Poonamallee High Road R2 6.43
+Kumar Theater Poonamallee High Road R2 6.45
+Vellappanchavadi Poonamallee High Road R2 6.48
+Sanjay Gandhi Nagar Perumal Agaram Salai R2 6.52
+Thiruverkadu Police Stn. Sivan Koil Street R2 6.55
+Thiruverkadu Panchayat Sivan Koil Street R2 6.58
+Paruthipattu Avadi-Poonamallee Road R2 7.02
+Govardhanagiri Avadi-Poonamallee Road R2 7.05
+Avadi C.T.H. Road R1 7.15
+Veltech Univ Veltech-Alamathi Road R1 7.37
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.40 3.45
+
+ROUTE NO V7
+GUMMUDIPOONDI V7
+Pickup Point Road Route Morning Pickup Evening Drop
+Gummidipoondi G.N.T. Road R3 5.45 AM 5.45 PM
+Bazar G.N.T. Road R3 5.55
+Kavarapettai G.N.T. Road R3 6.05
+Pudhuvoyal G.N.T. Road R3 6.10
+Thatchur Koot Road G.N.T. Road R2 6.15
+Janapanchatram X Road G.N.T. Road R2 6.20
+Kanniputhur Redhills - Peryapalyam Road R2 6.25
+Vadamathurai Peryapalyam -Thiruvallur Road R2 6.35
+Vengal Peryapalyam -Thiruvallur Road R2 6.40
+Vengal X Road Peryapalyam -Thiruvallur Road R2 6.45
+Thamaraipakkam X Road Peryapalyam -Thiruvallur Road R1 6.50
+Magalgandigai Redhills -Thiruvallur Road R1 6.55
+Koduvalli Redhills -Thiruvallur Road R1 7.00
+Poochiatthipedu Redhills -Thiruvallur Road R1 7.10
+Bangarupettai Avadi-veerapuram Road R1 7.15
+Veerapuram Vel Tech Alamathi Road R1 7.20
+Veltech Univ Veltech-Alamathi Road R1 7.37
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.45 AM 3.45 PM
+
+ROUTE NO V7A
+MANALI NEW TOWN V7A
+Pickup Point Road Route Morning Pickup Evening Drop
+Manali New Town Ponneri Road R3 6.10 5.35
+Manali N.T Market Kamarajar Salai R3 6.12
+Milk Booth Milk Colony Road R3 6.14
+Rajivgandhi Nagar Rizwan Road R3 6.16
+Andarkuppam Kamarajar Salai R3 6.18
+SRF company Kamarajar Salai R3 6.20
+Manali Bus stand Kamarajar Salai R3 6.22
+Manali Market Kamarajar Salai R3 6.25
+MMDA Kamarajar Salai R3 6.35
+Mathur Kamarajar Salai R3 6.40
+veterinary College Milk Colony Road R3 6.45
+Main Gate Milk Colony Road R3 6.50
+Arul nagar Milk Colony Road R3 6.52
+Medimix Kamaraj Road R3 6.53
+ThapalPetti Madhavaram High Road R3 6.54
+Madhavaram B.T. Madhavaram High Road R2 6.55
+Madhavaram Ring Road G.N.T. Road R2 7.00
+Puzhal G.N.T. Road R2 7.05
+Redhills Thiruvallur Redhills Road R1 7.10
+Veltech Univ Veltech-Alamathi Road R1 7.40
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.45 3.45
+
+ROUTE NO V8
+Teynampet V8
+Pickup Point Road Route Morning Pickup Evening Drop
+Teynampet Anna salai road R3 5.45 AM 5.45 PM
+Alwarpet Anna salai road R3 5.50
+Anna salai Anna salai road R3 5.52
+Pudhupet Anna salai road R3 5.54
+Egmore Anna salai road R3 5.58
+EVR periyar EVR periyar Salai R3 6.05
+pachaiyappas college poonamalle road R3 6.14
+Kilpauk garden poonamalle road R3 6.18
+Purasawalkam Purasawalkam High Road R3 6.20
+Kellys Medavakkam Tank Road R3 6.25
+ESI Hospital Medavakkam Tank Road R3 6.30
+Ayanavaram Joint Office Konnur High Road R3 6.33
+ICF East Colony Konnur High Road R3 6.35
+Villivakkam Nathamuni Konnur High Road R2 6.40
+TVS Lucas 100 feet road R2 6.42
+Padi C.T.H. Road R2 6.44
+Ambattur Estate C.T.H. Road R2 6.46
+Telephone Exchange C.T.H. Road R2 6.48
+Ambattur O.T. C.T.H. Road R2 6.53
+Avadi C.T.H. Road R1 7.10
+Vel Junction (North) Avadi - Veltech Road R1 7.35
+Veltech Univ Veltech-Alamathi Road R1 7.37
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.40 3.45 PM
+
+ROUTE NO V8S
+ANNA NAGAR -K4 Police Station V8S
+Pickup Point Road Route Morning Pickup Evening Drop
+K4 Police Station 6th Avenue R2 6.20 5.10
+Gandhi Nagar Hospital Mani Road R2 6.25
+ICF BS Mani Road R2 6.30
+Villivakkam Nathamuni Konnur High Road R2 6.40
+TVS Lucas 100 feet road R2 6.42
+Padi C.T.H. Road R2 6.44
+Ambattur Estate C.T.H. Road R2 6.46
+Telephone Exchange C.T.H. Road R2 6.48
+Ambattur O.T. C.T.H. Road R2 6.53
+Avadi C.T.H. Road R1 7.10
+Vel Junction (North) Avadi - Veltech Road R1 7.35
+Veltech Univ Veltech-Alamathi Road R1 7.40
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.45 3.45
+
+ROUTE NO V9
+AMBEDHKAR COLLEGE V9
+Pickup Point Road Route Morning Pickup Evening Drop
+MKB Nagar G.N.T. Road R3 5.45 AM 5.45 PM
+Ambedhkar college Melapati-Ponnappa Street R3 5.50
+Vyasarpadi Perambur Main Road R3 5.52
+Perambur B.P. Road B.P. Road R3 5.54
+Eswarikalyanamandapam B.P. Road R3 5.55
+Lakshmi Amman koil B.P. Road R3 5.58
+Revathy store B.P. Road R3 6.00
+Perambur Market B.P. Road R3 6.02
+Perambur Church B.P. Road R3 6.05
+Peravllur Paper Mills Road R3 6.10
+Periyar Nagar Paper Mills Road R3 6.15
+Kolathur Welding shop Paper Mills Road R3 6.20
+Kolathur Moogambiga Paper Mills Road R2 6.25
+Ganga Cuavery 60 Ft.Road R2 6.28
+Poombokar Nagar 1 st Main Road R2 6.30
+Don Bosco school Kolathur road R2 6.32
+Rajamangalam Police Station Kolathur road R2 6.36
+Senthil Nagar Kolathur road R2 6.38
+Vinayagapuram Redhills Road R2 6.42
+Lakshmipuram Redhills Road R2 6.44
+Surapet Redhills Road R2 6.48
+Kallikuppam Redhills Road R2 6.52
+Pudhur Redhills Road R2 6.54
+Oragadam Redhills Road R2 6.56
+Singapore complex C.T.H Road R2 6.58
+Avadi C.T.H Road R1 7.05
+Vel Junction (North) Avadi - Veltech Road R1 7.35
+Veltech Univ Veltech-Alamathi Road R1 7.37
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.45 3.45 PM
+
+ROUTE NO V10
+THIRUVALLUR V10
+Pickup Point Road Route Morning Pickup Evening Drop
+Thiruvallur Ondikuppam Thiruvallur Poonamallee Rd R3 6.00 5.45
+Thiruvallur Manavalan Ngr. Thiruvallur Poonamallee Rd R3 6.05
+Thiruvallur Thulasi theater Thiruvallur Poonamallee Rd R3 6.10
+Thiruvallur G.H Thiruvallur Poonamallee Rd R3 6.12
+Thiruvallur Post Office Thiruvallur Poonamallee Rd R3 6.15
+Thiruvallur Theradi Theradi Road R3 6.20
+Kakkalur C.T.H. Road R3 6.30
+Sevapettai C.T.H. Road R3 6.40
+Veppampattu C.T.H. Road R2 6.45
+Thiruninravur C.T.H. Road R2 6.50
+Pattabiram C.T.H. Road R2 6.55
+Hindu College C.T.H. Road R2 7.00
+Pattabiram Chathiram Pattabiram Airforce Road R2 7.05
+Muthapudupet Airforce Road R1 7.12
+Airforce Airforce Road R1 7.15
+CRPF CRPF-Vel Tech Road R1 7.20
+Vel tech South Junction Avadi-Veltech Road R1 7.35
+Veltech Univ Veltech-Alamathi Road R1 7.37
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.45 3.45
+
+ROUTE NO V11
+KODUNGAIYUR V11
+Pickup Point Road Route Morning Pickup Evening Drop
+Kanadhasan nagar Kamaraj Road R3 6.00 5.45
+Muthamizh nagar Kamaraj Road R3 6.02
+kanadhasan nagar depo Meenammal Road R3 6.03
+Muthukumaraswamy college Kamaraj Road R3 6.04
+M.R Nagar Kamaraj Road R3 6.06
+Pavithra Hospital Kamaraj Road R3 6.08
+Erruckancherry Kamaraj Road R3 6.10
+Moolakadai P.O. Madhavaram High Road R3 6.12
+Donbosco Schools Ottraivaadai Street R3 6.13
+Kennedy Square Ottraivaadai Street R3 6.14
+Thiru Vi ka Nagar S.P.Koil Street R3 6.16
+Agaram Paper Mills Road R3 6.18
+DonBosco Church Paper Mills Road R3 6.20
+Peravallur Paper Mills Road R3 6.21
+Welding shop Paper Mills Road R3 6.23
+Kolathur Mookambiga Paper Mills Road R2 6.25
+Retteri Signal 100ft. Road R2 6.28
+Madhavaram Roundana G.N.T. Road R2 6.32
+Puzhal G.N.T. Road R2 6.36
+kavakarai G.N.T. Road R2 6.38
+Redhills Thiruvallur Redhills Road R1 6.40
+Vel Junction (North) Avadi - Veltech Road R1 7.35
+Veltech Univ Veltech-Alamathi Road R1 7.37
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.45 3.45
+
+ROUTE NO V11S
+KODUNGAIYUR V11S
+Pickup Point Road Route Morning Pickup Evening Drop
+IOC Thiruvottriyur High Road R3 6.00 5.45
+Power house Thiruvottriyur High Road R3 6.05
+Korukkupettai Thiruvottriyur High Road R3 6.15
+Moolakadai Madhavaram High Road R3 6.2
+Temple school Madhavaram High Road R2 6.35
+Senthil nagar 100 ft Road R2 6.35
+D.R.Hospital 100 ft Road R2 6.4
+Thathankuppam 100 ft Road R2 6.42
+Padi 100 ft Road R2 6.45
+Korattur Main road R2 6.48
+Telephone Exchange C.T.H Road R2 6.52
+Ambattur Canara Bank C.T.H Road R2 6.56
+Ambattur OT bus Stand C.T.H Road R2 7.00
+Singapore Complex C.T.H Road R2 7.05
+Thirumullaivoyal C.T.H Road R2 7.15
+Murugappa Polytechnic C.T.H Road R2 7.18
+Avadi C.T.H Road R1 7.20
+Vel Junction Avadi - Veltech Road R1 7.35
+Veltech Univ Veltech-Alamathi Road R1 7.37
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.45 3.45
+
+ROUTE NO V12
+UTHUKOTTAI V12
+Pickup Point Road Route Morning Pickup Evening Drop
+UTHUKOTTAI Periyapalyam - Uthukottai Road R3 5.45 AM 5.45 PM
+MGR nagar Periyapalyam - Uthukottai Road R3 5.55
+Karachi Periyapalyam - Uthukottai Road R3 6.05
+Perandur Periyapalyam - Uthukottai Road R3 6.10
+Perambur Pattai Periyapalyam - Uthukottai Road R3 6.15
+Thandalam Periyapalyam - Uthukottai Road R3 6.20
+Periyapalayam Bus Stand Periyapalyam - Uthukottai Road R2 6.30
+Vadamathurai Peryapalyam -Thiruvallur Road R2 6.35
+Vengal Peryapalyam -Thiruvallur Road R2 6.40
+Vengal X Road Peryapalyam -Thiruvallur Road R2 6.45
+Thamaraipakkam X Road Peryapalyam -Thiruvallur Road R1 6.50
+Magalgandigai Redhills -Thiruvallur Road R1 6.55
+Koduvalli Redhills -Thiruvallur Road R1 7.00
+Poochiatthipedu Redhills -Thiruvallur Road R1 7.10
+Bangarupettai Avadi-veerapuram Road R1 7.15
+Veerapuram Vel Tech Alamathi Road R1 7.20
+Veltech Univ Veltech-Alamathi Road R1 7.37
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.45 AM 3.45 PM
+
+ROUTE NO 17
+Metha Nagar VH17
+Pickup Point Road Route Morning Pickup Evening Drop
+Mehta Nagar Anna Arch Road R3 6.35 5.35
+Anna Arch 2nd Avenue R3 6.40
+Thirumangalam 100ft. Road R2 6.50
+Collector Nagar Ambattur Estate Road R2 6.55
+J.J. Nagar P.S Valaiyapathi Road R2 6.57
+Mugapper East T.N.H.B Parl Road R2 7.00
+J.J. Nagar B.T Thiruvalluvar Road R2 7.03
+7H Bus stand Thiruvalluvar Road R2 7.03
+Velammal School Valaiyapathi Road R2 7.05
+Mugapper West Depo Main Road R2 7.08
+Ambatuur Telephone Exchange C.T.H. Road R2 7.10
+Ambattur O.T. C.T.H. Road R2 7.15
+Thirumullaivoyal C.T.H. Road R2 7.20
+Avadi Avadi-Veltech Road R1 7.25
+Veltech Univ Veltech-Alamathi Road R1 7.40
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.50 3.45
+
+ROUTE NO 19
+ROYAPETTAH V19
+Pickup Point Road Route Morning Pickup Evening Drop
+Royapettah Hospital West Cott Road R3 6.00 5.45
+Royapettah Towerclock Whites Road R3 6.02
+Spencer Plaza Binny Road R3 6.03
+Ethiraj College Commander-in-chief Road R3 6.04
+CO-OPTEX Pantheon Road R3 6.06
+Sankara Nethralaya College Road R3 6.08
+Nungambakkam Sterling Road R3 6.1
+Kodambakkam liberty Arcot Road R3 6.13
+Vadapalani 100ft. Road R3 6.14
+MMDA 100ft. Road R3 6.16
+Koyambedu 100ft. Road R2 6.18
+Nerkundram Poonamallee High Road R2 6.2
+Madhuravoyal Poonamallee High Road R2 6.21
+Vanagaram Poonamallee High Road R2 6.23
+Kumar Theater Poonamallee High Road R2 6.25
+Vellappanchavadi Poonamallee High Road R2 6.3
+Senneer kuppam By Pass Road R2 7.00
+Govardhanagiri Avadi Road R2 7.02
+Avadi C.T.H. Road R1 7.15
+Veltech Univ Veltech-Alamathi Road R1 7.45
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.50 3.45
+
+ROUTE NO V24A
+MUGAPAIR V24A
+Pickup Point Road Route Morning Pickup Evening Drop
+Collector Nagar Bazar Road R2 6.20 5.35
+MMM Hospital Bazar Road R2 6.22
+J.J. Nagar P.S Valaiyapathi Road R2 6.24
+Velammal School Valaiyapathi Road R2 6.26
+Mugapper East T.N.H.B Parl Road R2 6.28
+J.J. Nagar B.T Thiruvalluvar Road R2 6.30
+Panneer Nagar Thiruvalluvar Road R2 6.32
+Mohan Ram Nagar Thiruvalluvar Road R2 6.34
+DAV Girls H.S. School Ambattur Estate Road R2 6.36
+Mugapper Post Office Vellar Street R2 6.38
+VGP Nagar 1st Avenue R2 6.40
+Mugapper West 6th Block 1st Avenue R2 6.42
+Mugapper West Water Tank 1st Avenue R2 6.44
+Ambatur Dunlop C.T.H. Road R2 6.50
+Ambedkar silai Ayappakkam Road R2 6.53
+Ayyapakkam E.B Ayappakkam Road R2 6.58
+Annanur junction Ayappakkam Road R2 7.00
+Chinnaman koil Ayappakkam Road R2 7.02
+Avadi Market Avadi-Poonamallee Road R2 7.04
+Avadi C.T.H. Road R1 7.10
+Veltech Univ Veltech-Alamathi Road R1 7.37
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.40 3.45 PM
+
+ROUTE NO 25A
+TOLLGATE BUS TERMINUS VH25A
+Pickup Point Road Route Morning Pickup Evening Drop
+Tollgate Bus Terminus Thiruvottriyur High Road R3 6.10 5.45
+Cross Road Thiruvottriyur High Road R3 6.12
+Lakshmi Amman koil Thiruvottriyur High Road R3 6.14
+Thandaiyarpet depot Thiruvottriyur High Road R3 6.16
+Appollo Thiruvottriyur High Road R3 6.18
+Old Wahermenpet Thiruvottriyur High Road R3 6.20
+Manikoondu Thiruvottriyur High Road R3 6.22
+Maharani Post office Thiruvottriyur High Road R3 6.24
+Thyagaraja College Thiruvottriyur High Road R3 6.25
+Mint Thiruvottriyur High Road R3 6.30
+Ambedkar College Thiruvottriyur High Road R3 6.40
+Sharma nagar Thiruvottriyur High Road R3 6.42
+Moolakadai G.N.T. Road R3 6.45
+Madhavarm Ring Road G.N.T. Road R2 6.48
+Retteri Signal 100ft. Road R2 6.50
+Vinayakapuram Redhills Road R2 6.52
+Kadiravedu Redhills Road R2 6.55
+Surapet Redhills Road R2 6.57
+Kallikuppam Redhills Road R2 6.58
+Pudhur Ambattur - Redhills Road R2 7.00
+Rakki cinimas C.T.H. Road R2 7.10
+Avadi C.T.H. Road R1 7.20
+Veltech Univ Veltech-Alamathi Road R1 7.40
+Vel Tech Anna campus Veltech - Alamathi Road R1 7.45 3.45
