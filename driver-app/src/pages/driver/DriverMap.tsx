@@ -50,7 +50,7 @@ export default function DriverMap() {
         
         // Broadcast to backend (Geofencing relies on this!)
         // Fetch actual driver profile to get busId, or rely on authStore
-        const busId = useAuthStore.getState().user?.driver?.bus?.id || 'BUS-1001';
+        const busId = (useAuthStore.getState().user as any)?.driver?.bus?.id || 'BUS-1001';
         api.post('/telemetry/location', {
           busId, 
           lat: position.coords.latitude,
