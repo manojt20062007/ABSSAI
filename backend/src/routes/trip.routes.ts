@@ -32,6 +32,88 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   } catch (e) { next(e); }
 });
 
+router.get('/active', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { busId, driverId } = req.query;
+    if (!busId && !driverId) throw new Error('Must provide busId or driverId');
+    
+    const where: any = { status: 'IN_PROGRESS' };
+    if (busId) where.busId = busId;
+    if (driverId) where.driverId = driverId;
+
+    const trip = await prisma.trip.findFirst({
+      where,
+      include: { bus: true, driver: { include: { user: true } }, route: { include: { stops: { include: { stop: true } } } } },
+      orderBy: { actualDeparture: 'desc' },
+    });
+    
+    ResponseHandler.success(res, trip);
+  } catch (e) { next(e); }
+});
+
+router.post('/start-active', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { busId, driverId, routeId } = req.body;
+    if (!busId || !driverId || !routeId) throw new Error('Missing required fields');
+
+    // Check if there is already an active trip
+    let trip = await prisma.trip.findFirst({
+      where: { busId, status: 'IN_PROGRESS' },
+    });
+
+    if (!trip) {
+      // Find a scheduled trip for today
+      trip = await prisma.trip.findFirst({
+        where: { busId, status: 'SCHEDULED' },
+        orderBy: { departureTime: 'asc' },
+      });
+
+      if (trip) {
+        trip = await prisma.trip.update({
+          where: { id: trip.id },
+          data: { status: 'IN_PROGRESS', actualDeparture: new Date(), driverId, routeId },
+        });
+      } else {
+        // Create an ad-hoc trip
+        trip = await prisma.trip.create({
+          data: {
+            tripNumber: Math.floor(Math.random() * 10000),
+            departureTime: new Date(),
+            arrivalTime: new Date(Date.now() + 3600000),
+            actualDeparture: new Date(),
+            status: 'IN_PROGRESS',
+            busId,
+            driverId,
+            routeId,
+          }
+        });
+      }
+    }
+
+    ResponseHandler.success(res, trip, 'Trip started successfully');
+  } catch (e) { next(e); }
+});
+
+router.post('/end-active', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { busId } = req.body;
+    if (!busId) throw new Error('Missing busId');
+
+    const trips = await prisma.trip.findMany({
+      where: { busId, status: 'IN_PROGRESS' },
+    });
+
+    for (const trip of trips) {
+      await prisma.trip.update({
+        where: { id: trip.id },
+        data: { status: 'COMPLETED', actualArrival: new Date() },
+      });
+    }
+
+    ResponseHandler.success(res, null, 'Trip ended successfully');
+  } catch (e) { next(e); }
+});
+
 router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const trip = await prisma.trip.findUnique({

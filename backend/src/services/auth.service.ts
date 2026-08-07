@@ -145,7 +145,7 @@ export class AuthService {
         id: true, email: true, firstName: true, lastName: true, phone: true,
         avatar: true, role: true, isActive: true, isVerified: true,
         lastLoginAt: true, createdAt: true, 
-        driver: { include: { bus: { include: { route: true } } } }, 
+        driver: { include: { bus: { include: { route: { include: { stops: { include: { stop: true } } } } } } } }, 
         studentProfile: { include: { route: { include: { stops: { include: { stop: true } } } }, assignedBus: true } },
       },
     });
