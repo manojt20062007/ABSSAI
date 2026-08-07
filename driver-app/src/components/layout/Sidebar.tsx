@@ -2,22 +2,21 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useThemeStore, useAuthStore } from '../../stores';
 import {
-  LayoutDashboard, Map, Users, ClipboardCheck, Settings, ChevronLeft, ChevronRight, Bus, UserCircle
+  LayoutDashboard, Map, Users, ClipboardCheck, ChevronLeft, ChevronRight, Bus, UserCircle, LogOut
 } from 'lucide-react';
 
 const menuItems = [
-  { label: 'Home', icon: LayoutDashboard, path: '/driver/home', roles: ['DRIVER'] },
-  { label: 'Navigation', icon: Map, path: '/driver/map', roles: ['DRIVER'] },
-  { label: 'Student Roster', icon: Users, path: '/driver/passengers', roles: ['DRIVER'] },
-  { label: 'My Attendance', icon: ClipboardCheck, path: '/driver/attendance', roles: ['DRIVER'] },
+  { label: 'Home', icon: LayoutDashboard, path: '/driver/home' },
+  { label: 'Navigation', icon: Map, path: '/driver/map' },
+  { label: 'Student Roster', icon: Users, path: '/driver/passengers' },
+  { label: 'My Attendance', icon: ClipboardCheck, path: '/driver/attendance' },
+  { label: 'My Profile', icon: UserCircle, path: '/driver/profile' },
 ];
 
 export default function Sidebar() {
   const { sidebarCollapsed, toggleSidebar } = useThemeStore();
   const { user } = useAuthStore();
   const location = useLocation();
-
-  const filteredMenu = menuItems;
 
   return (
     <>
@@ -42,7 +41,7 @@ export default function Sidebar() {
         }}
       >
       {/* Logo */}
-      <div className="flex items-center h-16 px-4 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+      <div className="flex items-center h-14 px-4 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
         <div className="flex items-center gap-3 overflow-hidden">
           <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
             style={{ background: 'linear-gradient(135deg, #6366f1, #0ea5e9)' }}>
@@ -80,12 +79,15 @@ export default function Sidebar() {
 
       {/* Menu */}
       <nav className="flex-1 overflow-y-auto py-4 px-2 space-y-1">
-        {filteredMenu.map((item) => {
+        {menuItems.map((item) => {
           const isActive = location.pathname === item.path || location.pathname.startsWith(item.path + '/');
           return (
             <NavLink
               key={item.path}
               to={item.path}
+              onClick={() => {
+                if (window.innerWidth < 768) toggleSidebar();
+              }}
               className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all relative group"
               style={{
                 color: isActive ? '#e2e8f0' : '#64748b',
@@ -124,12 +126,8 @@ export default function Sidebar() {
         })}
       </nav>
 
-      {/* Footer */}
+      {/* Footer: User Info + Logout */}
       <div className="p-3 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
-        <NavLink to="/settings" className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-500 hover:text-slate-300 transition-colors mb-1">
-          <Settings size={18} />
-          {!sidebarCollapsed && <span>Settings</span>}
-        </NavLink>
         <div className="flex items-center gap-3 px-3 py-2 rounded-lg">
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center flex-shrink-0">
             <UserCircle size={18} className="text-white" />
@@ -141,6 +139,13 @@ export default function Sidebar() {
             </div>
           )}
         </div>
+        <button
+          onClick={() => useAuthStore.getState().logout()}
+          className="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-red-400 hover:bg-red-500/10 transition-colors mt-1"
+        >
+          <LogOut size={18} />
+          {!sidebarCollapsed && <span>Logout</span>}
+        </button>
       </div>
     </motion.aside>
     </>

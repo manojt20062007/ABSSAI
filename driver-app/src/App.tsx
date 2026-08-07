@@ -16,6 +16,7 @@ import DriverHome from './pages/driver/DriverHome';
 import DriverMap from './pages/driver/DriverMap';
 import DriverPassengers from './pages/driver/DriverPassengers';
 import DriverAttendance from './pages/driver/DriverAttendance';
+import DriverProfile from './pages/driver/DriverProfile';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -72,6 +73,7 @@ export default function App() {
               <Route path="/driver/map" element={<DriverMap />} />
               <Route path="/driver/passengers" element={<DriverPassengers />} />
               <Route path="/driver/attendance" element={<DriverAttendance />} />
+              <Route path="/driver/profile" element={<DriverProfile />} />
             </Route>
           </Route>
 
