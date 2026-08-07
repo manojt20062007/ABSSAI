@@ -38,16 +38,27 @@ export default function Sidebar() {
   );
 
   return (
-    <motion.aside
-      initial={false}
-      animate={{ width: sidebarCollapsed ? 72 : 260 }}
-      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-      className="fixed left-0 top-0 bottom-0 z-40 flex flex-col border-r"
-      style={{
-        background: 'linear-gradient(180deg, rgba(17,17,24,0.98) 0%, rgba(10,10,15,0.99) 100%)',
-        borderColor: 'rgba(255,255,255,0.08)',
-      }}
-    >
+    <>
+      {/* Mobile Backdrop Overlay */}
+      {!sidebarCollapsed && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-30 md:hidden backdrop-blur-sm"
+          onClick={() => toggleSidebar()}
+        />
+      )}
+
+      <motion.aside
+        initial={false}
+        animate={{ width: sidebarCollapsed ? 72 : 260 }}
+        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+        className={`fixed left-0 top-0 bottom-0 z-40 flex flex-col border-r transition-transform duration-300 md:translate-x-0 ${
+          sidebarCollapsed ? '-translate-x-full md:w-[72px]' : 'translate-x-0 w-[260px]'
+        }`}
+        style={{
+          background: 'linear-gradient(180deg, rgba(17,17,24,0.98) 0%, rgba(10,10,15,0.99) 100%)',
+          borderColor: 'rgba(255,255,255,0.08)',
+        }}
+      >
       {/* Logo */}
       <div className="flex items-center h-16 px-4 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
         <div className="flex items-center gap-3 overflow-hidden">
@@ -73,10 +84,10 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* Toggle */}
+      {/* Toggle (Hidden on mobile) */}
       <button
         onClick={toggleSidebar}
-        className="absolute -right-3 top-20 w-6 h-6 rounded-full flex items-center justify-center z-50 hover:scale-110 transition-transform"
+        className="hidden md:flex absolute -right-3 top-20 w-6 h-6 rounded-full items-center justify-center z-50 hover:scale-110 transition-transform"
         style={{
           background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
           border: '2px solid rgba(10,10,15,0.9)',
@@ -150,5 +161,6 @@ export default function Sidebar() {
         </div>
       </div>
     </motion.aside>
+    </>
   );
 }
