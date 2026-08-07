@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bus, Plus, Search, Filter, Edit, Trash2, Eye, X, Loader2, QrCode, Download } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
-import { busApi } from '../../services/api';
+import { busApi, routeApi, driverApi } from '../../services/api';
 
 const statusColors: Record<string, string> = {
   ACTIVE: 'badge-success', INACTIVE: 'badge-neutral', MAINTENANCE: 'badge-warning', BREAKDOWN: 'badge-danger',
@@ -93,6 +93,8 @@ export default function BusListPage() {
                   <th>Fuel</th>
                   <th>Depot</th>
                   <th>Status</th>
+                  <th>Assigned Route</th>
+                  <th>Assigned Driver</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -109,6 +111,8 @@ export default function BusListPage() {
                     <td><span className={`badge ${fuelTypeColors[bus.fuelType]}`}>{bus.fuelType}</span></td>
                     <td className="text-slate-400">{bus.depot?.name || '—'}</td>
                     <td><span className={`badge ${statusColors[bus.status]}`}>{bus.status}</span></td>
+                    <td className="text-slate-300 font-medium">{bus.route ? bus.route.routeNumber : '—'}</td>
+                    <td className="text-slate-300">{bus.currentDriver?.user?.name || '—'}</td>
                     <td>
                       <div className="flex items-center gap-2">
                         <button onClick={() => { setQrBus(bus); setShowQRModal(true); }} title="View QR Code"
@@ -171,17 +175,35 @@ function BusFormModal({ bus, onClose }: { bus: any; onClose: () => void }) {
     mileage: bus?.mileage || 0,
     status: bus?.status || 'ACTIVE',
     gpsDeviceId: bus?.gpsDeviceId || '',
+    routeId: bus?.routeId || '',
+    currentDriverId: bus?.currentDriverId || '',
   });
   const [saving, setSaving] = useState(false);
+
+  const { data: routesData } = useQuery({
+    queryKey: ['routes', 'all'],
+    queryFn: () => routeApi.getAll({ limit: 100 }),
+    select: (res) => res.data?.data || [],
+  });
+
+  const { data: driversData } = useQuery({
+    queryKey: ['drivers', 'all'],
+    queryFn: () => driverApi.getAll({ limit: 100 }),
+    select: (res) => res.data?.data || [],
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
     try {
+      const payload = { ...formData };
+      if (!payload.routeId) payload.routeId = null as any;
+      if (!payload.currentDriverId) payload.currentDriverId = null as any;
+      
       if (bus) {
-        await busApi.update(bus.id, formData);
+        await busApi.update(bus.id, payload);
       } else {
-        await busApi.create(formData);
+        await busApi.create(payload);
       }
       queryClient.invalidateQueries({ queryKey: ['buses'] });
       onClose();
@@ -254,6 +276,29 @@ function BusFormModal({ bus, onClose }: { bus: any; onClose: () => void }) {
                 <option value="ACTIVE">Active</option>
                 <option value="INACTIVE">Inactive</option>
                 <option value="MAINTENANCE">Maintenance</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Assigned Route</label>
+              <select value={formData.routeId} onChange={(e) => setFormData({...formData, routeId: e.target.value})}
+                className="input-field">
+                <option value="">No Route Assigned</option>
+                {routesData?.map((route: any) => (
+                  <option key={route.id} value={route.id}>{route.routeNumber} - {route.name}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Assigned Driver</label>
+              <select value={formData.currentDriverId} onChange={(e) => setFormData({...formData, currentDriverId: e.target.value})}
+                className="input-field">
+                <option value="">No Driver Assigned</option>
+                {driversData?.map((driver: any) => (
+                  <option key={driver.id} value={driver.id}>{driver.user?.name || driver.employeeId}</option>
+                ))}
               </select>
             </div>
           </div>
