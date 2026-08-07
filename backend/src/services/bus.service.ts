@@ -27,7 +27,7 @@ export class BusService {
         include: { 
           depot: { select: { id: true, name: true, code: true } },
           route: { select: { id: true, name: true, routeNumber: true } },
-          currentDriver: { select: { id: true, user: { select: { name: true } } } }
+          currentDriver: { select: { id: true, user: { select: { firstName: true, lastName: true } } } }
         },
       }),
       prisma.bus.count({ where }),
@@ -58,7 +58,7 @@ export class BusService {
       include: { 
         depot: { select: { id: true, name: true } },
         route: { select: { id: true, name: true, routeNumber: true } },
-        currentDriver: { select: { id: true, user: { select: { name: true } } } }
+        currentDriver: { select: { id: true, user: { select: { firstName: true, lastName: true } } } }
       } 
     });
   }
@@ -72,7 +72,7 @@ export class BusService {
       include: { 
         depot: { select: { id: true, name: true } },
         route: { select: { id: true, name: true, routeNumber: true } },
-        currentDriver: { select: { id: true, user: { select: { name: true } } } }
+        currentDriver: { select: { id: true, user: { select: { firstName: true, lastName: true } } } }
       } 
     });
   }
