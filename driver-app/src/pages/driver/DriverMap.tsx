@@ -49,9 +49,10 @@ export default function DriverMap() {
         setCurrentLocation([position.coords.latitude, position.coords.longitude]);
         
         // Broadcast to backend (Geofencing relies on this!)
-        // Fallback to testing BUS-1001 if no active trip is selected in the UI
+        // Fetch actual driver profile to get busId, or rely on authStore
+        const busId = useAuthStore.getState().user?.driver?.bus?.id || 'BUS-1001';
         api.post('/telemetry/location', {
-          busId: 'BUS-1001', 
+          busId, 
           lat: position.coords.latitude,
           lng: position.coords.longitude,
           speed: position.coords.speed || 0,

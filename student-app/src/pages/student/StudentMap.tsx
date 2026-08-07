@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import { Navigation } from 'lucide-react';
+import { Navigation, Loader2 } from 'lucide-react';
 import { io } from 'socket.io-client';
+import { useQuery } from '@tanstack/react-query';
+import { authApi } from '../../services/api';
+import api from '../../services/api';
 
 // Fix for default marker icon in Leaflet with bundlers
 import icon from 'leaflet/dist/images/marker-icon.png';
@@ -22,13 +25,40 @@ const busIcon = new L.Icon({
   iconAnchor: [20, 20],
 });
 
+const RecenterAutomatically = ({ lat, lng }: { lat: number; lng: number }) => {
+  const map = useMap();
+  useEffect(() => {
+    map.setView([lat, lng]);
+  }, [lat, lng, map]);
+  return null;
+};
+
 export default function StudentMap() {
   const startLocation: [number, number] = [28.6139, 77.2090]; // New Delhi
-  const [busLocation, setBusLocation] = useState<[number, number]>(startLocation);
+  const [busLocation, setBusLocation] = useState<[number, number] | null>(null);
+  const [isTripActive, setIsTripActive] = useState(false);
 
-  // Connect to live socket telemetry
+  // Fetch profile to get assigned bus
+  const { data: profileData, isLoading: isProfileLoading } = useQuery({
+    queryKey: ['profile'],
+    queryFn: () => authApi.getProfile().then(res => res.data),
+  });
+
+  const profile = profileData?.data?.studentProfile;
+  const assignedBus = profile?.assignedBus;
+  const route = profile?.route;
+
+  // Connect to live socket telemetry ONLY for the assigned bus
   useEffect(() => {
-    // Extract base URL from VITE_API_URL (e.g. remove /api)
+    if (!assignedBus) return;
+
+    // Check if trip is active first
+    api.get(`/trips/active?busId=${assignedBus.id}`)
+      .then(res => {
+        setIsTripActive(!!res.data.data);
+      })
+      .catch(() => setIsTripActive(false));
+
     const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
     const socketUrl = apiUrl.replace('/api', '');
     
@@ -42,8 +72,8 @@ export default function StudentMap() {
     });
 
     socket.on('bus_location_update', (data: any) => {
-      // Assuming payload has { lat, lng, busId }
-      if (data && data.lat && data.lng) {
+      // Filter updates to ONLY their assigned bus
+      if (data && data.lat && data.lng && data.busId === assignedBus.id) {
         setBusLocation([data.lat, data.lng]);
       }
     });
@@ -51,39 +81,72 @@ export default function StudentMap() {
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [assignedBus]);
+
+  if (isProfileLoading) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <Loader2 className="animate-spin text-emerald-400" size={32} />
+      </div>
+    );
+  }
+
+  if (!assignedBus || !route) {
+    return (
+      <div className="flex flex-col h-[calc(100vh-5rem)] max-w-2xl mx-auto items-center justify-center p-6 text-center">
+        <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mb-4">
+          <Navigation size={32} className="text-slate-500" />
+        </div>
+        <h3 className="text-xl font-bold text-white mb-2">No Route Assigned</h3>
+        <p className="text-slate-400">You must be assigned to a route and bus to view live tracking.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col h-[calc(100vh-5rem)] max-w-2xl mx-auto relative p-4">
       {/* Top Overlay HUD */}
-      <div className="absolute top-8 left-8 right-8 z-[400] glass-card px-5 py-4 rounded-xl border-emerald-500/30 flex items-center gap-4 shadow-xl pointer-events-none">
-        <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
-          <Navigation size={24} className="text-emerald-400" />
+      <div className={`absolute top-8 left-8 right-8 z-[400] glass-card px-5 py-4 rounded-xl border-emerald-500/30 flex items-center gap-4 shadow-xl pointer-events-none ${
+        !isTripActive ? 'border-slate-500/30 opacity-80' : ''
+      }`}>
+        <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+          isTripActive ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-500/20 text-slate-400'
+        }`}>
+          <Navigation size={24} />
         </div>
         <div className="flex flex-col">
-          <span className="text-xs text-emerald-400 font-bold tracking-wider uppercase">Your Bus</span>
-          <span className="text-xl font-bold text-slate-100">Route 423</span>
-          <span className="text-sm text-slate-400">Arriving in 12 mins</span>
+          <span className={`text-xs font-bold tracking-wider uppercase ${isTripActive ? 'text-emerald-400' : 'text-slate-400'}`}>
+            {assignedBus.busNumber}
+          </span>
+          <span className="text-xl font-bold text-slate-100">Route {route.routeNumber}</span>
+          <span className="text-sm text-slate-400">
+            {isTripActive ? 'Live tracking active' : 'Trip not started yet'}
+          </span>
         </div>
       </div>
 
       {/* Map Area */}
       <div className="flex-1 rounded-3xl overflow-hidden shadow-2xl mt-4 z-0 border border-white/5 relative">
-        <MapContainer center={startLocation} zoom={15} className="w-full h-full" zoomControl={false}>
+        <MapContainer center={busLocation || startLocation} zoom={15} className="w-full h-full" zoomControl={false}>
           {/* Light Mode Standard Map Tiles */}
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
           
-          <Marker position={busLocation} icon={busIcon}>
-            <Popup>
-              <div className="text-slate-800 font-bold text-center">
-                Bus 423<br />
-                <span className="text-xs font-normal text-slate-500">Live Location</span>
-              </div>
-            </Popup>
-          </Marker>
+          {busLocation && (
+            <>
+              <RecenterAutomatically lat={busLocation[0]} lng={busLocation[1]} />
+              <Marker position={busLocation} icon={busIcon}>
+                <Popup>
+                  <div className="text-slate-800 font-bold text-center">
+                    Bus {assignedBus.busNumber}<br />
+                    <span className="text-xs font-normal text-slate-500">Live Location</span>
+                  </div>
+                </Popup>
+              </Marker>
+            </>
+          )}
         </MapContainer>
       </div>
     </div>

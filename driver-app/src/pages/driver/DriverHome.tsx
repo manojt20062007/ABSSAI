@@ -1,39 +1,94 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Play, Square, Clock, Route as RouteIcon, AlertCircle, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { authApi } from '../../services/api';
+import api from '../../services/api';
 
 export default function DriverHome() {
   const [isTripActive, setIsTripActive] = useState(false);
+  const [isLoadingTrip, setIsLoadingTrip] = useState(true);
+  const queryClient = useQueryClient();
 
-  const { data: profileData, isLoading } = useQuery({
+  const { data: profileData, isLoading: isProfileLoading } = useQuery({
     queryKey: ['profile'],
     queryFn: () => authApi.getProfile().then(res => res.data),
   });
 
-  const toggleTrip = () => {
-    if (!isTripActive) {
-      toast.success('Trip started! Telemetry is now active.');
-      setIsTripActive(true);
+  const user = profileData?.data;
+  const driver = user?.driver;
+  const bus = driver?.bus;
+  const route = bus?.route;
+
+  // Check active trip on load
+  useEffect(() => {
+    if (bus && driver) {
+      api.get(`/trips/active?busId=${bus.id}`)
+        .then(res => {
+          if (res.data.data) setIsTripActive(true);
+        })
+        .catch(() => {})
+        .finally(() => setIsLoadingTrip(false));
     } else {
-      toast.success('Trip ended successfully.');
-      setIsTripActive(false);
+      setIsLoadingTrip(false);
+    }
+  }, [bus, driver]);
+
+  const toggleTrip = async () => {
+    if (!bus || !driver || !route) return;
+
+    if (!isTripActive) {
+      try {
+        await api.post('/trips/start-active', { busId: bus.id, driverId: driver.id, routeId: route.id });
+        setIsTripActive(true);
+        toast.success('Trip started! Opening Navigation...');
+
+        // Generate Google Maps URL
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((pos) => {
+            const origin = `${pos.coords.latitude},${pos.coords.longitude}`;
+            // Find destination college (using a placeholder generic destination or the route's destination)
+            // Let's use the route's last stop as the destination, or 'college'
+            const destination = route.destination; 
+            
+            // Build waypoints string from route stops
+            let waypoints = '';
+            if (route.stops && route.stops.length > 0) {
+              // Get up to 9 intermediate stops for Google Maps free tier
+              const stops = route.stops
+                .sort((a: any, b: any) => a.sequence - b.sequence)
+                .slice(0, 9)
+                .map((s: any) => `${s.stop.latitude},${s.stop.longitude}`)
+                .join('|');
+              
+              if (stops) waypoints = `&waypoints=${stops}`;
+            }
+
+            const gmapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${encodeURIComponent(destination)}${waypoints}&travelmode=driving`;
+            window.open(gmapsUrl, '_blank');
+          });
+        }
+      } catch (err) {
+        toast.error('Failed to start trip.');
+      }
+    } else {
+      try {
+        await api.post('/trips/end-active', { busId: bus.id });
+        setIsTripActive(false);
+        toast.success('Trip ended successfully.');
+      } catch (err) {
+        toast.error('Failed to end trip.');
+      }
     }
   };
 
-  if (isLoading) {
+  if (isProfileLoading || isLoadingTrip) {
     return (
       <div className="flex flex-col gap-6 max-w-lg mx-auto p-4 h-full items-center justify-center">
         <Loader2 className="animate-spin text-indigo-400" size={32} />
       </div>
     );
   }
-
-  const user = profileData?.data;
-  const driver = user?.driver;
-  const bus = driver?.bus;
-  const route = bus?.route;
 
   return (
     <div className="flex flex-col gap-6 max-w-lg mx-auto p-4 h-full">
