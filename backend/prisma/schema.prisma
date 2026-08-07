@@ -64,7 +64,6 @@ model Bus {
   fuelType            FuelType  @default(DIESEL)
   mileage             Float?
   status              BusStatus @default(ACTIVE)
-  currentDriverId     String?
   gpsDeviceId         String?
   photo               String?
   insuranceNumber     String?
@@ -79,6 +78,10 @@ model Bus {
   // Relations
   depot               Depot?    @relation(fields: [depotId], references: [id])
   depotId             String?
+  route               Route?    @relation(fields: [routeId], references: [id])
+  routeId             String?
+  currentDriver       Driver?   @relation("BusDriver", fields: [currentDriverId], references: [id])
+  currentDriverId     String?   @unique
   trips               Trip[]
   maintenanceRecords  MaintenanceRecord[]
   fuelRecords         FuelRecord[]
@@ -89,6 +92,7 @@ model Bus {
   @@index([busNumber])
   @@index([status])
   @@index([depotId])
+  @@index([routeId])
 }
 
 enum BusStatus {
@@ -132,6 +136,7 @@ model Driver {
   userId            String      @unique
   depot             Depot?      @relation(fields: [depotId], references: [id])
   depotId           String?
+  bus               Bus?        @relation("BusDriver")
   trips             Trip[]
   attendance        Attendance[]
 
@@ -201,6 +206,7 @@ model Route {
   trips             Trip[]
   passengerDemand   PassengerDemand[]
   studentProfiles   StudentProfile[]
+  buses             Bus[]
 
   @@index([routeNumber])
   @@index([isActive])

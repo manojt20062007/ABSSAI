@@ -24,7 +24,11 @@ export class BusService {
       prisma.bus.findMany({
         where, skip: (page - 1) * limit, take: limit,
         orderBy: { [sortBy]: sortOrder },
-        include: { depot: { select: { id: true, name: true, code: true } } },
+        include: { 
+          depot: { select: { id: true, name: true, code: true } },
+          route: { select: { id: true, name: true, routeNumber: true } },
+          currentDriver: { select: { id: true, user: { select: { name: true } } } }
+        },
       }),
       prisma.bus.count({ where }),
     ]);
@@ -37,6 +41,8 @@ export class BusService {
       where: { id },
       include: {
         depot: true,
+        route: true,
+        currentDriver: { include: { user: true } },
         trips: { take: 10, orderBy: { departureTime: 'desc' } },
         maintenanceRecords: { take: 5, orderBy: { scheduledDate: 'desc' } },
         fuelRecords: { take: 5, orderBy: { date: 'desc' } },
@@ -47,13 +53,28 @@ export class BusService {
   }
 
   static async create(data: any) {
-    return prisma.bus.create({ data, include: { depot: { select: { id: true, name: true } } } });
+    return prisma.bus.create({ 
+      data, 
+      include: { 
+        depot: { select: { id: true, name: true } },
+        route: { select: { id: true, name: true, routeNumber: true } },
+        currentDriver: { select: { id: true, user: { select: { name: true } } } }
+      } 
+    });
   }
 
   static async update(id: string, data: any) {
     const bus = await prisma.bus.findUnique({ where: { id } });
     if (!bus) throw AppError.notFound('Bus not found');
-    return prisma.bus.update({ where: { id }, data, include: { depot: { select: { id: true, name: true } } } });
+    return prisma.bus.update({ 
+      where: { id }, 
+      data, 
+      include: { 
+        depot: { select: { id: true, name: true } },
+        route: { select: { id: true, name: true, routeNumber: true } },
+        currentDriver: { select: { id: true, user: { select: { name: true } } } }
+      } 
+    });
   }
 
   static async delete(id: string) {
