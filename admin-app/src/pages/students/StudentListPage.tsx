@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Users, Search, Edit, MapPin, Route as RouteIcon, Bus as BusIcon, X, Loader2 } from 'lucide-react';
-import { studentApi, routeApi } from '../../services/api';
+import { studentApi, routeApi, busApi } from '../../services/api';
 
 export default function StudentListPage() {
   const queryClient = useQueryClient();
@@ -136,12 +136,19 @@ export default function StudentListPage() {
 
 function AssignModal({ student, onClose, onSuccess }: any) {
   const [routeId, setRouteId] = useState(student?.routeId || '');
+  const [assignedBusId, setAssignedBusId] = useState(student?.assignedBusId || '');
   const [boardingPoint, setBoardingPoint] = useState(student?.boardingPoint || '');
 
   // Fetch all routes
   const { data: routeData, isLoading: routesLoading } = useQuery({
     queryKey: ['routes', 'all'],
     queryFn: () => routeApi.getAll({ limit: 100 }),
+    select: (res) => res.data?.data || [],
+  });
+
+  const { data: busData, isLoading: busesLoading } = useQuery({
+    queryKey: ['buses', 'all'],
+    queryFn: () => busApi.getAll({ limit: 100 }),
     select: (res) => res.data?.data || [],
   });
 
@@ -156,6 +163,7 @@ function AssignModal({ student, onClose, onSuccess }: any) {
     e.preventDefault();
     mutation.mutate({
       routeId: routeId || null,
+      assignedBusId: assignedBusId || null,
       boardingPoint: boardingPoint || null,
     });
   };
@@ -190,6 +198,7 @@ function AssignModal({ student, onClose, onSuccess }: any) {
               value={routeId}
               onChange={(e) => {
                 setRouteId(e.target.value);
+                setAssignedBusId(''); // Reset bus when route changes
                 setBoardingPoint(''); // Reset boarding point when route changes
               }}
               disabled={routesLoading}
@@ -199,6 +208,24 @@ function AssignModal({ student, onClose, onSuccess }: any) {
                 <option key={r.id} value={r.id}>{r.routeNumber} - {r.name}</option>
               ))}
             </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-slate-300 mb-1">Select Bus</label>
+            <select 
+              className="input-field"
+              value={assignedBusId}
+              onChange={(e) => setAssignedBusId(e.target.value)}
+              disabled={!routeId || busesLoading}
+            >
+              <option value="">-- Select Bus --</option>
+              {busData?.filter((b: any) => b.routeId === routeId).map((b: any) => (
+                <option key={b.id} value={b.id}>{b.busNumber}</option>
+              ))}
+            </select>
+            {routeId && busData?.filter((b: any) => b.routeId === routeId).length === 0 && (
+              <p className="text-xs text-amber-400 mt-1">This route currently has no buses assigned to it.</p>
+            )}
           </div>
 
           <div>

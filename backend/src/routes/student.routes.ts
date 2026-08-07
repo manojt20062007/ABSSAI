@@ -15,8 +15,8 @@ router.get('/', authorize('SUPER_ADMIN', 'ADMIN'), async (req: Request, res: Res
 
 router.put('/:id/assignment', authorize('SUPER_ADMIN', 'ADMIN'), async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { routeId, boardingPoint } = req.body;
-    const updated = await StudentService.updateAssignment(req.params.id as string, { routeId, boardingPoint });
+    const { routeId, assignedBusId, boardingPoint } = req.body;
+    const updated = await StudentService.updateAssignment(req.params.id as string, { routeId, assignedBusId, boardingPoint });
     ResponseHandler.success(res, updated, 'Student assignment updated successfully');
   } catch (error) { next(error); }
 });

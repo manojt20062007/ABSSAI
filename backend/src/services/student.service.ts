@@ -37,7 +37,7 @@ export class StudentService {
     return { data, total, page, limit, totalPages: Math.ceil(total / limit) };
   }
 
-  static async updateAssignment(id: string, data: { routeId: string | null; boardingPoint: string | null }) {
+  static async updateAssignment(id: string, data: { routeId: string | null; assignedBusId: string | null; boardingPoint: string | null }) {
     const student = await prisma.studentProfile.findUnique({ where: { id } });
     if (!student) throw AppError.notFound('Student not found');
 
@@ -45,6 +45,7 @@ export class StudentService {
       where: { id },
       data: {
         routeId: data.routeId,
+        assignedBusId: data.assignedBusId,
         boardingPoint: data.boardingPoint || student.boardingPoint,
       },
       include: {
