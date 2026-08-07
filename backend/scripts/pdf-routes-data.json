@@ -1,0 +1,2721 @@
+[
+  {
+    "routeNumber": "V1",
+    "name": "KOTTIVAKKAM",
+    "stops": [
+      {
+        "name": "Kottivakkam East Cost Road",
+        "road": "",
+        "pickupTime": "5.45",
+        "dropTime": "5.45 PM"
+      },
+      {
+        "name": "Srinivasa Nagar East Cost Road",
+        "road": "",
+        "pickupTime": "5.50"
+      },
+      {
+        "name": "Thiruvanmiyur L.B. Road",
+        "road": "",
+        "pickupTime": "5.52"
+      },
+      {
+        "name": "Indira Nagar 3rd Avenue",
+        "road": "",
+        "pickupTime": "5.55"
+      },
+      {
+        "name": "Vannanturai Mahatma Gandhi Road",
+        "road": "",
+        "pickupTime": "5.57"
+      },
+      {
+        "name": "Besant Nagar Besant 2nd & 3rd Avenue",
+        "road": "",
+        "pickupTime": "5.59"
+      },
+      {
+        "name": "Adayar Signals Sardar Patel Road",
+        "road": "",
+        "pickupTime": "6.02"
+      },
+      {
+        "name": "CLRI & IIT Sardar Patel Road",
+        "road": "",
+        "pickupTime": "6.05"
+      },
+      {
+        "name": "Kotturpuram Gandhi Mandapam Road",
+        "road": "",
+        "pickupTime": "6.10"
+      },
+      {
+        "name": "Nandanam Extn. Chamiers Road",
+        "road": "",
+        "pickupTime": "6.15"
+      },
+      {
+        "name": "Nadanam Arts College. Mount Road",
+        "road": "",
+        "pickupTime": "6.17"
+      },
+      {
+        "name": "CIT Nagar South Usman Road",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "Aranganathan Subway New Boag Road",
+        "road": "",
+        "pickupTime": "6.22"
+      },
+      {
+        "name": "West Mambalam Govindan Road",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "Ashok Nagar 10th Avenue",
+        "road": "",
+        "pickupTime": "6.27"
+      },
+      {
+        "name": "Udayam Complex Anna Main Road",
+        "road": "",
+        "pickupTime": "6.28"
+      },
+      {
+        "name": "Vadapalani Javaharlal Nehru Road",
+        "road": "",
+        "pickupTime": "6.36"
+      },
+      {
+        "name": "M.M.D.A Javaharlal Nehru Road",
+        "road": "",
+        "pickupTime": "6.38"
+      },
+      {
+        "name": "Arumbakkam poonamallee High road",
+        "road": "",
+        "pickupTime": "6.41"
+      },
+      {
+        "name": "Thirumangalam Bazar Road",
+        "road": "",
+        "pickupTime": "6.50"
+      },
+      {
+        "name": "Collectror Nagar Bazar Road",
+        "road": "",
+        "pickupTime": "6.55"
+      },
+      {
+        "name": "Ambatur Tele.Exchange C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.10"
+      },
+      {
+        "name": "Dunlop C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.15"
+      },
+      {
+        "name": "Ambattur OT C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.15"
+      },
+      {
+        "name": "Thirumullaivoyal C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.25"
+      },
+      {
+        "name": "Avadi C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.30"
+      },
+      {
+        "name": "Vel Tech Univ Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.40"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45",
+        "dropTime": "3.45 pm"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V2",
+    "name": "MADIPAKKAM",
+    "stops": [
+      {
+        "name": "Madipakkam Main road",
+        "road": "",
+        "pickupTime": "5.45 AM",
+        "dropTime": "5.45 PM"
+      },
+      {
+        "name": "Pallikaranai Main road",
+        "road": "",
+        "pickupTime": "5.50"
+      },
+      {
+        "name": "Kamatchi Hospital Main road",
+        "road": "",
+        "pickupTime": "5.52"
+      },
+      {
+        "name": "Kilkattalai MTC B.T Medavakkam Main Road",
+        "road": "",
+        "pickupTime": "5.52"
+      },
+      {
+        "name": "Ullagaram Medavakkam Main Road",
+        "road": "",
+        "pickupTime": "5.56"
+      },
+      {
+        "name": "Vanuvampet Medavakkam Main Road",
+        "road": "",
+        "pickupTime": "5.58"
+      },
+      {
+        "name": "Nanganallur West Karikalan Street",
+        "road": "",
+        "pickupTime": "6.00"
+      },
+      {
+        "name": "Meenambakkam G.S.T. Road",
+        "road": "",
+        "pickupTime": "6.05"
+      },
+      {
+        "name": "Trisoolam G.S.T. Road",
+        "road": "",
+        "pickupTime": "6.12"
+      },
+      {
+        "name": "Pallavaram B.S G.S.T. Road",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "Pallavaram Mars Hotel Pammal Main Road",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "Anakaputhur Kamaraj Salai",
+        "road": "",
+        "pickupTime": "6.30"
+      },
+      {
+        "name": "Kundrathur Jawaharlal Nehru MainRd",
+        "road": "",
+        "pickupTime": "6.35"
+      },
+      {
+        "name": "Chikkarayapuram Kundrathur Main Road",
+        "road": "",
+        "pickupTime": "6.42"
+      },
+      {
+        "name": "Mangadu Kundrathur Main Road",
+        "road": "",
+        "pickupTime": "6.48"
+      },
+      {
+        "name": "Kumanan Chavadi Kundrathur Main Road",
+        "road": "",
+        "pickupTime": "6.50"
+      },
+      {
+        "name": "Karayan Chavadi Avadi-Poonamallee Road",
+        "road": "",
+        "pickupTime": "6.55"
+      },
+      {
+        "name": "Viraraghavapuram Avadi-Poonamallee Road",
+        "road": "",
+        "pickupTime": "6.58"
+      },
+      {
+        "name": "Paruthipattu Avadi-Poonamallee Road",
+        "road": "",
+        "pickupTime": "7.04"
+      },
+      {
+        "name": "Avadi Market Kamaraj Nagar Main Rd.",
+        "road": "",
+        "pickupTime": "7.06"
+      },
+      {
+        "name": "Avadi Ramarathna Avadi-Poonamallee Road",
+        "road": "",
+        "pickupTime": "7.15"
+      },
+      {
+        "name": "Avadi Bus Terminus C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.35"
+      },
+      {
+        "name": "Vel Tech Univ Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.42"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45",
+        "dropTime": "3.45 PM"
+      },
+      {
+        "name": "Ernavoor Kathivakkam High Road",
+        "road": "",
+        "pickupTime": "5.50"
+      },
+      {
+        "name": "Mullainagar Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "5.52"
+      },
+      {
+        "name": "Lift gate Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "5.55"
+      },
+      {
+        "name": "Wimco Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "5.57"
+      },
+      {
+        "name": "Ajax Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.00"
+      },
+      {
+        "name": "Periyar Nagar Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.03"
+      },
+      {
+        "name": "Thiruvottriyur Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.05"
+      },
+      {
+        "name": "Theradi Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.06"
+      },
+      {
+        "name": "Ellaiamman Koil Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.10"
+      },
+      {
+        "name": "Kaladipet Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.12"
+      },
+      {
+        "name": "Rajakadai Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.14"
+      },
+      {
+        "name": "Thangal Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.16"
+      },
+      {
+        "name": "Toll gate Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "Lakshmi Koil Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.22"
+      },
+      {
+        "name": "Thandaiyarpet depot Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "Appollo Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.28"
+      },
+      {
+        "name": "Old Wahermenpet Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.32"
+      },
+      {
+        "name": "Manikoondu Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.34"
+      },
+      {
+        "name": "Maharani Post office Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.36"
+      },
+      {
+        "name": "Thyagaraja College Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.38"
+      },
+      {
+        "name": "Mint Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "Basinbridge Main road",
+        "road": "",
+        "pickupTime": "6.42"
+      },
+      {
+        "name": "Sharma nagar G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.44"
+      },
+      {
+        "name": "Erukkancherry G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.48"
+      },
+      {
+        "name": "Moolakadai G.N.T. Road",
+        "road": "",
+        "pickupTime": "7.05"
+      },
+      {
+        "name": "Madhavaram Ring Road 100 Ft. Road",
+        "road": "",
+        "pickupTime": "7.20"
+      },
+      {
+        "name": "Old Wahermenpet G.N.T. Road",
+        "road": "",
+        "pickupTime": "7.25"
+      },
+      {
+        "name": "Redhills G.N.T. Road",
+        "road": "",
+        "pickupTime": "7.30"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.40"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45",
+        "dropTime": "3.45 PM"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V3A",
+    "name": "Medavakkam - East Thambaram",
+    "stops": [
+      {
+        "name": "Medavakkam MEDAVAKKAM MAIN ROAD",
+        "road": "",
+        "pickupTime": "5.45",
+        "dropTime": "5.30"
+      },
+      {
+        "name": "Santhosapuram Main Road",
+        "road": "",
+        "pickupTime": "5.50"
+      },
+      {
+        "name": "Sempakkam Main Road",
+        "road": "",
+        "pickupTime": "5.52"
+      },
+      {
+        "name": "Kamarajapuram Main Road",
+        "road": "",
+        "pickupTime": "5.54"
+      },
+      {
+        "name": "Selaiyur Camp road",
+        "road": "",
+        "pickupTime": "5.56"
+      },
+      {
+        "name": "Camp Road Signal Camp road",
+        "road": "",
+        "pickupTime": "5.58"
+      },
+      {
+        "name": "East Thambaram Camp road",
+        "road": "",
+        "pickupTime": "6.00"
+      },
+      {
+        "name": "Tambaram Rly. Station G.S.T. Road",
+        "road": "",
+        "pickupTime": "6.02"
+      },
+      {
+        "name": "Chrompet MIT G.S.T. Road",
+        "road": "",
+        "pickupTime": "6.10"
+      },
+      {
+        "name": "Chrompet B.S. G.S.T. Road",
+        "road": "",
+        "pickupTime": "6.18"
+      },
+      {
+        "name": "Thiruneermalai Main Road",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "Anakaputhur Kamaraj Salai",
+        "road": "",
+        "pickupTime": "6.28"
+      },
+      {
+        "name": "Moondram kattalai Kamaraj Salai",
+        "road": "",
+        "pickupTime": "6.30"
+      },
+      {
+        "name": "Kovur Kunrathur Main Road",
+        "road": "",
+        "pickupTime": "6.32"
+      },
+      {
+        "name": "Bai Kadai Kunrathur Main Road",
+        "road": "",
+        "pickupTime": "6.35"
+      },
+      {
+        "name": "Madhanandhapuram Kunrathur Main Road",
+        "road": "",
+        "pickupTime": "6.38"
+      },
+      {
+        "name": "Porur Mount-Poonamallee Road",
+        "road": "",
+        "pickupTime": "6.42"
+      },
+      {
+        "name": "Ayyappathangal Mount-Poonamallee Road",
+        "road": "",
+        "pickupTime": "6.48"
+      },
+      {
+        "name": "Kumanan Chavadi Mount-Poonamallee Road",
+        "road": "",
+        "pickupTime": "6.55"
+      },
+      {
+        "name": "Karayan Chavadi Mount-Poonamallee Road",
+        "road": "",
+        "pickupTime": "6.58"
+      },
+      {
+        "name": "Senneer kuppam Avadi Road",
+        "road": "",
+        "pickupTime": "7.04"
+      },
+      {
+        "name": "Govardhanagiri Avadi Road",
+        "road": "",
+        "pickupTime": "7.06"
+      },
+      {
+        "name": "Avadi Market Avadi-Poonamallee Road",
+        "road": "",
+        "pickupTime": "7.10"
+      },
+      {
+        "name": "Avadi Ramarathna C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.35"
+      },
+      {
+        "name": "Avadi Bus Terminus Avadi - Veltech Road",
+        "road": "",
+        "pickupTime": "7.38"
+      },
+      {
+        "name": "Vel Junction (North) Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.40"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.42"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45",
+        "dropTime": "3.45"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V4&V4S",
+    "name": "MELUR-MINJUR-PONNERI",
+    "stops": [
+      {
+        "name": "Melur Ponneri Road",
+        "road": "",
+        "pickupTime": "6.10",
+        "dropTime": "5.25"
+      },
+      {
+        "name": "Nandhiyambakkam Ponneri Road",
+        "road": "",
+        "pickupTime": "6.12"
+      },
+      {
+        "name": "B.D.O Office Ponneri Road",
+        "road": "",
+        "pickupTime": "6.15"
+      },
+      {
+        "name": "Minjur Rly.Station Ponneri Road",
+        "road": "",
+        "pickupTime": "6.17"
+      },
+      {
+        "name": "Minjur Ponneri Road",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "Kesavapuram Ponneri Road",
+        "road": "",
+        "pickupTime": "6.23"
+      },
+      {
+        "name": "Nalur Ponneri Road",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "Mettupalayam Ponneri Road",
+        "road": "",
+        "pickupTime": "6.28"
+      },
+      {
+        "name": "Pulikulam Ponneri Road",
+        "road": "",
+        "pickupTime": "6.30"
+      },
+      {
+        "name": "Vembakkam Ponneri Road",
+        "road": "",
+        "pickupTime": "6.35"
+      },
+      {
+        "name": "Ponneri Thatchur Road",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "Krishnapuram Thatchur Road",
+        "road": "",
+        "pickupTime": "6.42"
+      },
+      {
+        "name": "Andarkuppam Thatchur Road",
+        "road": "",
+        "pickupTime": "6.41"
+      },
+      {
+        "name": "Thatchur G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.43"
+      },
+      {
+        "name": "Thatchur Koot Road G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.45"
+      },
+      {
+        "name": "Pancheti G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.50"
+      },
+      {
+        "name": "Karanodai G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.55"
+      },
+      {
+        "name": "Padianallur G.N.T. Road",
+        "road": "",
+        "pickupTime": "7.15"
+      },
+      {
+        "name": "Redhills Redhills Main Road",
+        "road": "",
+        "pickupTime": "7.20"
+      },
+      {
+        "name": "Redhills Tel. Exchange Thiruvallur Redhills Road",
+        "road": "",
+        "pickupTime": "7.25"
+      },
+      {
+        "name": "Redhills Gandhi Nagar Thiruvallur Redhills Road",
+        "road": "",
+        "pickupTime": "7.35"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.50",
+        "dropTime": "3.45"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V4A",
+    "name": "PATTINAPAKKAM",
+    "stops": [
+      {
+        "name": "Pattinapakkam Santhome High Road",
+        "road": "",
+        "pickupTime": "5.50",
+        "dropTime": "5.30"
+      },
+      {
+        "name": "Mandaveli Venkatakrishna Road",
+        "road": "",
+        "pickupTime": "5.52"
+      },
+      {
+        "name": "Mylapore Tank R.K. Mutt Road",
+        "road": "",
+        "pickupTime": "5.54"
+      },
+      {
+        "name": "Mylapore Luz Corner Kutchery Road",
+        "road": "",
+        "pickupTime": "5.56"
+      },
+      {
+        "name": "Santhome Church Santhome High Road",
+        "road": "",
+        "pickupTime": "5.58"
+      },
+      {
+        "name": "All India Radio Santhome High Road",
+        "road": "",
+        "pickupTime": "6.00"
+      },
+      {
+        "name": "Vivekananda House Besant Road",
+        "road": "",
+        "pickupTime": "6.02"
+      },
+      {
+        "name": "Jam Bazar Triplicane High Road",
+        "road": "",
+        "pickupTime": "6.04"
+      },
+      {
+        "name": "Star Theatre Triplicane High Road",
+        "road": "",
+        "pickupTime": "6.06"
+      },
+      {
+        "name": "Adam Market Triplicane High Road",
+        "road": "",
+        "pickupTime": "6.10"
+      },
+      {
+        "name": "Kalaivanar Arangam Walaja Road",
+        "road": "",
+        "pickupTime": "6.12"
+      },
+      {
+        "name": "Chepauk Stadium Walaja Road",
+        "road": "",
+        "pickupTime": "6.15"
+      },
+      {
+        "name": "Madras University Kamarajar Salai",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "R.B.I. Rajaji Salai",
+        "road": "",
+        "pickupTime": "6.22"
+      },
+      {
+        "name": "Beach station Rajaji Salai",
+        "road": "",
+        "pickupTime": "6.24"
+      },
+      {
+        "name": "Mannady Rajaji Salai",
+        "road": "",
+        "pickupTime": "6.26"
+      },
+      {
+        "name": "Muthalpet Ebrahim Sahib Street",
+        "road": "",
+        "pickupTime": "6.28"
+      },
+      {
+        "name": "Mint Basin Bridge Road",
+        "road": "",
+        "pickupTime": "6.32"
+      },
+      {
+        "name": "Vyasarpadi Erukanchery High Road",
+        "road": "",
+        "pickupTime": "6.38"
+      },
+      {
+        "name": "Ambedhkar college G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.45"
+      },
+      {
+        "name": "Sharma nagar G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.47"
+      },
+      {
+        "name": "Erukkancherry G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.50"
+      },
+      {
+        "name": "Moolakadai G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.52"
+      },
+      {
+        "name": "Madhavaram Ring Road G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.54"
+      },
+      {
+        "name": "Puzhal G.N.T. Road",
+        "road": "",
+        "pickupTime": "7.00"
+      },
+      {
+        "name": "Red Hills Thiruvallur Redhills Road",
+        "road": "",
+        "pickupTime": "7.10"
+      },
+      {
+        "name": "Vel Junction (South) Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.35"
+      },
+      {
+        "name": "Vel Tech High Tech campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.40",
+        "dropTime": "3.45"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V5",
+    "name": "ENNORE",
+    "stops": [
+      {
+        "name": "Ennore Barma nagar Kathivakkam Road",
+        "road": "",
+        "pickupTime": "5.50 AM",
+        "dropTime": "5.45 PM"
+      },
+      {
+        "name": "Chinnakuppam Kathivakkam Road",
+        "road": "",
+        "pickupTime": "5.52"
+      },
+      {
+        "name": "Periyakuppam Kathivakkam Road",
+        "road": "",
+        "pickupTime": "5.54"
+      },
+      {
+        "name": "Thalanguppam Kathivakkam Road",
+        "road": "",
+        "pickupTime": "5.55"
+      },
+      {
+        "name": "High school Ennore High Road",
+        "road": "",
+        "pickupTime": "5.58"
+      },
+      {
+        "name": "Ennore depot Ennore High Road",
+        "road": "",
+        "pickupTime": "6.00"
+      },
+      {
+        "name": "Foundry Ennore High Road",
+        "road": "",
+        "pickupTime": "6.02"
+      },
+      {
+        "name": "Ashok Ley Land Ennore High Road",
+        "road": "",
+        "pickupTime": "6.04"
+      },
+      {
+        "name": "Anna nagar Ennore High Road",
+        "road": "",
+        "pickupTime": "6.06"
+      },
+      {
+        "name": "E.T.P.S Ennore High Road",
+        "road": "",
+        "pickupTime": "6.08"
+      },
+      {
+        "name": "Ernavoor Ennore High Road",
+        "road": "",
+        "pickupTime": "6.10"
+      },
+      {
+        "name": "Murugan Koil Ennore High Road",
+        "road": "",
+        "pickupTime": "6.12"
+      },
+      {
+        "name": "Mullai Nagar Manali High Road",
+        "road": "",
+        "pickupTime": "6.14"
+      },
+      {
+        "name": "Murugappa nagar Manali High Road",
+        "road": "",
+        "pickupTime": "6.18"
+      },
+      {
+        "name": "Sadaiyankuppam Manali High Road",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "CPCL Manali High Road",
+        "road": "",
+        "pickupTime": "6.22"
+      },
+      {
+        "name": "Manali Market Nedunchezian Road",
+        "road": "",
+        "pickupTime": "6.24"
+      },
+      {
+        "name": "MMDA Kamarajar Salai",
+        "road": "",
+        "pickupTime": "6.28"
+      },
+      {
+        "name": "Mathur Kamarajar Salai",
+        "road": "",
+        "pickupTime": "6.30"
+      },
+      {
+        "name": "Kosappur Main road",
+        "road": "",
+        "pickupTime": "6.33"
+      },
+      {
+        "name": "Vadaperumpakkam Kamarajar Salai",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "Grand lIne Kamarajar Salai",
+        "road": "",
+        "pickupTime": "6.48"
+      },
+      {
+        "name": "Vadakarai Kamarajar Salai",
+        "road": "",
+        "pickupTime": "7.00"
+      },
+      {
+        "name": "Redhills Thiruvallur Redhills Road",
+        "road": "",
+        "pickupTime": "7.10"
+      },
+      {
+        "name": "Vel Junction(South) Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.35"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.40"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45",
+        "dropTime": "3.45 PM"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V5A",
+    "name": "KASI MEDU",
+    "stops": [
+      {
+        "name": "Kasimedu Mannarsamy Koil Street",
+        "road": "",
+        "pickupTime": "5.50",
+        "dropTime": "5.35"
+      },
+      {
+        "name": "Flag street Main Road Mannarsamy Koil Street",
+        "road": "",
+        "pickupTime": "5.52"
+      },
+      {
+        "name": "Kalmandapam Mannarsamy Koil Street",
+        "road": "",
+        "pickupTime": "5.55"
+      },
+      {
+        "name": "Royapuram Mannarsamy Koil Street",
+        "road": "",
+        "pickupTime": "6.00"
+      },
+      {
+        "name": "Stanely Old Jail Road",
+        "road": "",
+        "pickupTime": "6.05"
+      },
+      {
+        "name": "Mint Old Jail Road",
+        "road": "",
+        "pickupTime": "6.10"
+      },
+      {
+        "name": "Basin Bridge Main Road",
+        "road": "",
+        "pickupTime": "6.15"
+      },
+      {
+        "name": "Choolai post office Thiru Narayana Road",
+        "road": "",
+        "pickupTime": "6.18"
+      },
+      {
+        "name": "Puliyanthope Perambur Barracks Road",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "Barracks Road Perambur Barracks Road",
+        "road": "",
+        "pickupTime": "6.23"
+      },
+      {
+        "name": "Dowtton Perambur Barracks Road",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "Otteri Perambur Barracks Road",
+        "road": "",
+        "pickupTime": "6.28"
+      },
+      {
+        "name": "Binny Mills Cooks Road",
+        "road": "",
+        "pickupTime": "6.30"
+      },
+      {
+        "name": "Jamaliya Perambur High Road",
+        "road": "",
+        "pickupTime": "6.32"
+      },
+      {
+        "name": "Sembiyum Perambur High Road",
+        "road": "",
+        "pickupTime": "6.34"
+      },
+      {
+        "name": "Venus Perambur High Road",
+        "road": "",
+        "pickupTime": "6.36"
+      },
+      {
+        "name": "Agaram Perambur High Road",
+        "road": "",
+        "pickupTime": "6.38"
+      },
+      {
+        "name": "Peravallur Paper Mills Road",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "Kolathur Welding shop Paper Mills Road",
+        "road": "",
+        "pickupTime": "6.42"
+      },
+      {
+        "name": "Kolathur Moogambiga Paper Mills Road",
+        "road": "",
+        "pickupTime": "6.44"
+      },
+      {
+        "name": "Retteri Signal Paper Mills Road",
+        "road": "",
+        "pickupTime": "6.50"
+      },
+      {
+        "name": "Madhavaram Ring Road 100 Ft. Road",
+        "road": "",
+        "pickupTime": "6.54"
+      },
+      {
+        "name": "Puzhal G.N.T. Road",
+        "road": "",
+        "pickupTime": "7.00"
+      },
+      {
+        "name": "Redhills G.N.T. Road",
+        "road": "",
+        "pickupTime": "7.10"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.38"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.40",
+        "dropTime": "3.45"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V6",
+    "name": "VELACHERY - GUINDY - SPIC",
+    "stops": [
+      {
+        "name": "Velachery Velachery Main Road",
+        "road": "",
+        "pickupTime": "5.45",
+        "dropTime": "5.45"
+      },
+      {
+        "name": "Guindy -SPIC G.S.T. Road",
+        "road": "",
+        "pickupTime": "5.53"
+      },
+      {
+        "name": "Guindy Rly. Station G.S.T. Road",
+        "road": "",
+        "pickupTime": "5.57"
+      },
+      {
+        "name": "Guindy Jawaharlal Nehru Road",
+        "road": "",
+        "pickupTime": "6.00"
+      },
+      {
+        "name": "Ambal Nagar-Ekattuthangal Jawaharlal Nehru Road",
+        "road": "",
+        "pickupTime": "6.03"
+      },
+      {
+        "name": "Jafferkhanpet Jawaharlal Nehru Road",
+        "road": "",
+        "pickupTime": "6.05"
+      },
+      {
+        "name": "Kasi Theatre Jawaharlal Nehru Road",
+        "road": "",
+        "pickupTime": "6.10"
+      },
+      {
+        "name": "K.K. Nagar East Vannier Street",
+        "road": "",
+        "pickupTime": "6.13"
+      },
+      {
+        "name": "Pondichery House Vannier Street",
+        "road": "",
+        "pickupTime": "6.15"
+      },
+      {
+        "name": "Virugambakkam Avichi Arcot Road",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "Elango Nagar Kaliamman Koil Street",
+        "road": "",
+        "pickupTime": "6.22"
+      },
+      {
+        "name": "Sai Nagar Kaliamman Koil Street",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "Sri Ayyappan Nagar Kaliamman Koil Street",
+        "road": "",
+        "pickupTime": "6.28"
+      },
+      {
+        "name": "Chinmaya Nagar Kaliamman Koil Street",
+        "road": "",
+        "pickupTime": "6.30"
+      },
+      {
+        "name": "Koyambedu Rountana Poonamallee High Road",
+        "road": "",
+        "pickupTime": "6.35"
+      },
+      {
+        "name": "Nerkundram Poonamallee High Road",
+        "road": "",
+        "pickupTime": "6.38"
+      },
+      {
+        "name": "Madhuravoyal Poonamallee High Road",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "Vanagaram Poonamallee High Road",
+        "road": "",
+        "pickupTime": "6.43"
+      },
+      {
+        "name": "Kumar Theater Poonamallee High Road",
+        "road": "",
+        "pickupTime": "6.45"
+      },
+      {
+        "name": "Vellappanchavadi Poonamallee High Road",
+        "road": "",
+        "pickupTime": "6.48"
+      },
+      {
+        "name": "Sanjay Gandhi Nagar Perumal Agaram Salai",
+        "road": "",
+        "pickupTime": "6.52"
+      },
+      {
+        "name": "Thiruverkadu Police Stn. Sivan Koil Street",
+        "road": "",
+        "pickupTime": "6.55"
+      },
+      {
+        "name": "Thiruverkadu Panchayat Sivan Koil Street",
+        "road": "",
+        "pickupTime": "6.58"
+      },
+      {
+        "name": "Paruthipattu Avadi-Poonamallee Road",
+        "road": "",
+        "pickupTime": "7.02"
+      },
+      {
+        "name": "Govardhanagiri Avadi-Poonamallee Road",
+        "road": "",
+        "pickupTime": "7.05"
+      },
+      {
+        "name": "Avadi C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.15"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.37"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.40",
+        "dropTime": "3.45"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V7",
+    "name": "GUMMUDIPOONDI",
+    "stops": [
+      {
+        "name": "Gummidipoondi G.N.T. Road",
+        "road": "",
+        "pickupTime": "5.45 AM",
+        "dropTime": "5.45 PM"
+      },
+      {
+        "name": "Bazar G.N.T. Road",
+        "road": "",
+        "pickupTime": "5.55"
+      },
+      {
+        "name": "Kavarapettai G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.05"
+      },
+      {
+        "name": "Pudhuvoyal G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.10"
+      },
+      {
+        "name": "Thatchur Koot Road G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.15"
+      },
+      {
+        "name": "Janapanchatram X Road G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "Kanniputhur Redhills - Peryapalyam Road",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "Vadamathurai Peryapalyam -Thiruvallur Road",
+        "road": "",
+        "pickupTime": "6.35"
+      },
+      {
+        "name": "Vengal Peryapalyam -Thiruvallur Road",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "Vengal X Road Peryapalyam -Thiruvallur Road",
+        "road": "",
+        "pickupTime": "6.45"
+      },
+      {
+        "name": "Thamaraipakkam X Road Peryapalyam -Thiruvallur Road",
+        "road": "",
+        "pickupTime": "6.50"
+      },
+      {
+        "name": "Magalgandigai Redhills -Thiruvallur Road",
+        "road": "",
+        "pickupTime": "6.55"
+      },
+      {
+        "name": "Koduvalli Redhills -Thiruvallur Road",
+        "road": "",
+        "pickupTime": "7.00"
+      },
+      {
+        "name": "Poochiatthipedu Redhills -Thiruvallur Road",
+        "road": "",
+        "pickupTime": "7.10"
+      },
+      {
+        "name": "Bangarupettai Avadi-veerapuram Road",
+        "road": "",
+        "pickupTime": "7.15"
+      },
+      {
+        "name": "Veerapuram Vel Tech Alamathi Road",
+        "road": "",
+        "pickupTime": "7.20"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.37"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45 AM",
+        "dropTime": "3.45 PM"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V7A",
+    "name": "MANALI NEW TOWN",
+    "stops": [
+      {
+        "name": "Manali New Town Ponneri Road",
+        "road": "",
+        "pickupTime": "6.10",
+        "dropTime": "5.35"
+      },
+      {
+        "name": "Manali N.T Market Kamarajar Salai",
+        "road": "",
+        "pickupTime": "6.12"
+      },
+      {
+        "name": "Milk Booth Milk Colony Road",
+        "road": "",
+        "pickupTime": "6.14"
+      },
+      {
+        "name": "Rajivgandhi Nagar Rizwan Road",
+        "road": "",
+        "pickupTime": "6.16"
+      },
+      {
+        "name": "Andarkuppam Kamarajar Salai",
+        "road": "",
+        "pickupTime": "6.18"
+      },
+      {
+        "name": "SRF company Kamarajar Salai",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "Manali Bus stand Kamarajar Salai",
+        "road": "",
+        "pickupTime": "6.22"
+      },
+      {
+        "name": "Manali Market Kamarajar Salai",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "MMDA Kamarajar Salai",
+        "road": "",
+        "pickupTime": "6.35"
+      },
+      {
+        "name": "Mathur Kamarajar Salai",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "veterinary College Milk Colony Road",
+        "road": "",
+        "pickupTime": "6.45"
+      },
+      {
+        "name": "Main Gate Milk Colony Road",
+        "road": "",
+        "pickupTime": "6.50"
+      },
+      {
+        "name": "Arul nagar Milk Colony Road",
+        "road": "",
+        "pickupTime": "6.52"
+      },
+      {
+        "name": "Medimix Kamaraj Road",
+        "road": "",
+        "pickupTime": "6.53"
+      },
+      {
+        "name": "ThapalPetti Madhavaram High Road",
+        "road": "",
+        "pickupTime": "6.54"
+      },
+      {
+        "name": "Madhavaram B.T. Madhavaram High Road",
+        "road": "",
+        "pickupTime": "6.55"
+      },
+      {
+        "name": "Madhavaram Ring Road G.N.T. Road",
+        "road": "",
+        "pickupTime": "7.00"
+      },
+      {
+        "name": "Puzhal G.N.T. Road",
+        "road": "",
+        "pickupTime": "7.05"
+      },
+      {
+        "name": "Redhills Thiruvallur Redhills Road",
+        "road": "",
+        "pickupTime": "7.10"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.40"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45",
+        "dropTime": "3.45"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V8",
+    "name": "Teynampet",
+    "stops": [
+      {
+        "name": "Teynampet Anna salai road",
+        "road": "",
+        "pickupTime": "5.45 AM",
+        "dropTime": "5.45 PM"
+      },
+      {
+        "name": "Alwarpet Anna salai road",
+        "road": "",
+        "pickupTime": "5.50"
+      },
+      {
+        "name": "Anna salai Anna salai road",
+        "road": "",
+        "pickupTime": "5.52"
+      },
+      {
+        "name": "Pudhupet Anna salai road",
+        "road": "",
+        "pickupTime": "5.54"
+      },
+      {
+        "name": "Egmore Anna salai road",
+        "road": "",
+        "pickupTime": "5.58"
+      },
+      {
+        "name": "EVR periyar EVR periyar Salai",
+        "road": "",
+        "pickupTime": "6.05"
+      },
+      {
+        "name": "pachaiyappas college poonamalle road",
+        "road": "",
+        "pickupTime": "6.14"
+      },
+      {
+        "name": "Kilpauk garden poonamalle road",
+        "road": "",
+        "pickupTime": "6.18"
+      },
+      {
+        "name": "Purasawalkam Purasawalkam High Road",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "Kellys Medavakkam Tank Road",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "ESI Hospital Medavakkam Tank Road",
+        "road": "",
+        "pickupTime": "6.30"
+      },
+      {
+        "name": "Ayanavaram Joint Office Konnur High Road",
+        "road": "",
+        "pickupTime": "6.33"
+      },
+      {
+        "name": "ICF East Colony Konnur High Road",
+        "road": "",
+        "pickupTime": "6.35"
+      },
+      {
+        "name": "Villivakkam Nathamuni Konnur High Road",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "TVS Lucas 100 feet road",
+        "road": "",
+        "pickupTime": "6.42"
+      },
+      {
+        "name": "Padi C.T.H. Road",
+        "road": "",
+        "pickupTime": "6.44"
+      },
+      {
+        "name": "Ambattur Estate C.T.H. Road",
+        "road": "",
+        "pickupTime": "6.46"
+      },
+      {
+        "name": "Telephone Exchange C.T.H. Road",
+        "road": "",
+        "pickupTime": "6.48"
+      },
+      {
+        "name": "Ambattur O.T. C.T.H. Road",
+        "road": "",
+        "pickupTime": "6.53"
+      },
+      {
+        "name": "Avadi C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.10"
+      },
+      {
+        "name": "Vel Junction (North) Avadi - Veltech Road",
+        "road": "",
+        "pickupTime": "7.35"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.37"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.40",
+        "dropTime": "3.45 PM"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V8S",
+    "name": "ANNA NAGAR -K4 Police Station",
+    "stops": [
+      {
+        "name": "K4 Police Station 6th Avenue",
+        "road": "",
+        "pickupTime": "6.20",
+        "dropTime": "5.10"
+      },
+      {
+        "name": "Gandhi Nagar Hospital Mani Road",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "ICF BS Mani Road",
+        "road": "",
+        "pickupTime": "6.30"
+      },
+      {
+        "name": "Villivakkam Nathamuni Konnur High Road",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "TVS Lucas 100 feet road",
+        "road": "",
+        "pickupTime": "6.42"
+      },
+      {
+        "name": "Padi C.T.H. Road",
+        "road": "",
+        "pickupTime": "6.44"
+      },
+      {
+        "name": "Ambattur Estate C.T.H. Road",
+        "road": "",
+        "pickupTime": "6.46"
+      },
+      {
+        "name": "Telephone Exchange C.T.H. Road",
+        "road": "",
+        "pickupTime": "6.48"
+      },
+      {
+        "name": "Ambattur O.T. C.T.H. Road",
+        "road": "",
+        "pickupTime": "6.53"
+      },
+      {
+        "name": "Avadi C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.10"
+      },
+      {
+        "name": "Vel Junction (North) Avadi - Veltech Road",
+        "road": "",
+        "pickupTime": "7.35"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.40"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45",
+        "dropTime": "3.45"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V9",
+    "name": "AMBEDHKAR COLLEGE",
+    "stops": [
+      {
+        "name": "MKB Nagar G.N.T. Road",
+        "road": "",
+        "pickupTime": "5.45 AM",
+        "dropTime": "5.45 PM"
+      },
+      {
+        "name": "Ambedhkar college Melapati-Ponnappa Street",
+        "road": "",
+        "pickupTime": "5.50"
+      },
+      {
+        "name": "Vyasarpadi Perambur Main Road",
+        "road": "",
+        "pickupTime": "5.52"
+      },
+      {
+        "name": "Perambur B.P. Road B.P. Road",
+        "road": "",
+        "pickupTime": "5.54"
+      },
+      {
+        "name": "Eswarikalyanamandapam B.P. Road",
+        "road": "",
+        "pickupTime": "5.55"
+      },
+      {
+        "name": "Lakshmi Amman koil B.P. Road",
+        "road": "",
+        "pickupTime": "5.58"
+      },
+      {
+        "name": "Revathy store B.P. Road",
+        "road": "",
+        "pickupTime": "6.00"
+      },
+      {
+        "name": "Perambur Market B.P. Road",
+        "road": "",
+        "pickupTime": "6.02"
+      },
+      {
+        "name": "Perambur Church B.P. Road",
+        "road": "",
+        "pickupTime": "6.05"
+      },
+      {
+        "name": "Peravllur Paper Mills Road",
+        "road": "",
+        "pickupTime": "6.10"
+      },
+      {
+        "name": "Periyar Nagar Paper Mills Road",
+        "road": "",
+        "pickupTime": "6.15"
+      },
+      {
+        "name": "Kolathur Welding shop Paper Mills Road",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "Kolathur Moogambiga Paper Mills Road",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "Ganga Cuavery 60 Ft.Road",
+        "road": "",
+        "pickupTime": "6.28"
+      },
+      {
+        "name": "Poombokar Nagar 1 st Main Road",
+        "road": "",
+        "pickupTime": "6.30"
+      },
+      {
+        "name": "Don Bosco school Kolathur road",
+        "road": "",
+        "pickupTime": "6.32"
+      },
+      {
+        "name": "Rajamangalam Police Station Kolathur road",
+        "road": "",
+        "pickupTime": "6.36"
+      },
+      {
+        "name": "Senthil Nagar Kolathur road",
+        "road": "",
+        "pickupTime": "6.38"
+      },
+      {
+        "name": "Vinayagapuram Redhills Road",
+        "road": "",
+        "pickupTime": "6.42"
+      },
+      {
+        "name": "Lakshmipuram Redhills Road",
+        "road": "",
+        "pickupTime": "6.44"
+      },
+      {
+        "name": "Surapet Redhills Road",
+        "road": "",
+        "pickupTime": "6.48"
+      },
+      {
+        "name": "Kallikuppam Redhills Road",
+        "road": "",
+        "pickupTime": "6.52"
+      },
+      {
+        "name": "Pudhur Redhills Road",
+        "road": "",
+        "pickupTime": "6.54"
+      },
+      {
+        "name": "Oragadam Redhills Road",
+        "road": "",
+        "pickupTime": "6.56"
+      },
+      {
+        "name": "Singapore complex C.T.H Road",
+        "road": "",
+        "pickupTime": "6.58"
+      },
+      {
+        "name": "Avadi C.T.H Road",
+        "road": "",
+        "pickupTime": "7.05"
+      },
+      {
+        "name": "Vel Junction (North) Avadi - Veltech Road",
+        "road": "",
+        "pickupTime": "7.35"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.37"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45",
+        "dropTime": "3.45 PM"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V10",
+    "name": "THIRUVALLUR",
+    "stops": [
+      {
+        "name": "Thiruvallur Ondikuppam Thiruvallur Poonamallee Rd",
+        "road": "",
+        "pickupTime": "6.00",
+        "dropTime": "5.45"
+      },
+      {
+        "name": "Thiruvallur Manavalan Ngr. Thiruvallur Poonamallee Rd",
+        "road": "",
+        "pickupTime": "6.05"
+      },
+      {
+        "name": "Thiruvallur Thulasi theater Thiruvallur Poonamallee Rd",
+        "road": "",
+        "pickupTime": "6.10"
+      },
+      {
+        "name": "Thiruvallur G.H Thiruvallur Poonamallee Rd",
+        "road": "",
+        "pickupTime": "6.12"
+      },
+      {
+        "name": "Thiruvallur Post Office Thiruvallur Poonamallee Rd",
+        "road": "",
+        "pickupTime": "6.15"
+      },
+      {
+        "name": "Thiruvallur Theradi Theradi Road",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "Kakkalur C.T.H. Road",
+        "road": "",
+        "pickupTime": "6.30"
+      },
+      {
+        "name": "Sevapettai C.T.H. Road",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "Veppampattu C.T.H. Road",
+        "road": "",
+        "pickupTime": "6.45"
+      },
+      {
+        "name": "Thiruninravur C.T.H. Road",
+        "road": "",
+        "pickupTime": "6.50"
+      },
+      {
+        "name": "Pattabiram C.T.H. Road",
+        "road": "",
+        "pickupTime": "6.55"
+      },
+      {
+        "name": "Hindu College C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.00"
+      },
+      {
+        "name": "Pattabiram Chathiram Pattabiram Airforce Road",
+        "road": "",
+        "pickupTime": "7.05"
+      },
+      {
+        "name": "Muthapudupet Airforce Road",
+        "road": "",
+        "pickupTime": "7.12"
+      },
+      {
+        "name": "Airforce Airforce Road",
+        "road": "",
+        "pickupTime": "7.15"
+      },
+      {
+        "name": "CRPF CRPF-Vel Tech Road",
+        "road": "",
+        "pickupTime": "7.20"
+      },
+      {
+        "name": "Vel tech South Junction Avadi-Veltech Road",
+        "road": "",
+        "pickupTime": "7.35"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.37"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45",
+        "dropTime": "3.45"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V11",
+    "name": "KODUNGAIYUR",
+    "stops": [
+      {
+        "name": "Kanadhasan nagar Kamaraj Road",
+        "road": "",
+        "pickupTime": "6.00",
+        "dropTime": "5.45"
+      },
+      {
+        "name": "Muthamizh nagar Kamaraj Road",
+        "road": "",
+        "pickupTime": "6.02"
+      },
+      {
+        "name": "kanadhasan nagar depo Meenammal Road",
+        "road": "",
+        "pickupTime": "6.03"
+      },
+      {
+        "name": "Muthukumaraswamy college Kamaraj Road",
+        "road": "",
+        "pickupTime": "6.04"
+      },
+      {
+        "name": "M.R Nagar Kamaraj Road",
+        "road": "",
+        "pickupTime": "6.06"
+      },
+      {
+        "name": "Pavithra Hospital Kamaraj Road",
+        "road": "",
+        "pickupTime": "6.08"
+      },
+      {
+        "name": "Erruckancherry Kamaraj Road",
+        "road": "",
+        "pickupTime": "6.10"
+      },
+      {
+        "name": "Moolakadai P.O. Madhavaram High Road",
+        "road": "",
+        "pickupTime": "6.12"
+      },
+      {
+        "name": "Donbosco Schools Ottraivaadai Street",
+        "road": "",
+        "pickupTime": "6.13"
+      },
+      {
+        "name": "Kennedy Square Ottraivaadai Street",
+        "road": "",
+        "pickupTime": "6.14"
+      },
+      {
+        "name": "Thiru Vi ka Nagar S.P.Koil Street",
+        "road": "",
+        "pickupTime": "6.16"
+      },
+      {
+        "name": "Agaram Paper Mills Road",
+        "road": "",
+        "pickupTime": "6.18"
+      },
+      {
+        "name": "DonBosco Church Paper Mills Road",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "Peravallur Paper Mills Road",
+        "road": "",
+        "pickupTime": "6.21"
+      },
+      {
+        "name": "Welding shop Paper Mills Road",
+        "road": "",
+        "pickupTime": "6.23"
+      },
+      {
+        "name": "Kolathur Mookambiga Paper Mills Road",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "Retteri Signal 100ft. Road",
+        "road": "",
+        "pickupTime": "6.28"
+      },
+      {
+        "name": "Madhavaram Roundana G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.32"
+      },
+      {
+        "name": "Puzhal G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.36"
+      },
+      {
+        "name": "kavakarai G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.38"
+      },
+      {
+        "name": "Redhills Thiruvallur Redhills Road",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "Vel Junction (North) Avadi - Veltech Road",
+        "road": "",
+        "pickupTime": "7.35"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.37"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45",
+        "dropTime": "3.45"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V11S",
+    "name": "KODUNGAIYUR",
+    "stops": [
+      {
+        "name": "IOC Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.00",
+        "dropTime": "5.45"
+      },
+      {
+        "name": "Power house Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.05"
+      },
+      {
+        "name": "Korukkupettai Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.15"
+      },
+      {
+        "name": "Moolakadai Madhavaram High Road",
+        "road": "",
+        "pickupTime": "6.2"
+      },
+      {
+        "name": "Temple school Madhavaram High Road",
+        "road": "",
+        "pickupTime": "6.35"
+      },
+      {
+        "name": "Senthil nagar 100 ft Road",
+        "road": "",
+        "pickupTime": "6.35"
+      },
+      {
+        "name": "D.R.Hospital 100 ft Road",
+        "road": "",
+        "pickupTime": "6.4"
+      },
+      {
+        "name": "Thathankuppam 100 ft Road",
+        "road": "",
+        "pickupTime": "6.42"
+      },
+      {
+        "name": "Padi 100 ft Road",
+        "road": "",
+        "pickupTime": "6.45"
+      },
+      {
+        "name": "Korattur Main road",
+        "road": "",
+        "pickupTime": "6.48"
+      },
+      {
+        "name": "Telephone Exchange C.T.H Road",
+        "road": "",
+        "pickupTime": "6.52"
+      },
+      {
+        "name": "Ambattur Canara Bank C.T.H Road",
+        "road": "",
+        "pickupTime": "6.56"
+      },
+      {
+        "name": "Ambattur OT bus Stand C.T.H Road",
+        "road": "",
+        "pickupTime": "7.00"
+      },
+      {
+        "name": "Singapore Complex C.T.H Road",
+        "road": "",
+        "pickupTime": "7.05"
+      },
+      {
+        "name": "Thirumullaivoyal C.T.H Road",
+        "road": "",
+        "pickupTime": "7.15"
+      },
+      {
+        "name": "Murugappa Polytechnic C.T.H Road",
+        "road": "",
+        "pickupTime": "7.18"
+      },
+      {
+        "name": "Avadi C.T.H Road",
+        "road": "",
+        "pickupTime": "7.20"
+      },
+      {
+        "name": "Vel Junction Avadi - Veltech Road",
+        "road": "",
+        "pickupTime": "7.35"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.37"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45",
+        "dropTime": "3.45"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V12",
+    "name": "UTHUKOTTAI",
+    "stops": [
+      {
+        "name": "UTHUKOTTAI Periyapalyam - Uthukottai Road",
+        "road": "",
+        "pickupTime": "5.45 AM",
+        "dropTime": "5.45 PM"
+      },
+      {
+        "name": "MGR nagar Periyapalyam - Uthukottai Road",
+        "road": "",
+        "pickupTime": "5.55"
+      },
+      {
+        "name": "Karachi Periyapalyam - Uthukottai Road",
+        "road": "",
+        "pickupTime": "6.05"
+      },
+      {
+        "name": "Perandur Periyapalyam - Uthukottai Road",
+        "road": "",
+        "pickupTime": "6.10"
+      },
+      {
+        "name": "Perambur Pattai Periyapalyam - Uthukottai Road",
+        "road": "",
+        "pickupTime": "6.15"
+      },
+      {
+        "name": "Thandalam Periyapalyam - Uthukottai Road",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "Periyapalayam Bus Stand Periyapalyam - Uthukottai Road",
+        "road": "",
+        "pickupTime": "6.30"
+      },
+      {
+        "name": "Vadamathurai Peryapalyam -Thiruvallur Road",
+        "road": "",
+        "pickupTime": "6.35"
+      },
+      {
+        "name": "Vengal Peryapalyam -Thiruvallur Road",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "Vengal X Road Peryapalyam -Thiruvallur Road",
+        "road": "",
+        "pickupTime": "6.45"
+      },
+      {
+        "name": "Thamaraipakkam X Road Peryapalyam -Thiruvallur Road",
+        "road": "",
+        "pickupTime": "6.50"
+      },
+      {
+        "name": "Magalgandigai Redhills -Thiruvallur Road",
+        "road": "",
+        "pickupTime": "6.55"
+      },
+      {
+        "name": "Koduvalli Redhills -Thiruvallur Road",
+        "road": "",
+        "pickupTime": "7.00"
+      },
+      {
+        "name": "Poochiatthipedu Redhills -Thiruvallur Road",
+        "road": "",
+        "pickupTime": "7.10"
+      },
+      {
+        "name": "Bangarupettai Avadi-veerapuram Road",
+        "road": "",
+        "pickupTime": "7.15"
+      },
+      {
+        "name": "Veerapuram Vel Tech Alamathi Road",
+        "road": "",
+        "pickupTime": "7.20"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.37"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45 AM",
+        "dropTime": "3.45 PM"
+      }
+    ]
+  },
+  {
+    "routeNumber": "17",
+    "name": "Metha Nagar",
+    "stops": [
+      {
+        "name": "Mehta Nagar Anna Arch Road",
+        "road": "",
+        "pickupTime": "6.35",
+        "dropTime": "5.35"
+      },
+      {
+        "name": "Anna Arch 2nd Avenue",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "Thirumangalam 100ft. Road",
+        "road": "",
+        "pickupTime": "6.50"
+      },
+      {
+        "name": "Collector Nagar Ambattur Estate Road",
+        "road": "",
+        "pickupTime": "6.55"
+      },
+      {
+        "name": "J.J. Nagar P.S Valaiyapathi Road",
+        "road": "",
+        "pickupTime": "6.57"
+      },
+      {
+        "name": "Mugapper East T.N.H.B Parl Road",
+        "road": "",
+        "pickupTime": "7.00"
+      },
+      {
+        "name": "J.J. Nagar B.T Thiruvalluvar Road",
+        "road": "",
+        "pickupTime": "7.03"
+      },
+      {
+        "name": "7H Bus stand Thiruvalluvar Road",
+        "road": "",
+        "pickupTime": "7.03"
+      },
+      {
+        "name": "Velammal School Valaiyapathi Road",
+        "road": "",
+        "pickupTime": "7.05"
+      },
+      {
+        "name": "Mugapper West Depo Main Road",
+        "road": "",
+        "pickupTime": "7.08"
+      },
+      {
+        "name": "Ambatuur Telephone Exchange C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.10"
+      },
+      {
+        "name": "Ambattur O.T. C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.15"
+      },
+      {
+        "name": "Thirumullaivoyal C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.20"
+      },
+      {
+        "name": "Avadi Avadi-Veltech Road",
+        "road": "",
+        "pickupTime": "7.25"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.40"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.50",
+        "dropTime": "3.45"
+      }
+    ]
+  },
+  {
+    "routeNumber": "19",
+    "name": "ROYAPETTAH",
+    "stops": [
+      {
+        "name": "Royapettah Hospital West Cott Road",
+        "road": "",
+        "pickupTime": "6.00",
+        "dropTime": "5.45"
+      },
+      {
+        "name": "Royapettah Towerclock Whites Road",
+        "road": "",
+        "pickupTime": "6.02"
+      },
+      {
+        "name": "Spencer Plaza Binny Road",
+        "road": "",
+        "pickupTime": "6.03"
+      },
+      {
+        "name": "Ethiraj College Commander-in-chief Road",
+        "road": "",
+        "pickupTime": "6.04"
+      },
+      {
+        "name": "CO-OPTEX Pantheon Road",
+        "road": "",
+        "pickupTime": "6.06"
+      },
+      {
+        "name": "Sankara Nethralaya College Road",
+        "road": "",
+        "pickupTime": "6.08"
+      },
+      {
+        "name": "Nungambakkam Sterling Road",
+        "road": "",
+        "pickupTime": "6.1"
+      },
+      {
+        "name": "Kodambakkam liberty Arcot Road",
+        "road": "",
+        "pickupTime": "6.13"
+      },
+      {
+        "name": "Vadapalani 100ft. Road",
+        "road": "",
+        "pickupTime": "6.14"
+      },
+      {
+        "name": "MMDA 100ft. Road",
+        "road": "",
+        "pickupTime": "6.16"
+      },
+      {
+        "name": "Koyambedu 100ft. Road",
+        "road": "",
+        "pickupTime": "6.18"
+      },
+      {
+        "name": "Nerkundram Poonamallee High Road",
+        "road": "",
+        "pickupTime": "6.2"
+      },
+      {
+        "name": "Madhuravoyal Poonamallee High Road",
+        "road": "",
+        "pickupTime": "6.21"
+      },
+      {
+        "name": "Vanagaram Poonamallee High Road",
+        "road": "",
+        "pickupTime": "6.23"
+      },
+      {
+        "name": "Kumar Theater Poonamallee High Road",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "Vellappanchavadi Poonamallee High Road",
+        "road": "",
+        "pickupTime": "6.3"
+      },
+      {
+        "name": "Senneer kuppam By Pass Road",
+        "road": "",
+        "pickupTime": "7.00"
+      },
+      {
+        "name": "Govardhanagiri Avadi Road",
+        "road": "",
+        "pickupTime": "7.02"
+      },
+      {
+        "name": "Avadi C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.15"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.50",
+        "dropTime": "3.45"
+      }
+    ]
+  },
+  {
+    "routeNumber": "V24A",
+    "name": "MUGAPAIR",
+    "stops": [
+      {
+        "name": "Collector Nagar Bazar Road",
+        "road": "",
+        "pickupTime": "6.20",
+        "dropTime": "5.35"
+      },
+      {
+        "name": "MMM Hospital Bazar Road",
+        "road": "",
+        "pickupTime": "6.22"
+      },
+      {
+        "name": "J.J. Nagar P.S Valaiyapathi Road",
+        "road": "",
+        "pickupTime": "6.24"
+      },
+      {
+        "name": "Velammal School Valaiyapathi Road",
+        "road": "",
+        "pickupTime": "6.26"
+      },
+      {
+        "name": "Mugapper East T.N.H.B Parl Road",
+        "road": "",
+        "pickupTime": "6.28"
+      },
+      {
+        "name": "J.J. Nagar B.T Thiruvalluvar Road",
+        "road": "",
+        "pickupTime": "6.30"
+      },
+      {
+        "name": "Panneer Nagar Thiruvalluvar Road",
+        "road": "",
+        "pickupTime": "6.32"
+      },
+      {
+        "name": "Mohan Ram Nagar Thiruvalluvar Road",
+        "road": "",
+        "pickupTime": "6.34"
+      },
+      {
+        "name": "DAV Girls H.S. School Ambattur Estate Road",
+        "road": "",
+        "pickupTime": "6.36"
+      },
+      {
+        "name": "Mugapper Post Office Vellar Street",
+        "road": "",
+        "pickupTime": "6.38"
+      },
+      {
+        "name": "VGP Nagar 1st Avenue",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "Mugapper West 6th Block 1st Avenue",
+        "road": "",
+        "pickupTime": "6.42"
+      },
+      {
+        "name": "Mugapper West Water Tank 1st Avenue",
+        "road": "",
+        "pickupTime": "6.44"
+      },
+      {
+        "name": "Ambatur Dunlop C.T.H. Road",
+        "road": "",
+        "pickupTime": "6.50"
+      },
+      {
+        "name": "Ambedkar silai Ayappakkam Road",
+        "road": "",
+        "pickupTime": "6.53"
+      },
+      {
+        "name": "Ayyapakkam E.B Ayappakkam Road",
+        "road": "",
+        "pickupTime": "6.58"
+      },
+      {
+        "name": "Annanur junction Ayappakkam Road",
+        "road": "",
+        "pickupTime": "7.00"
+      },
+      {
+        "name": "Chinnaman koil Ayappakkam Road",
+        "road": "",
+        "pickupTime": "7.02"
+      },
+      {
+        "name": "Avadi Market Avadi-Poonamallee Road",
+        "road": "",
+        "pickupTime": "7.04"
+      },
+      {
+        "name": "Avadi C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.10"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.37"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.40",
+        "dropTime": "3.45 PM"
+      }
+    ]
+  },
+  {
+    "routeNumber": "25A",
+    "name": "TOLLGATE BUS TERMINUS",
+    "stops": [
+      {
+        "name": "Tollgate Bus Terminus Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.10",
+        "dropTime": "5.45"
+      },
+      {
+        "name": "Cross Road Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.12"
+      },
+      {
+        "name": "Lakshmi Amman koil Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.14"
+      },
+      {
+        "name": "Thandaiyarpet depot Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.16"
+      },
+      {
+        "name": "Appollo Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.18"
+      },
+      {
+        "name": "Old Wahermenpet Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.20"
+      },
+      {
+        "name": "Manikoondu Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.22"
+      },
+      {
+        "name": "Maharani Post office Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.24"
+      },
+      {
+        "name": "Thyagaraja College Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.25"
+      },
+      {
+        "name": "Mint Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.30"
+      },
+      {
+        "name": "Ambedkar College Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.40"
+      },
+      {
+        "name": "Sharma nagar Thiruvottriyur High Road",
+        "road": "",
+        "pickupTime": "6.42"
+      },
+      {
+        "name": "Moolakadai G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.45"
+      },
+      {
+        "name": "Madhavarm Ring Road G.N.T. Road",
+        "road": "",
+        "pickupTime": "6.48"
+      },
+      {
+        "name": "Retteri Signal 100ft. Road",
+        "road": "",
+        "pickupTime": "6.50"
+      },
+      {
+        "name": "Vinayakapuram Redhills Road",
+        "road": "",
+        "pickupTime": "6.52"
+      },
+      {
+        "name": "Kadiravedu Redhills Road",
+        "road": "",
+        "pickupTime": "6.55"
+      },
+      {
+        "name": "Surapet Redhills Road",
+        "road": "",
+        "pickupTime": "6.57"
+      },
+      {
+        "name": "Kallikuppam Redhills Road",
+        "road": "",
+        "pickupTime": "6.58"
+      },
+      {
+        "name": "Pudhur Ambattur - Redhills Road",
+        "road": "",
+        "pickupTime": "7.00"
+      },
+      {
+        "name": "Rakki cinimas C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.10"
+      },
+      {
+        "name": "Avadi C.T.H. Road",
+        "road": "",
+        "pickupTime": "7.20"
+      },
+      {
+        "name": "Veltech Univ Veltech-Alamathi Road",
+        "road": "",
+        "pickupTime": "7.40"
+      },
+      {
+        "name": "Vel Tech Anna campus Veltech - Alamathi Road",
+        "road": "",
+        "pickupTime": "7.45",
+        "dropTime": "3.45"
+      }
+    ]
+  }
+]
