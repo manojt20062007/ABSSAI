@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Search, Edit, MapPin, Route as RouteIcon, Bus as BusIcon, X, Loader2 } from 'lucide-react';
+import { Users, Search, Edit, MapPin, Route as RouteIcon, Bus as BusIcon, X, Loader2, Plus } from 'lucide-react';
 import { studentApi, routeApi, busApi } from '../../services/api';
 
 export default function StudentListPage() {
@@ -9,6 +9,7 @@ export default function StudentListPage() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
   const [editStudent, setEditStudent] = useState<any>(null);
 
   const { data, isLoading } = useQuery({
@@ -29,6 +30,12 @@ export default function StudentListPage() {
           </h1>
           <p className="text-sm text-slate-400 mt-1">{meta.total} students registered</p>
         </div>
+        <button 
+          onClick={() => setShowCreateModal(true)}
+          className="btn-primary flex items-center gap-2"
+        >
+          <Plus size={18} /> Add Student
+        </button>
       </div>
 
       <div className="glass-card p-4">
@@ -125,6 +132,15 @@ export default function StudentListPage() {
             onSuccess={() => {
               setShowModal(false);
               setEditStudent(null);
+              queryClient.invalidateQueries({ queryKey: ['students'] });
+            }}
+          />
+        )}
+        {showCreateModal && (
+          <CreateStudentModal 
+            onClose={() => setShowCreateModal(false)}
+            onSuccess={() => {
+              setShowCreateModal(false);
               queryClient.invalidateQueries({ queryKey: ['students'] });
             }}
           />
@@ -252,6 +268,110 @@ function AssignModal({ student, onClose, onSuccess }: any) {
               {mutation.isPending ? <Loader2 className="animate-spin mx-auto" /> : 'Save Assignment'}
             </button>
           </div>
+        </form>
+      </motion.div>
+    </div>
+  );
+}
+
+function CreateStudentModal({ onClose, onSuccess }: any) {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    studentId: '',
+    department: '',
+    section: 'A',
+    year: '1',
+    boardingPoint: '',
+  });
+
+  const mutation = useMutation({
+    mutationFn: (data: any) => studentApi.create(data),
+    onSuccess,
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    mutation.mutate(formData);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        className="glass-card w-full max-w-lg flex flex-col max-h-[90vh]"
+      >
+        <div className="p-4 border-b border-slate-700/50 flex items-center justify-between bg-slate-800/50">
+          <h2 className="text-lg font-bold text-white flex items-center gap-2">
+            <Users size={18} className="text-cyan-400" />
+            Add New Student
+          </h2>
+          <button onClick={onClose} className="p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-700 transition-colors">
+            <X size={20} />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="p-5 overflow-y-auto space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">First Name</label>
+              <input required type="text" className="input-field" value={formData.firstName} onChange={(e) => setFormData({...formData, firstName: e.target.value})} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Last Name</label>
+              <input required type="text" className="input-field" value={formData.lastName} onChange={(e) => setFormData({...formData, lastName: e.target.value})} />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Email</label>
+              <input required type="email" className="input-field" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Password</label>
+              <input required type="password" minLength={6} className="input-field" value={formData.password} onChange={(e) => setFormData({...formData, password: e.target.value})} />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-slate-300 mb-1">Student ID (Roll Number)</label>
+            <input required type="text" className="input-field" value={formData.studentId} onChange={(e) => setFormData({...formData, studentId: e.target.value})} />
+          </div>
+
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Department</label>
+              <input required type="text" placeholder="e.g. CSE" className="input-field" value={formData.department} onChange={(e) => setFormData({...formData, department: e.target.value})} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Year</label>
+              <select className="input-field" value={formData.year} onChange={(e) => setFormData({...formData, year: e.target.value})}>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Section</label>
+              <input type="text" className="input-field" value={formData.section} onChange={(e) => setFormData({...formData, section: e.target.value})} />
+            </div>
+          </div>
+
+          <div className="pt-4 flex gap-3">
+            <button type="button" onClick={onClose} className="btn-secondary flex-1">Cancel</button>
+            <button type="submit" disabled={mutation.isPending} className="btn-primary flex-1">
+              {mutation.isPending ? <Loader2 className="animate-spin mx-auto" /> : 'Create Student'}
+            </button>
+          </div>
+          {mutation.isError && (
+            <p className="text-red-400 text-sm mt-2 text-center">{(mutation.error as any)?.response?.data?.message || 'Error creating student'}</p>
+          )}
         </form>
       </motion.div>
     </div>

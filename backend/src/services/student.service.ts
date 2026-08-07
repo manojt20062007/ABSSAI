@@ -1,7 +1,48 @@
 import prisma from '../config/database';
 import { AppError } from '../utils/errors';
+import bcrypt from 'bcryptjs';
 
 export class StudentService {
+  static async create(data: any) {
+    const existing = await prisma.user.findUnique({ where: { email: data.email } });
+    if (existing) throw AppError.conflict('Email already registered');
+
+    const existingStudentId = await prisma.studentProfile.findUnique({ where: { studentId: data.studentId } });
+    if (existingStudentId) throw AppError.conflict('Student ID already exists');
+
+    const hashedPassword = await bcrypt.hash(data.password, 12);
+    const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+    const user = await prisma.user.create({
+      data: {
+        email: data.email,
+        password: hashedPassword,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        role: 'STUDENT',
+        otpCode,
+        otpExpiresAt: new Date(Date.now() + 10 * 60 * 1000),
+        isActive: true,
+        isVerified: true, // Auto verify since admin creates
+        studentProfile: {
+          create: {
+            studentId: data.studentId,
+            department: data.department || '',
+            section: data.section || 'A',
+            year: data.year || '1',
+            boardingPoint: data.boardingPoint || '',
+            destination: data.destination || 'College',
+            validUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+          }
+        }
+      },
+      include: {
+        studentProfile: true
+      }
+    });
+
+    return user.studentProfile;
+  }
   static async getAll(params: {
     page?: number | string; limit?: number | string; search?: string;
   }) {

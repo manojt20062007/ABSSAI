@@ -107,6 +107,7 @@ export const routeApi = {
 // Students
 export const studentApi = {
   getAll: (params?: any) => api.get('/students', { params }),
+  create: (data: any) => api.post('/students', data),
   updateAssignment: (id: string, data: any) => api.put(`/students/${id}/assignment`, data),
 };
 
