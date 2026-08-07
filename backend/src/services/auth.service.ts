@@ -144,7 +144,9 @@ export class AuthService {
       select: {
         id: true, email: true, firstName: true, lastName: true, phone: true,
         avatar: true, role: true, isActive: true, isVerified: true,
-        lastLoginAt: true, createdAt: true, driver: true, studentProfile: true,
+        lastLoginAt: true, createdAt: true, 
+        driver: { include: { bus: { include: { route: true } } } }, 
+        studentProfile: { include: { route: { include: { stops: { include: { stop: true } } } }, assignedBus: true } },
       },
     });
     if (!user) throw AppError.notFound('User not found');
