@@ -33,6 +33,7 @@ export default function StudentPass() {
     studentId: profile?.studentId || 'N/A',
     name: `${user?.firstName} ${user?.lastName}`,
     route: route?.routeNumber || 'N/A',
+    bus: profile?.assignedBus?.busNumber || 'N/A',
     valid: profile?.validUntil || new Date().toISOString(),
   });
 
@@ -119,6 +120,12 @@ export default function StudentPass() {
                         <MapPin size={12} /> Boarding Point
                       </p>
                       <p className="text-sm font-bold text-slate-200">{profile?.boardingPoint}</p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] uppercase tracking-wider text-slate-500 font-bold mb-1 flex items-center gap-1">
+                        <Bus size={12} /> Assigned Bus
+                      </p>
+                      <p className="text-sm font-bold text-slate-200">{profile?.assignedBus?.busNumber || 'N/A'}</p>
                     </div>
                   </div>
                   
