@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Html5QrcodeScanner } from 'html5-qrcode';
+import { Html5QrcodeScanner, Html5QrcodeScanType } from 'html5-qrcode';
 import { Camera, CheckCircle2, AlertCircle, Scan, Bus } from 'lucide-react';
 import api from '../../services/api';
 import { toast } from 'sonner';
@@ -17,7 +17,12 @@ export default function StudentScanner() {
     const scannerId = 'qr-reader';
     const scanner = new Html5QrcodeScanner(
       scannerId,
-      { fps: 10, qrbox: { width: 250, height: 250 }, aspectRatio: 1.0 },
+      { 
+        fps: 10, 
+        qrbox: { width: 250, height: 250 }, 
+        aspectRatio: 1.0,
+        supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
+      },
       /* verbose= */ false
     );
 
@@ -91,35 +96,6 @@ export default function StudentScanner() {
     setIsScanning(true);
   };
 
-  const simulateScan = async () => {
-    setIsScanning(false);
-    
-    try {
-      setIsProcessing(true);
-      // Fetch an active trip to get a valid busId for simulation
-      const tripRes = await api.get('/trips');
-      const activeTrip = tripRes.data.data.find((t: any) => t.status === 'IN_PROGRESS' || t.status === 'SCHEDULED');
-      
-      if (activeTrip) {
-        setScanResult(activeTrip.busId);
-        await processScan(activeTrip.busId);
-      } else {
-        // Fallback to any bus if no trips exist (e.g. dev environment)
-        const busRes = await api.get('/buses');
-        if (busRes.data.data.length > 0) {
-          setScanResult(busRes.data.data[0].id);
-          await processScan(busRes.data.data[0].id);
-        } else {
-          setError('No buses found in database to simulate scan.');
-        }
-      }
-    } catch (e) {
-      setError('Failed to fetch data for simulation.');
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
   return (
     <div className="flex flex-col h-[calc(100vh-5rem)] max-w-2xl mx-auto p-4">
       <div className="text-center space-y-2 mt-4 mb-6">
@@ -137,14 +113,6 @@ export default function StudentScanner() {
             <div id="qr-reader" className="w-full rounded-2xl overflow-hidden bg-black aspect-square"></div>
             
             <div className="absolute inset-0 pointer-events-none border-[12px] border-emerald-500/20 rounded-3xl mix-blend-screen" />
-            
-            {/* Simulation Button - Hidden in prod, used for local dev/demo */}
-            <button 
-              onClick={simulateScan}
-              className="mt-6 w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl font-bold transition-all border border-white/5"
-            >
-              Simulate Scan (Dev)
-            </button>
           </div>
         )}
 
