@@ -13,6 +13,7 @@ const menuItems = [
 
   { label: 'Buses', icon: Bus, path: '/buses', roles: ['SUPER_ADMIN', 'ADMIN', 'TRANSPORT_ADMIN'] },
   { label: 'Drivers', icon: Users, path: '/drivers', roles: ['SUPER_ADMIN', 'ADMIN', 'TRANSPORT_ADMIN'] },
+  { label: 'Students', icon: UserCircle, path: '/students', roles: ['SUPER_ADMIN', 'ADMIN'] },
   { label: 'Routes', icon: Route, path: '/routes', roles: ['SUPER_ADMIN', 'ADMIN', 'SCHEDULER'] },
   { label: 'Bus Stops', icon: MapPin, path: '/stops', roles: ['SUPER_ADMIN', 'ADMIN', 'SCHEDULER'] },
   { label: 'Campuses', icon: Building2, path: '/depots', roles: ['SUPER_ADMIN', 'ADMIN', 'TRANSPORT_ADMIN'] },

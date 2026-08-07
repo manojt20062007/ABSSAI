@@ -104,6 +104,12 @@ export const routeApi = {
   delete: (id: string) => api.delete(`/routes/${id}`),
 };
 
+// Students
+export const studentApi = {
+  getAll: (params?: any) => api.get('/students', { params }),
+  updateAssignment: (id: string, data: any) => api.put(`/students/${id}/assignment`, data),
+};
+
 // Stops
 export const stopApi = {
   getAll: (params?: any) => api.get('/stops', { params }),
