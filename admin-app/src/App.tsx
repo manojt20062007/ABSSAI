@@ -14,6 +14,7 @@ import LoginPage from './pages/auth/LoginPage';
 import DashboardPage from './pages/dashboard/DashboardPage';
 import BusListPage from './pages/buses/BusListPage';
 import DriverListPage from './pages/drivers/DriverListPage';
+import StudentListPage from './pages/students/StudentListPage';
 import RouteListPage from './pages/routes/RouteListPage';
 import StopListPage from './pages/stops/StopListPage';
 import DepotListPage from './pages/depots/DepotListPage';
@@ -84,6 +85,7 @@ export default function App() {
 
               <Route path="/buses" element={<BusListPage />} />
               <Route path="/drivers" element={<DriverListPage />} />
+              <Route path="/students" element={<StudentListPage />} />
               <Route path="/routes" element={<RouteListPage />} />
               <Route path="/stops" element={<StopListPage />} />
               <Route path="/depots" element={<DepotListPage />} />
