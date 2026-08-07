@@ -32,6 +32,39 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   } catch (e) { next(e); }
 });
 
+router.get('/daily-report', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { date } = req.query;
+    if (!date) throw new Error('Date is required');
+
+    const targetDate = new Date(date as string);
+    const startDate = new Date(targetDate.setHours(0, 0, 0, 0));
+    const endDate = new Date(targetDate.setHours(23, 59, 59, 999));
+
+    const trips = await prisma.trip.findMany({
+      where: {
+        OR: [
+          { actualDeparture: { gte: startDate, lte: endDate } },
+          { departureTime: { gte: startDate, lte: endDate } }
+        ]
+      },
+      include: {
+        bus: true,
+        driver: { include: { user: true } },
+        route: true,
+        boardingLogs: {
+          include: {
+            student: { include: { user: true } }
+          }
+        }
+      },
+      orderBy: { actualDeparture: 'asc' },
+    });
+    
+    ResponseHandler.success(res, trips);
+  } catch (e) { next(e); }
+});
+
 router.get('/active', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { busId, driverId } = req.query;
