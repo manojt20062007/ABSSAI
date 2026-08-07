@@ -41,13 +41,9 @@ async function main() {
     data: { email: 'student@abssai.com', password: hashedPassword, firstName: 'Aarav', lastName: 'Sharma', role: 'STUDENT', isActive: true, isVerified: true, phone: '+91-9000000003' },
   });
 
-  // ============ DEPOTS & ROUTES ============
+  // ============ DEPOTS ============
   const depot = await prisma.depot.create({
     data: { name: 'Central Depot', code: 'DEP-01', address: '123 Main St', capacity: 50 },
-  });
-
-  const route = await prisma.route.create({
-    data: { routeNumber: 'R-101', name: 'Campus Express', source: 'City Center', destination: 'University Campus', distance: 15.5, estimatedTime: 45, fare: 20 },
   });
 
   // ============ BUSES ============
@@ -83,7 +79,6 @@ async function main() {
       boardingPoint: 'City Center',
       destination: 'University Campus',
       validUntil: new Date('2027-12-31'),
-      routeId: route.id,
       assignedBusId: bus.id,
     },
   });

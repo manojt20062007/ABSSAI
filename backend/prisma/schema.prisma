@@ -7,37 +7,440 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ============================================================================
-// USER & AUTH
-// ============================================================================
-
 model User {
-  id            String    @id @default(cuid())
-  email         String    @unique
-  password      String
-  firstName     String
-  lastName      String
-  phone         String?
-  avatar        String?
-  role          UserRole  @default(STUDENT)
-  isActive      Boolean   @default(true)
-  isVerified    Boolean   @default(false)
-  otpCode       String?
-  otpExpiresAt  DateTime?
-  refreshToken  String?
-  lastLoginAt   DateTime?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-
-  // Relations
-  driver        Driver?
+  id             String          @id @default(cuid())
+  email          String          @unique
+  password       String
+  firstName      String
+  lastName       String
+  phone          String?
+  avatar         String?
+  role           UserRole        @default(STUDENT)
+  isActive       Boolean         @default(true)
+  isVerified     Boolean         @default(false)
+  otpCode        String?
+  otpExpiresAt   DateTime?
+  refreshToken   String?
+  lastLoginAt    DateTime?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  auditLogs      AuditLog[]
+  driver         Driver?
+  notifications  Notification[]
+  reports        Report[]
   studentProfile StudentProfile?
-  notifications Notification[]
-  auditLogs     AuditLog[]
-  reports       Report[]
 
   @@index([email])
   @@index([role])
+}
+
+model Bus {
+  id                 String              @id @default(cuid())
+  busNumber          String              @unique
+  registrationNumber String              @unique
+  capacity           Int
+  model              String
+  manufacturer       String
+  yearOfManufacture  Int?
+  fuelType           FuelType            @default(DIESEL)
+  mileage            Float?
+  status             BusStatus           @default(ACTIVE)
+  currentDriverId    String?             @unique
+  gpsDeviceId        String?
+  photo              String?
+  insuranceNumber    String?
+  insuranceExpiry    DateTime?
+  fitnessExpiry      DateTime?
+  lastServiceDate    DateTime?
+  nextServiceDate    DateTime?
+  totalKmRun         Float               @default(0)
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  depotId            String?
+  routeId            String?
+  boardingLogs       BoardingLog[]
+  currentDriver      Driver?             @relation("BusDriver", fields: [currentDriverId], references: [id])
+  depot              Depot?              @relation(fields: [depotId], references: [id])
+  route              Route?              @relation(fields: [routeId], references: [id])
+  fuelRecords        FuelRecord[]
+  gpsLogs            GPSLog[]
+  maintenanceRecords MaintenanceRecord[]
+  studentProfiles    StudentProfile[]
+  trips              Trip[]
+
+  @@index([busNumber])
+  @@index([status])
+  @@index([depotId])
+  @@index([routeId])
+}
+
+model Driver {
+  id                String       @id @default(cuid())
+  employeeId        String       @unique
+  licenseNumber     String       @unique
+  licenseExpiry     DateTime
+  emergencyContact  String?
+  emergencyPhone    String?
+  shift             ShiftType    @default(MORNING)
+  experience        Int          @default(0)
+  medicalFitness    Boolean      @default(true)
+  medicalExpiryDate DateTime?
+  performanceScore  Float        @default(5.0)
+  totalTrips        Int          @default(0)
+  isAvailable       Boolean      @default(true)
+  documents         String[]     @default([])
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+  userId            String       @unique
+  depotId           String?
+  attendance        Attendance[]
+  bus               Bus?         @relation("BusDriver")
+  depot             Depot?       @relation(fields: [depotId], references: [id])
+  user              User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trips             Trip[]
+
+  @@index([employeeId])
+  @@index([shift])
+  @@index([depotId])
+}
+
+model StudentProfile {
+  id            String        @id @default(cuid())
+  studentId     String        @unique
+  department    String
+  section       String
+  year          String
+  boardingPoint String
+  destination   String
+  validUntil    DateTime
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  userId        String        @unique
+  routeId       String?
+  assignedBusId String?
+  boardingLogs  BoardingLog[]
+  assignedBus   Bus?          @relation(fields: [assignedBusId], references: [id])
+  route         Route?        @relation(fields: [routeId], references: [id])
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([studentId])
+}
+
+model Route {
+  id              String            @id @default(cuid())
+  routeNumber     String            @unique
+  name            String
+  source          String
+  destination     String
+  distance        Float
+  estimatedTime   Int
+  fare            Float
+  peakFrequency   Int               @default(10)
+  normalFrequency Int               @default(20)
+  nightFrequency  Int               @default(45)
+  isActive        Boolean           @default(true)
+  polyline        String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  buses           Bus[]
+  passengerDemand PassengerDemand[]
+  stops           RouteStop[]
+  studentProfiles StudentProfile[]
+  trips           Trip[]
+
+  @@index([routeNumber])
+  @@index([isActive])
+}
+
+model BusStop {
+  id                   String      @id @default(cuid())
+  name                 String
+  code                 String      @unique
+  latitude             Float
+  longitude            Float
+  shelterAvailable     Boolean     @default(false)
+  digitalDisplay       Boolean     @default(false)
+  passengerCapacity    Int         @default(50)
+  wheelchairAccessible Boolean     @default(false)
+  nearbyLandmark       String?
+  isActive             Boolean     @default(true)
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+  routeStops           RouteStop[]
+
+  @@index([code])
+  @@index([latitude, longitude])
+}
+
+model RouteStop {
+  id                String  @id @default(cuid())
+  sequence          Int
+  distanceFromStart Float   @default(0)
+  timeFromStart     Int     @default(0)
+  routeId           String
+  stopId            String
+  route             Route   @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  stop              BusStop @relation(fields: [stopId], references: [id], onDelete: Cascade)
+
+  @@unique([routeId, stopId])
+  @@unique([routeId, sequence])
+  @@index([routeId])
+}
+
+model Depot {
+  id           String   @id @default(cuid())
+  name         String
+  code         String   @unique
+  address      String
+  latitude     Float?
+  longitude    Float?
+  capacity     Int      @default(100)
+  contactPhone String?
+  contactEmail String?
+  managerName  String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  buses        Bus[]
+  drivers      Driver[]
+
+  @@index([code])
+}
+
+model Schedule {
+  id                String         @id @default(cuid())
+  name              String
+  date              DateTime
+  status            ScheduleStatus @default(DRAFT)
+  totalTrips        Int            @default(0)
+  busesUsed         Int            @default(0)
+  driversUsed       Int            @default(0)
+  optimizationScore Float?
+  generatedBy       String?
+  notes             String?
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  trips             Trip[]
+
+  @@index([date])
+  @@index([status])
+}
+
+model Trip {
+  id              String        @id @default(cuid())
+  tripNumber      Int
+  departureTime   DateTime
+  arrivalTime     DateTime
+  actualDeparture DateTime?
+  actualArrival   DateTime?
+  status          TripStatus    @default(SCHEDULED)
+  isReturnTrip    Boolean       @default(false)
+  occupancy       Int           @default(0)
+  maxOccupancy    Int?
+  delay           Int           @default(0)
+  notes           String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  scheduleId      String?
+  busId           String
+  driverId        String
+  routeId         String
+  boardingLogs    BoardingLog[]
+  bus             Bus           @relation(fields: [busId], references: [id])
+  driver          Driver        @relation(fields: [driverId], references: [id])
+  route           Route         @relation(fields: [routeId], references: [id])
+  schedule        Schedule?     @relation(fields: [scheduleId], references: [id])
+
+  @@index([scheduleId])
+  @@index([status])
+  @@index([departureTime])
+  @@index([busId])
+  @@index([driverId])
+}
+
+model GPSLog {
+  id        String   @id @default(cuid())
+  latitude  Float
+  longitude Float
+  speed     Float    @default(0)
+  heading   Float    @default(0)
+  occupancy Int      @default(0)
+  timestamp DateTime @default(now())
+  busId     String
+  bus       Bus      @relation(fields: [busId], references: [id])
+
+  @@index([busId])
+  @@index([timestamp])
+}
+
+model MaintenanceRecord {
+  id            String            @id @default(cuid())
+  type          MaintenanceType   @default(ROUTINE)
+  status        MaintenanceStatus @default(PENDING)
+  description   String
+  scheduledDate DateTime
+  completedDate DateTime?
+  cost          Float?
+  oilChange     Boolean           @default(false)
+  brakeCheck    Boolean           @default(false)
+  tyreHealth    Boolean           @default(false)
+  batteryCheck  Boolean           @default(false)
+  engineCheck   Boolean           @default(false)
+  notes         String?
+  performedBy   String?
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  busId         String
+  bus           Bus               @relation(fields: [busId], references: [id])
+
+  @@index([busId])
+  @@index([status])
+  @@index([scheduledDate])
+}
+
+model FuelRecord {
+  id            String   @id @default(cuid())
+  date          DateTime
+  quantity      Float
+  costPerUnit   Float
+  totalCost     Float
+  odometer      Float
+  mileage       Float?
+  fuelStation   String?
+  receiptNumber String?
+  filledBy      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  busId         String
+  bus           Bus      @relation(fields: [busId], references: [id])
+
+  @@index([busId])
+  @@index([date])
+}
+
+model Attendance {
+  id              String           @id @default(cuid())
+  date            DateTime
+  checkIn         DateTime?
+  checkOut        DateTime?
+  status          AttendanceStatus @default(PRESENT)
+  shift           ShiftType
+  lateMinutes     Int              @default(0)
+  overtimeMinutes Int              @default(0)
+  leaveType       String?
+  notes           String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  driverId        String
+  driver          Driver           @relation(fields: [driverId], references: [id])
+
+  @@unique([driverId, date])
+  @@index([driverId])
+  @@index([date])
+  @@index([status])
+}
+
+model BoardingLog {
+  id         String         @id @default(cuid())
+  timestamp  DateTime       @default(now())
+  status     BoardingStatus @default(BOARDED)
+  scanMethod String         @default("QR_CODE")
+  studentId  String
+  busId      String
+  tripId     String?
+  bus        Bus            @relation(fields: [busId], references: [id])
+  student    StudentProfile @relation(fields: [studentId], references: [id])
+  trip       Trip?          @relation(fields: [tripId], references: [id])
+
+  @@index([studentId])
+  @@index([busId])
+  @@index([tripId])
+  @@index([timestamp])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  title     String
+  message   String
+  type      NotificationType @default(SYSTEM)
+  isRead    Boolean          @default(false)
+  data      Json?
+  createdAt DateTime         @default(now())
+  userId    String
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([isRead])
+  @@index([createdAt])
+}
+
+model PassengerDemand {
+  id               String   @id @default(cuid())
+  date             DateTime
+  hour             Int
+  dayOfWeek        Int
+  passengerCount   Int
+  isHoliday        Boolean  @default(false)
+  isFestival       Boolean  @default(false)
+  isWeekend        Boolean  @default(false)
+  weatherCondition String?
+  temperature      Float?
+  createdAt        DateTime @default(now())
+  routeId          String
+  route            Route    @relation(fields: [routeId], references: [id])
+
+  @@index([routeId])
+  @@index([date])
+  @@index([hour])
+}
+
+model Report {
+  id        String   @id @default(cuid())
+  title     String
+  type      String
+  category  String
+  dateFrom  DateTime
+  dateTo    DateTime
+  data      Json?
+  filePath  String?
+  format    String?
+  createdAt DateTime @default(now())
+  userId    String
+  createdBy User     @relation(fields: [userId], references: [id])
+
+  @@index([type])
+  @@index([createdAt])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String
+  entity    String
+  entityId  String?
+  oldData   Json?
+  newData   Json?
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([entity])
+  @@index([createdAt])
+}
+
+model Setting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String
+  description String?
+  category    String   @default("general")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([key])
+  @@index([category])
 }
 
 enum UserRole {
@@ -47,52 +450,6 @@ enum UserRole {
   TRANSPORT_ADMIN
   DRIVER
   STUDENT
-}
-
-// ============================================================================
-// BUS & FLEET
-// ============================================================================
-
-model Bus {
-  id                  String    @id @default(cuid())
-  busNumber           String    @unique
-  registrationNumber  String    @unique
-  capacity            Int
-  model               String
-  manufacturer        String
-  yearOfManufacture   Int?
-  fuelType            FuelType  @default(DIESEL)
-  mileage             Float?
-  status              BusStatus @default(ACTIVE)
-  gpsDeviceId         String?
-  photo               String?
-  insuranceNumber     String?
-  insuranceExpiry     DateTime?
-  fitnessExpiry       DateTime?
-  lastServiceDate     DateTime?
-  nextServiceDate     DateTime?
-  totalKmRun          Float     @default(0)
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @updatedAt
-
-  // Relations
-  depot               Depot?    @relation(fields: [depotId], references: [id])
-  depotId             String?
-  route               Route?    @relation(fields: [routeId], references: [id])
-  routeId             String?
-  currentDriver       Driver?   @relation("BusDriver", fields: [currentDriverId], references: [id])
-  currentDriverId     String?   @unique
-  trips               Trip[]
-  maintenanceRecords  MaintenanceRecord[]
-  fuelRecords         FuelRecord[]
-  gpsLogs             GPSLog[]
-  boardingLogs        BoardingLog[]
-  studentProfiles     StudentProfile[]
-
-  @@index([busNumber])
-  @@index([status])
-  @@index([depotId])
-  @@index([routeId])
 }
 
 enum BusStatus {
@@ -109,197 +466,11 @@ enum FuelType {
   HYBRID
 }
 
-// ============================================================================
-// DRIVER
-// ============================================================================
-
-model Driver {
-  id                String      @id @default(cuid())
-  employeeId        String      @unique
-  licenseNumber     String      @unique
-  licenseExpiry     DateTime
-  emergencyContact  String?
-  emergencyPhone    String?
-  shift             ShiftType   @default(MORNING)
-  experience        Int         @default(0) // years
-  medicalFitness    Boolean     @default(true)
-  medicalExpiryDate DateTime?
-  performanceScore  Float       @default(5.0)
-  totalTrips        Int         @default(0)
-  isAvailable       Boolean     @default(true)
-  documents         String[]    @default([])
-  createdAt         DateTime    @default(now())
-  updatedAt         DateTime    @updatedAt
-
-  // Relations
-  user              User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId            String      @unique
-  depot             Depot?      @relation(fields: [depotId], references: [id])
-  depotId           String?
-  bus               Bus?        @relation("BusDriver")
-  trips             Trip[]
-  attendance        Attendance[]
-
-  @@index([employeeId])
-  @@index([shift])
-  @@index([depotId])
-}
-
 enum ShiftType {
   MORNING
   AFTERNOON
   NIGHT
   SPLIT
-}
-
-// ============================================================================
-// STUDENT / PASSENGER PROFILE
-// ============================================================================
-
-model StudentProfile {
-  id              String    @id @default(cuid())
-  studentId       String    @unique // e.g. STU-8492
-  department      String    // e.g. Computer Science
-  section         String    // e.g. A
-  year            String    // e.g. 3rd Year
-  boardingPoint   String    // e.g. ISBT Depot
-  destination     String    // e.g. SEC-14
-  validUntil      DateTime
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-
-  // Relations
-  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId          String    @unique
-  route           Route?    @relation(fields: [routeId], references: [id])
-  routeId         String?
-  assignedBus     Bus?      @relation(fields: [assignedBusId], references: [id])
-  assignedBusId   String?
-  boardingLogs    BoardingLog[]
-
-  @@index([studentId])
-}
-
-// ============================================================================
-// ROUTE & STOPS
-// ============================================================================
-
-model Route {
-  id                String      @id @default(cuid())
-  routeNumber       String      @unique
-  name              String
-  source            String
-  destination       String
-  distance          Float       // km
-  estimatedTime     Int         // minutes
-  fare              Float
-  peakFrequency     Int         @default(10) // minutes
-  normalFrequency   Int         @default(20)
-  nightFrequency    Int         @default(45)
-  isActive          Boolean     @default(true)
-  polyline          String?     // encoded polyline for map
-  createdAt         DateTime    @default(now())
-  updatedAt         DateTime    @updatedAt
-
-  // Relations
-  stops             RouteStop[]
-  trips             Trip[]
-  passengerDemand   PassengerDemand[]
-  studentProfiles   StudentProfile[]
-  buses             Bus[]
-
-  @@index([routeNumber])
-  @@index([isActive])
-}
-
-model BusStop {
-  id                    String    @id @default(cuid())
-  name                  String
-  code                  String    @unique
-  latitude              Float
-  longitude             Float
-  shelterAvailable      Boolean   @default(false)
-  digitalDisplay        Boolean   @default(false)
-  passengerCapacity     Int       @default(50)
-  wheelchairAccessible  Boolean   @default(false)
-  nearbyLandmark        String?
-  isActive              Boolean   @default(true)
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
-
-  // Relations
-  routeStops            RouteStop[]
-
-  @@index([code])
-  @@index([latitude, longitude])
-}
-
-model RouteStop {
-  id            String    @id @default(cuid())
-  sequence      Int
-  distanceFromStart Float @default(0)
-  timeFromStart Int       @default(0) // minutes
-
-  // Relations
-  route         Route     @relation(fields: [routeId], references: [id], onDelete: Cascade)
-  routeId       String
-  stop          BusStop   @relation(fields: [stopId], references: [id], onDelete: Cascade)
-  stopId        String
-
-  @@unique([routeId, stopId])
-  @@unique([routeId, sequence])
-  @@index([routeId])
-}
-
-// ============================================================================
-// DEPOT
-// ============================================================================
-
-model Depot {
-  id              String    @id @default(cuid())
-  name            String
-  code            String    @unique
-  address         String
-  latitude        Float?
-  longitude       Float?
-  capacity        Int       @default(100) // parking spots
-  contactPhone    String?
-  contactEmail    String?
-  managerName     String?
-  isActive        Boolean   @default(true)
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-
-  // Relations
-  buses           Bus[]
-  drivers         Driver[]
-
-  @@index([code])
-}
-
-// ============================================================================
-// SCHEDULE & TRIPS
-// ============================================================================
-
-model Schedule {
-  id              String    @id @default(cuid())
-  name            String
-  date            DateTime
-  status          ScheduleStatus @default(DRAFT)
-  totalTrips      Int       @default(0)
-  busesUsed       Int       @default(0)
-  driversUsed     Int       @default(0)
-  optimizationScore Float?
-  generatedBy     String?
-  notes           String?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-
-  // Relations
-  trips           Trip[]
-
-  @@index([date])
-  @@index([status])
 }
 
 enum ScheduleStatus {
@@ -310,98 +481,12 @@ enum ScheduleStatus {
   CANCELLED
 }
 
-model Trip {
-  id              String      @id @default(cuid())
-  tripNumber      Int
-  departureTime   DateTime
-  arrivalTime     DateTime
-  actualDeparture DateTime?
-  actualArrival   DateTime?
-  status          TripStatus  @default(SCHEDULED)
-  isReturnTrip    Boolean     @default(false)
-  occupancy       Int         @default(0)
-  maxOccupancy    Int?
-  delay           Int         @default(0) // minutes
-  notes           String?
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
-
-  // Relations
-  schedule        Schedule?   @relation(fields: [scheduleId], references: [id])
-  scheduleId      String?
-  bus             Bus         @relation(fields: [busId], references: [id])
-  busId           String
-  driver          Driver      @relation(fields: [driverId], references: [id])
-  driverId        String
-  route           Route       @relation(fields: [routeId], references: [id])
-  routeId         String
-  boardingLogs    BoardingLog[]
-
-  @@index([scheduleId])
-  @@index([status])
-  @@index([departureTime])
-  @@index([busId])
-  @@index([driverId])
-}
-
 enum TripStatus {
   SCHEDULED
   IN_PROGRESS
   COMPLETED
   CANCELLED
   DELAYED
-}
-
-// ============================================================================
-// GPS TRACKING
-// ============================================================================
-
-model GPSLog {
-  id          String    @id @default(cuid())
-  latitude    Float
-  longitude   Float
-  speed       Float     @default(0)
-  heading     Float     @default(0)
-  occupancy   Int       @default(0)
-  timestamp   DateTime  @default(now())
-
-  // Relations
-  bus         Bus       @relation(fields: [busId], references: [id])
-  busId       String
-
-  @@index([busId])
-  @@index([timestamp])
-}
-
-// ============================================================================
-// MAINTENANCE
-// ============================================================================
-
-model MaintenanceRecord {
-  id              String            @id @default(cuid())
-  type            MaintenanceType   @default(ROUTINE)
-  status          MaintenanceStatus @default(PENDING)
-  description     String
-  scheduledDate   DateTime
-  completedDate   DateTime?
-  cost            Float?
-  oilChange       Boolean           @default(false)
-  brakeCheck      Boolean           @default(false)
-  tyreHealth      Boolean           @default(false)
-  batteryCheck    Boolean           @default(false)
-  engineCheck     Boolean           @default(false)
-  notes           String?
-  performedBy     String?
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-
-  // Relations
-  bus             Bus               @relation(fields: [busId], references: [id])
-  busId           String
-
-  @@index([busId])
-  @@index([status])
-  @@index([scheduledDate])
 }
 
 enum MaintenanceType {
@@ -415,80 +500,6 @@ enum MaintenanceStatus {
   PENDING
   IN_PROGRESS
   COMPLETED
-}
-
-// ============================================================================
-// FUEL
-// ============================================================================
-
-model FuelRecord {
-  id              String    @id @default(cuid())
-  date            DateTime
-  quantity         Float     // liters
-  costPerUnit     Float
-  totalCost       Float
-  odometer        Float
-  mileage         Float?    // km/l
-  fuelStation     String?
-  receiptNumber   String?
-  filledBy        String?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-
-  // Relations
-  bus             Bus       @relation(fields: [busId], references: [id])
-  busId           String
-
-  @@index([busId])
-  @@index([date])
-}
-
-// ============================================================================
-// ATTENDANCE & BOARDING
-// ============================================================================
-
-model Attendance {
-  id              String            @id @default(cuid())
-  date            DateTime
-  checkIn         DateTime?
-  checkOut        DateTime?
-  status          AttendanceStatus  @default(PRESENT)
-  shift           ShiftType
-  lateMinutes     Int               @default(0)
-  overtimeMinutes Int               @default(0)
-  leaveType       String?
-  notes           String?
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-
-  // Relations
-  driver          Driver            @relation(fields: [driverId], references: [id])
-  driverId        String
-
-  @@unique([driverId, date])
-  @@index([driverId])
-  @@index([date])
-  @@index([status])
-}
-
-model BoardingLog {
-  id              String          @id @default(cuid())
-  timestamp       DateTime        @default(now())
-  status          BoardingStatus  @default(BOARDED)
-  scanMethod      String          @default("QR_CODE") // QR_CODE, NFC, MANUAL
-
-  // Relations
-  student         StudentProfile  @relation(fields: [studentId], references: [id])
-  studentId       String
-  bus             Bus             @relation(fields: [busId], references: [id])
-  busId           String
-  trip            Trip?           @relation(fields: [tripId], references: [id])
-  tripId          String?
-
-  @@index([studentId])
-  @@index([busId])
-  @@index([tripId])
-  @@index([timestamp])
 }
 
 enum BoardingStatus {
@@ -505,28 +516,6 @@ enum AttendanceStatus {
   HALF_DAY
 }
 
-// ============================================================================
-// NOTIFICATIONS
-// ============================================================================
-
-model Notification {
-  id          String            @id @default(cuid())
-  title       String
-  message     String
-  type        NotificationType  @default(SYSTEM)
-  isRead      Boolean           @default(false)
-  data        Json?
-  createdAt   DateTime          @default(now())
-
-  // Relations
-  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String
-
-  @@index([userId])
-  @@index([isRead])
-  @@index([createdAt])
-}
-
 enum NotificationType {
   BUS_DELAY
   MAINTENANCE
@@ -535,95 +524,4 @@ enum NotificationType {
   ROUTE_CHANGE
   BROADCAST
   SYSTEM
-}
-
-// ============================================================================
-// PASSENGER DEMAND (for AI predictions)
-// ============================================================================
-
-model PassengerDemand {
-  id              String    @id @default(cuid())
-  date            DateTime
-  hour            Int       // 0-23
-  dayOfWeek       Int       // 0=Sunday
-  passengerCount  Int
-  isHoliday       Boolean   @default(false)
-  isFestival      Boolean   @default(false)
-  isWeekend       Boolean   @default(false)
-  weatherCondition String?
-  temperature     Float?
-  createdAt       DateTime  @default(now())
-
-  // Relations
-  route           Route     @relation(fields: [routeId], references: [id])
-  routeId         String
-
-  @@index([routeId])
-  @@index([date])
-  @@index([hour])
-}
-
-// ============================================================================
-// REPORTS
-// ============================================================================
-
-model Report {
-  id          String    @id @default(cuid())
-  title       String
-  type        String    // daily, weekly, monthly
-  category    String    // revenue, fuel, performance, etc.
-  dateFrom    DateTime
-  dateTo      DateTime
-  data        Json?
-  filePath    String?
-  format      String?   // pdf, excel, csv
-  createdAt   DateTime  @default(now())
-
-  // Relations
-  createdBy   User      @relation(fields: [userId], references: [id])
-  userId      String
-
-  @@index([type])
-  @@index([createdAt])
-}
-
-// ============================================================================
-// AUDIT LOG
-// ============================================================================
-
-model AuditLog {
-  id          String    @id @default(cuid())
-  action      String
-  entity      String
-  entityId    String?
-  oldData     Json?
-  newData     Json?
-  ipAddress   String?
-  userAgent   String?
-  createdAt   DateTime  @default(now())
-
-  // Relations
-  user        User      @relation(fields: [userId], references: [id])
-  userId      String
-
-  @@index([userId])
-  @@index([entity])
-  @@index([createdAt])
-}
-
-// ============================================================================
-// SETTINGS
-// ============================================================================
-
-model Setting {
-  id          String    @id @default(cuid())
-  key         String    @unique
-  value       String
-  description String?
-  category    String    @default("general")
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  @@index([key])
-  @@index([category])
 }
