@@ -95,7 +95,25 @@ export class MediaCaptureService {
         throw new Error('Device does not support media recording.');
       }
 
-      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      let stream: MediaStream | null = null;
+      try {
+        stream = await navigator.mediaDevices.getUserMedia(constraints);
+      } catch (firstErr) {
+        console.warn('⚠️ Initial media constraints failed, retrying with fallback mobile constraints:', firstErr);
+        try {
+          stream = await navigator.mediaDevices.getUserMedia(
+            type === 'VIDEO'
+              ? { video: { facingMode: 'user' }, audio: true }
+              : { audio: true }
+          );
+        } catch (secondErr) {
+          console.warn('⚠️ Front-camera constraints failed, retrying with simple video/audio constraints:', secondErr);
+          stream = await navigator.mediaDevices.getUserMedia(
+            type === 'VIDEO' ? { video: true, audio: true } : { audio: true }
+          );
+        }
+      }
+
       this.mediaStream = stream;
       this.startTime = Date.now();
 
