@@ -487,7 +487,9 @@ export default function SafetyEventsPage() {
                       <div className="space-y-4">
                         {selectedEvent.media.map((med: any) => {
                           const base = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : 'http://localhost:3001';
-                          const mediaUrl = `${base}${med.fileUrl}`;
+                          const mediaUrl = med.fileUrl?.startsWith('http://') || med.fileUrl?.startsWith('https://')
+                            ? med.fileUrl
+                            : `${base}${med.fileUrl}`;
                           
                           return (
                             <div key={med.id} className="bg-slate-950/50 border border-slate-800/80 rounded-2xl p-4 flex flex-col gap-3">
