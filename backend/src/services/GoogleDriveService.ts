@@ -73,7 +73,11 @@ export class GoogleDriveService {
       }
 
       const fileName = customFilename || path.basename(localFilePath);
-      const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID; // Optional Google Drive Folder ID
+      const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID; // Required Google Drive Shared Folder ID
+
+      if (!folderId) {
+        logger.warn('⚠️ GOOGLE_DRIVE_FOLDER_ID is missing in .env! Service accounts require a shared folder ID to use your 15GB storage quota.');
+      }
 
       const requestBody: any = {
         name: fileName,
@@ -89,10 +93,12 @@ export class GoogleDriveService {
         body: fs.createReadStream(localFilePath),
       };
 
-      // 1. Upload File
+      // 1. Upload File with supportsAllDrives & supportsTeamDrives flags
       const response = await drive.files.create({
         requestBody,
         media,
+        supportsAllDrives: true,
+        supportsTeamDrives: true,
         fields: 'id, name, webViewLink, webContentLink',
       });
 
@@ -102,6 +108,8 @@ export class GoogleDriveService {
       // 2. Set Public Read Permission so Admin Dashboard can view/stream
       await drive.permissions.create({
         fileId: fileId,
+        supportsAllDrives: true,
+        supportsTeamDrives: true,
         requestBody: {
           role: 'reader',
           type: 'anyone',
