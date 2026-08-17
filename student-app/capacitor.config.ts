@@ -5,6 +5,7 @@ const config: CapacitorConfig = {
   appName: 'ABSSAI Student',
   webDir: 'dist',
   server: {
+    url: 'https://student-abssai.vercel.app',
     cleartext: true,
   }
 };

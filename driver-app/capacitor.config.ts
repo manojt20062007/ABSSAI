@@ -5,6 +5,7 @@ const config: CapacitorConfig = {
   appName: 'ABSSAI Driver',
   webDir: 'dist',
   server: {
+    url: 'https://driver-abssai.vercel.app',
     cleartext: true,
   }
 };
