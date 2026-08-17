@@ -235,26 +235,6 @@ export default function DriverHome() {
             </div>
           </div>
         )}
-
-        <div className="grid grid-cols-2 gap-2 mt-1">
-          <button
-            onClick={triggerStopAlertSimulation}
-            disabled={safetyState === 'AWAITING_RESPONSE' || safetyState === 'EVIDENCE_CAPTURE'}
-            className="py-2.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-bold text-xs rounded-xl border border-amber-500/40 flex items-center justify-center gap-1.5 transition-all active:scale-95"
-          >
-            <Clock size={14} className="text-amber-400" />
-            Simulate 5-Min Stop
-          </button>
-
-          <button
-            onClick={triggerCameraRecordingTest}
-            disabled={safetyState === 'EVIDENCE_CAPTURE'}
-            className="py-2.5 bg-red-500/20 hover:bg-red-500/30 text-red-300 font-bold text-xs rounded-xl border border-red-500/40 flex items-center justify-center gap-1.5 transition-all active:scale-95"
-          >
-            <AlertOctagon size={14} className="text-red-400 animate-pulse" />
-            Direct Panic Test
-          </button>
-        </div>
       </div>
 
       {!route ? (
