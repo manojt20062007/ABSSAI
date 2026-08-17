@@ -32,9 +32,9 @@ export class SafetyEngine {
     const a =
       Math.sin(deltaPhi / 2) * Math.sin(deltaPhi / 2) +
       Math.cos(phi1) *
-        Math.cos(phi2) *
-        Math.sin(deltaLambda / 2) *
-        Math.sin(deltaLambda / 2);
+      Math.cos(phi2) *
+      Math.sin(deltaLambda / 2) *
+      Math.sin(deltaLambda / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     return R * c; // in metres
@@ -47,8 +47,8 @@ export class SafetyEngine {
       audio.loop = true;
       (audio as any).id = 'abssai-safety-alert-sound';
       document.body.appendChild(audio);
-      audio.play().catch(() => {});
-    } catch (e) {}
+      audio.play().catch(() => { });
+    } catch (e) { }
   }
 
   private static stopAlertSound(): void {
@@ -58,7 +58,7 @@ export class SafetyEngine {
         audio.pause();
         audio.remove();
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // AI Algorithm: Evaluates micro-displacement & velocity variance over 5-minute window
@@ -79,7 +79,9 @@ export class SafetyEngine {
   // Continuous 1-second tick timer for stationary stop detection
   private static tickStationaryTimer(): void {
     const store = useSafetyStore.getState();
-    if (!store.isTripActive || SafetyEngine.isPaused) {
+    if (!SafetyEngine.tripId || !store.isTripActive || SafetyEngine.isPaused) {
+      SafetyEngine.stationaryStart = null;
+      store.setStationarySeconds(0);
       return;
     }
 
@@ -277,7 +279,7 @@ export class SafetyEngine {
   private static triggerDriverAlert(stopDuration: number): void {
     const store = useSafetyStore.getState();
     store.setSafetyState('DRIVER_ALERTED');
-    
+
     // Play alert sound
     this.playAlertSound();
 
@@ -405,7 +407,7 @@ export class SafetyEngine {
     const lat = store.currentLocation ? store.currentLocation[0] : null;
     const lng = store.currentLocation ? store.currentLocation[1] : null;
     const accuracy = store.gpsAccuracy;
-    
+
     // Unique checksum (FIX 4 & 5)
     const checksum = `${this.currentSafetyEventId || 'unknown'}-${type}-${result.duration}-${result.blob.size}`;
 

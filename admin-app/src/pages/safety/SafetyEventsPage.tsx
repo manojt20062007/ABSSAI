@@ -56,12 +56,12 @@ export default function SafetyEventsPage() {
   const [loading, setLoading] = useState(true);
   const [severityFilter, setSeverityFilter] = useState('ALL');
   const [statusFilter, setStatusFilter] = useState('ALL');
-  
+
   // Selected Event Details Modal State
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<any | null>(null);
   const [loadingDetails, setLoadingDetails] = useState(false);
-  
+
   // Edit Status Form State
   const [updateStatus, setUpdateStatus] = useState('');
   const [updateNotes, setUpdateNotes] = useState('');
@@ -102,8 +102,8 @@ export default function SafetyEventsPage() {
       try {
         const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
         audio.volume = 0.8;
-        audio.play().catch(() => {});
-      } catch (e) {}
+        audio.play().catch(() => { });
+      } catch (e) { }
 
       // Display warning toast
       toast.error(
@@ -239,11 +239,10 @@ export default function SafetyEventsPage() {
             <button
               key={sev}
               onClick={() => setSeverityFilter(sev)}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-xl border transition-all ${
-                severityFilter === sev
+              className={`px-3 py-1.5 text-xs font-semibold rounded-xl border transition-all ${severityFilter === sev
                   ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/40 shadow-inner'
                   : 'bg-slate-950/40 text-slate-400 border-slate-800 hover:bg-slate-900'
-              }`}
+                }`}
             >
               {sev}
             </button>
@@ -256,11 +255,10 @@ export default function SafetyEventsPage() {
             <button
               key={stat}
               onClick={() => setStatusFilter(stat)}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-xl border transition-all ${
-                statusFilter === stat
+              className={`px-3 py-1.5 text-xs font-semibold rounded-xl border transition-all ${statusFilter === stat
                   ? 'bg-indigo-500/20 text-indigo-400 border-indigo-500/40'
                   : 'bg-slate-950/40 text-slate-400 border-slate-800 hover:bg-slate-900'
-              }`}
+                }`}
             >
               {stat.replace('_', ' ')}
             </button>
@@ -384,7 +382,7 @@ export default function SafetyEventsPage() {
                 </div>
               ) : selectedEvent ? (
                 <div className="space-y-6 flex-1">
-                  
+
                   {/* Quick summary grid */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="bg-slate-950/40 p-3 rounded-xl border border-white/5">
@@ -440,7 +438,7 @@ export default function SafetyEventsPage() {
                           >
                             <Popup>
                               <div className="text-xs font-bold p-1">
-                                Stoppage: {selectedEvent.bus?.busNumber}<br/>
+                                Stoppage: {selectedEvent.bus?.busNumber}<br />
                                 Accurately to {selectedEvent.gpsAccuracy?.toFixed(1)}m
                               </div>
                             </Popup>
@@ -487,10 +485,8 @@ export default function SafetyEventsPage() {
                       <div className="space-y-4">
                         {selectedEvent.media.map((med: any) => {
                           const base = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : 'http://localhost:3001';
-                          const mediaUrl = med.fileUrl?.startsWith('http://') || med.fileUrl?.startsWith('https://')
-                            ? med.fileUrl
-                            : `${base}${med.fileUrl}`;
-                          
+                          const mediaUrl = `${base}${med.fileUrl}`;
+
                           return (
                             <div key={med.id} className="bg-slate-950/50 border border-slate-800/80 rounded-2xl p-4 flex flex-col gap-3">
                               <div className="flex items-center justify-between">

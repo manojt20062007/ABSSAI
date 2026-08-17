@@ -47,9 +47,17 @@ export default function DriverHome() {
                 SafetyEngine.start(tripData.id, bus.id, driver.id, route.id, route.stops || []);
               }
             }
+          } else {
+            setIsTripActive(false);
+            setIsTripPaused(false);
+            SafetyEngine.stop();
           }
         })
-        .catch(() => {})
+        .catch(() => {
+          setIsTripActive(false);
+          setIsTripPaused(false);
+          SafetyEngine.stop();
+        })
         .finally(() => setIsLoadingTrip(false));
     } else {
       setIsLoadingTrip(false);
