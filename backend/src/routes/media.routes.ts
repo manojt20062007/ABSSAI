@@ -6,6 +6,7 @@ import prisma from '../config/database';
 import { ResponseHandler } from '../utils/response';
 import { authenticate, authorize } from '../middleware/auth';
 import { AppError } from '../utils/errors';
+import { GoogleDriveService } from '../services/GoogleDriveService';
 
 const router = Router();
 router.use(authenticate);
@@ -134,8 +135,17 @@ router.post('/upload', upload.single('file'), async (req: Request, res: Response
       if (r) validRouteId = r.id;
     }
 
-    // Set file relative URL (served statically via /uploads)
-    const fileUrl = `/uploads/media/${req.file.filename}`;
+    // Auto-upload to Google Drive if configured
+    let fileUrl = `/uploads/media/${req.file.filename}`;
+    const driveUpload = await GoogleDriveService.uploadFile(
+      req.file.path,
+      req.file.mimetype,
+      req.file.filename
+    );
+
+    if (driveUpload?.webViewLink) {
+      fileUrl = driveUpload.webViewLink;
+    }
 
     // Create the media row in prisma
     const media = await prisma.media.create({
