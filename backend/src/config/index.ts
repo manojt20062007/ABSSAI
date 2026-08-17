@@ -29,6 +29,17 @@ export const config = {
   upload: {
     maxSize: 5 * 1024 * 1024, // 5MB
     allowedTypes: ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'],
+    maxVideoSize: 50 * 1024 * 1024, // 50MB
+    maxAudioSize: 10 * 1024 * 1024, // 10MB
+  },
+
+  safety: {
+    unexpectedStopVerificationTime: 30, // 30 seconds
+    driverResponseTimeout: 300, // 5 minutes (in seconds)
+    evidenceCaptureDuration: 300, // 5 minutes (in seconds)
+    stationarySpeedThreshold: 1.0, // km/h
+    legitimateStopRadius: 50, // meters
+    maxGpsAccuracy: 50, // meters
   },
 
   rateLimit: {

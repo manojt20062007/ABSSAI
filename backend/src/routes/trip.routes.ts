@@ -70,7 +70,7 @@ router.get('/active', async (req: Request, res: Response, next: NextFunction) =>
     const { busId, driverId } = req.query;
     if (!busId && !driverId) throw new Error('Must provide busId or driverId');
     
-    const where: any = { status: 'IN_PROGRESS' };
+    const where: any = { status: { in: ['IN_PROGRESS', 'PAUSED'] } };
     if (busId) where.busId = busId;
     if (driverId) where.driverId = driverId;
 
@@ -91,7 +91,7 @@ router.post('/start-active', async (req: Request, res: Response, next: NextFunct
 
     // Check if there is already an active trip
     let trip = await prisma.trip.findFirst({
-      where: { busId, status: 'IN_PROGRESS' },
+      where: { busId, status: { in: ['IN_PROGRESS', 'PAUSED'] } },
     });
 
     if (!trip) {
@@ -127,13 +127,53 @@ router.post('/start-active', async (req: Request, res: Response, next: NextFunct
   } catch (e) { next(e); }
 });
 
-router.post('/end-active', async (req: Request, res: Response, next: NextFunction) => {
+router.post('/pause-active', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { busId } = req.body;
     if (!busId) throw new Error('Missing busId');
 
     const trips = await prisma.trip.findMany({
       where: { busId, status: 'IN_PROGRESS' },
+    });
+
+    for (const trip of trips) {
+      await prisma.trip.update({
+        where: { id: trip.id },
+        data: { status: 'PAUSED' },
+      });
+    }
+
+    ResponseHandler.success(res, null, 'Trip paused successfully');
+  } catch (e) { next(e); }
+});
+
+router.post('/resume-active', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { busId } = req.body;
+    if (!busId) throw new Error('Missing busId');
+
+    const trips = await prisma.trip.findMany({
+      where: { busId, status: 'PAUSED' },
+    });
+
+    for (const trip of trips) {
+      await prisma.trip.update({
+        where: { id: trip.id },
+        data: { status: 'IN_PROGRESS' },
+      });
+    }
+
+    ResponseHandler.success(res, null, 'Trip resumed successfully');
+  } catch (e) { next(e); }
+});
+
+router.post('/end-active', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { busId } = req.body;
+    if (!busId) throw new Error('Missing busId');
+
+    const trips = await prisma.trip.findMany({
+      where: { busId, status: { in: ['IN_PROGRESS', 'PAUSED'] } },
     });
 
     for (const trip of trips) {

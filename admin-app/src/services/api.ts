@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://192.168.1.34:3001/api',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3001/api',
   headers: { 'Content-Type': 'application/json' },
   withCredentials: true,
 });
@@ -197,4 +197,12 @@ export const passengerApi = {
   getNearbyStops: (lat: number, lng: number, radius?: number) => api.get('/passenger/stops/nearby', { params: { lat, lng, radius } }),
   getLiveBuses: () => api.get('/passenger/buses/live'),
   getRouteSchedule: (routeId: string) => api.get(`/passenger/routes/${routeId}/schedule`),
+};
+
+// Safety
+export const safetyApi = {
+  getEvents: (params?: any) => api.get('/safety/events', { params }),
+  getEventById: (id: string) => api.get(`/safety/events/${id}`),
+  updateStatus: (id: string, data: { status: string; notes?: string }) => api.patch(`/safety/events/${id}/status`, data),
+  deleteMedia: (id: string) => api.delete(`/media/${id}`),
 };

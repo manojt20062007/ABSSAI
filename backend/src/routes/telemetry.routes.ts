@@ -65,4 +65,28 @@ router.post('/location', async (req: Request, res: Response, next: NextFunction)
   }
 });
 
+/**
+ * @route GET /api/telemetry/latest/:busId
+ * @desc Get latest recorded GPS position for a bus
+ */
+router.get('/latest/:busId', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const busId = req.params.busId as string;
+    let actualBusId = busId;
+    if (busId && !busId.startsWith('c')) {
+      const bus = await prisma.bus.findFirst({ where: { busNumber: busId } });
+      if (bus) actualBusId = bus.id;
+    }
+
+    const latestGps = await prisma.gPSLog.findFirst({
+      where: { busId: actualBusId },
+      orderBy: { timestamp: 'desc' }
+    });
+
+    ResponseHandler.success(res, latestGps);
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default router;

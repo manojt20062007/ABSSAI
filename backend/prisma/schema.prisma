@@ -29,6 +29,7 @@ model User {
   notifications  Notification[]
   reports        Report[]
   studentProfile StudentProfile?
+  media          Media[]
 
   @@index([email])
   @@index([role])
@@ -67,6 +68,8 @@ model Bus {
   maintenanceRecords MaintenanceRecord[]
   studentProfiles    StudentProfile[]
   trips              Trip[]
+  media              Media[]
+  safetyEvents       SafetyEvent[]
 
   @@index([busNumber])
   @@index([status])
@@ -98,6 +101,7 @@ model Driver {
   depot             Depot?       @relation(fields: [depotId], references: [id])
   user              User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   trips             Trip[]
+  safetyEvents      SafetyEvent[]
 
   @@index([employeeId])
   @@index([shift])
@@ -147,6 +151,8 @@ model Route {
   stops           RouteStop[]
   studentProfiles StudentProfile[]
   trips           Trip[]
+  media           Media[]
+  safetyEvents    SafetyEvent[]
 
   @@index([routeNumber])
   @@index([isActive])
@@ -250,6 +256,8 @@ model Trip {
   driver          Driver        @relation(fields: [driverId], references: [id])
   route           Route         @relation(fields: [routeId], references: [id])
   schedule        Schedule?     @relation(fields: [scheduleId], references: [id])
+  media           Media[]
+  safetyEvents    SafetyEvent[]
 
   @@index([scheduleId])
   @@index([status])
@@ -484,6 +492,7 @@ enum ScheduleStatus {
 enum TripStatus {
   SCHEDULED
   IN_PROGRESS
+  PAUSED
   COMPLETED
   CANCELLED
   DELAYED
@@ -524,4 +533,85 @@ enum NotificationType {
   ROUTE_CHANGE
   BROADCAST
   SYSTEM
+}
+
+model SafetyEvent {
+  id                String      @id @default(cuid())
+  tripId            String?
+  busId             String?
+  driverId          String?
+  routeId           String?
+  detectedAt        DateTime    @default(now())
+  latitude          Float?
+  longitude         Float?
+  gpsAccuracy       Float?
+  speed             Float?
+  stopDuration      Int?        // in seconds
+  driverResponse    String?     // "IM_OK", "VEHICLE_PROBLEM", "EMERGENCY", "NO_RESPONSE"
+  severity          String      // "LOW", "MEDIUM", "HIGH"
+  status            String      @default("OPEN") // "OPEN", "INVESTIGATING", "ESCALATED", "RESOLVED", "FALSE_ALARM"
+  riskCategory      String?     // "POTENTIAL_ACCIDENT", "POTENTIAL_MEDICAL_EMERGENCY", etc.
+  riskScore         Float?
+  aiRecommendation  String?
+  notes             String?
+  resolvedAt        DateTime?
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+
+  trip              Trip?       @relation(fields: [tripId], references: [id], onDelete: SetNull)
+  bus               Bus?        @relation(fields: [busId], references: [id], onDelete: SetNull)
+  driver            Driver?     @relation(fields: [driverId], references: [id], onDelete: SetNull)
+  route             Route?      @relation(fields: [routeId], references: [id], onDelete: SetNull)
+  media             Media[]
+
+  @@index([tripId])
+  @@index([busId])
+  @@index([driverId])
+  @@index([routeId])
+  @@index([status])
+  @@index([severity])
+  @@index([createdAt])
+}
+
+model Media {
+  id                 String       @id @default(cuid())
+  safetyEventId      String?
+  userId             String
+  tripId             String?
+  busId              String?
+  routeId            String?
+  type               String       // "VIDEO", "AUDIO"
+  fileUrl            String?      // Nullable because offline/pending media does not have a server URL yet
+  mimeType           String
+  fileSize           Int
+  duration           Float?
+  latitude           Float?
+  longitude          Float?
+  gpsAccuracy        Float?
+  status             String       @default("PENDING") // "PENDING", "COMPLETED", "FAILED"
+  device             String       @default("WEB") // "WEB", "ANDROID"
+  cameraFacing       String?      // "front", "back"
+  interrupted        Boolean      @default(false)
+  interruptionReason String?
+  uploadAttempts     Int          @default(0)
+  lastUploadAttemptAt DateTime?
+  checksum           String?      // Checksum to prevent duplicates
+  failureReason      String?
+  createdAt          DateTime     @default(now())
+  uploadedAt         DateTime?    // Manually set after successful upload (NO @updatedAt)
+
+  safetyEvent       SafetyEvent? @relation(fields: [safetyEventId], references: [id], onDelete: SetNull)
+  user              User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trip              Trip?        @relation(fields: [tripId], references: [id], onDelete: SetNull)
+  bus               Bus?         @relation(fields: [busId], references: [id], onDelete: SetNull)
+  route             Route?       @relation(fields: [routeId], references: [id], onDelete: SetNull)
+
+  @@index([safetyEventId])
+  @@index([userId])
+  @@index([tripId])
+  @@index([busId])
+  @@index([routeId])
+  @@index([type])
+  @@index([status])
+  @@index([createdAt])
 }

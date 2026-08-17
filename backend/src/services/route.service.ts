@@ -47,13 +47,47 @@ export class RouteService {
 
   static async create(data: any) {
     const { stops, ...routeData } = data;
-    return prisma.route.create({
-      data: {
-        ...routeData,
-        stops: stops ? { create: stops } : undefined,
-      },
-      include: { stops: { include: { stop: true }, orderBy: { sequence: 'asc' } } },
+    const route = await prisma.route.create({
+      data: routeData,
     });
+
+    if (stops && Array.isArray(stops) && stops.length > 0) {
+      for (let i = 0; i < stops.length; i++) {
+        const item = stops[i];
+        let stopId = item.stopId;
+        if (!stopId && item.name) {
+          const code = item.code || `STOP-${item.name.replace(/[^a-zA-Z0-9]/g, '-').toUpperCase()}`;
+          const existing = await prisma.busStop.findFirst({ where: { OR: [{ code }, { name: item.name }] } });
+          if (existing) {
+            stopId = existing.id;
+          } else {
+            const newStop = await prisma.busStop.create({
+              data: {
+                name: item.name,
+                code,
+                latitude: Number(item.latitude) || 0,
+                longitude: Number(item.longitude) || 0,
+              },
+            });
+            stopId = newStop.id;
+          }
+        }
+
+        if (stopId) {
+          await prisma.routeStop.create({
+            data: {
+              routeId: route.id,
+              stopId,
+              sequence: item.sequence || i + 1,
+              distanceFromStart: Number(item.distanceFromStart) || 0,
+              timeFromStart: Number(item.timeFromStart) || 0,
+            },
+          });
+        }
+      }
+    }
+
+    return this.getById(route.id);
   }
 
   static async update(id: string, data: any) {
@@ -62,19 +96,49 @@ export class RouteService {
 
     const { stops, ...routeData } = data;
 
-    if (stops) {
+    await prisma.route.update({
+      where: { id },
+      data: routeData,
+    });
+
+    if (stops && Array.isArray(stops)) {
       await prisma.routeStop.deleteMany({ where: { routeId: id } });
-      return prisma.route.update({
-        where: { id },
-        data: { ...routeData, stops: { create: stops } },
-        include: { stops: { include: { stop: true }, orderBy: { sequence: 'asc' } } },
-      });
+      for (let i = 0; i < stops.length; i++) {
+        const item = stops[i];
+        let stopId = item.stopId;
+        if (!stopId && item.name) {
+          const code = item.code || `STOP-${item.name.replace(/[^a-zA-Z0-9]/g, '-').toUpperCase()}`;
+          const existing = await prisma.busStop.findFirst({ where: { OR: [{ code }, { name: item.name }] } });
+          if (existing) {
+            stopId = existing.id;
+          } else {
+            const newStop = await prisma.busStop.create({
+              data: {
+                name: item.name,
+                code,
+                latitude: Number(item.latitude) || 0,
+                longitude: Number(item.longitude) || 0,
+              },
+            });
+            stopId = newStop.id;
+          }
+        }
+
+        if (stopId) {
+          await prisma.routeStop.create({
+            data: {
+              routeId: id,
+              stopId,
+              sequence: item.sequence || i + 1,
+              distanceFromStart: Number(item.distanceFromStart) || 0,
+              timeFromStart: Number(item.timeFromStart) || 0,
+            },
+          });
+        }
+      }
     }
 
-    return prisma.route.update({
-      where: { id }, data: routeData,
-      include: { stops: { include: { stop: true }, orderBy: { sequence: 'asc' } } },
-    });
+    return this.getById(id);
   }
 
   static async delete(id: string) {

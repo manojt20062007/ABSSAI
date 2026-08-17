@@ -28,6 +28,8 @@ import analyticsRoutes from './routes/analytics.routes';
 import telemetryRoutes from './routes/telemetry.routes';
 import boardingRoutes from './routes/boarding.routes';
 import studentRoutes from './routes/student.routes';
+import safetyRoutes from './routes/safety.routes';
+import mediaRoutes from './routes/media.routes';
 
 const app = express();
 
@@ -57,8 +59,14 @@ app.use(cookieParser());
 const morganStream = { write: (message: string) => logger.info(message.trim()) };
 app.use(morgan('combined', { stream: morganStream }));
 
-// Static files
-app.use('/uploads', express.static('uploads'));
+// Static files with CORS and media streaming support
+app.use('/uploads', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+  res.setHeader('Accept-Ranges', 'bytes');
+  next();
+}, express.static('uploads'));
 
 // Health check
 app.get('/api/health', (_req, res) => {
@@ -85,6 +93,8 @@ app.use('/api/analytics', analyticsRoutes);
 app.use('/api/telemetry', telemetryRoutes);
 app.use('/api/boarding', boardingRoutes);
 app.use('/api/students', studentRoutes);
+app.use('/api/safety', safetyRoutes);
+app.use('/api/media', mediaRoutes);
 
 // Error handling
 app.use(notFoundHandler);
