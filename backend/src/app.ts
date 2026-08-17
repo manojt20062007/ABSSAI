@@ -47,6 +47,7 @@ const limiter = rateLimit({
   windowMs: config.rateLimit.windowMs,
   max: config.rateLimit.max,
   message: { success: false, message: 'Too many requests, please try again later.' },
+  skip: (req) => req.path.startsWith('/telemetry') || req.path.startsWith('/health'),
 });
 app.use('/api/', limiter);
 

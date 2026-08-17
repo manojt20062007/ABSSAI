@@ -43,7 +43,7 @@ export const config = {
   },
 
   rateLimit: {
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100,
+    windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '900000', 10), // 15 minutes
+    max: parseInt(process.env.RATE_LIMIT_MAX || '2000', 10), // Allow high-frequency telemetry + dashboard requests
   },
 } as const;
