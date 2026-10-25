@@ -19,6 +19,7 @@ import {
   X,
   RefreshCw,
   ExternalLink,
+  Download,
   Brain,
 } from 'lucide-react';
 import { toast } from 'sonner';
@@ -51,6 +52,42 @@ const incidentIcon = L.divIcon({
   iconAnchor: [16, 16],
 });
 
+/**
+ * Safely resolves media URLs.
+ * If fileUrl is already absolute (e.g. Cloudinary, Google Drive, S3), returns it directly.
+ * Upgrades http to https on secure origins to avoid mixed-content blocking.
+ */
+const resolveMediaUrl = (fileUrl?: string): string => {
+  if (!fileUrl) return '';
+  const trimmed = fileUrl.trim();
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    if (typeof window !== 'undefined' && window.location.protocol === 'https:' && trimmed.startsWith('http://')) {
+      return trimmed.replace(/^http:\/\//i, 'https://');
+    }
+    return trimmed;
+  }
+  const base = import.meta.env.VITE_API_URL
+    ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '')
+    : 'http://localhost:3001';
+  return `${base}${trimmed.startsWith('/') ? '' : '/'}${trimmed}`;
+};
+
+/**
+ * Generates an MP4 fallback URL for Cloudinary-hosted videos to ensure
+ * universal video playback across all browsers and devices.
+ */
+const getCloudinaryMp4Url = (url: string): string | null => {
+  if (!url || !url.includes('res.cloudinary.com')) return null;
+  if (url.toLowerCase().endsWith('.mp4')) return url;
+  if (url.toLowerCase().endsWith('.webm')) {
+    return url.replace(/\.webm$/i, '.mp4');
+  }
+  if (url.includes('/video/upload/')) {
+    return url.replace('/video/upload/', '/video/upload/f_mp4/');
+  }
+  return null;
+};
+
 export default function SafetyEventsPage() {
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -61,6 +98,7 @@ export default function SafetyEventsPage() {
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<any | null>(null);
   const [loadingDetails, setLoadingDetails] = useState(false);
+  const [mediaErrors, setMediaErrors] = useState<Record<string, boolean>>({});
 
   // Edit Status Form State
   const [updateStatus, setUpdateStatus] = useState('');
@@ -125,6 +163,7 @@ export default function SafetyEventsPage() {
     try {
       setSelectedEventId(id);
       setLoadingDetails(true);
+      setMediaErrors({});
       const res = await safetyApi.getEventById(id);
       setSelectedEvent(res.data?.data || null);
       setUpdateStatus(res.data?.data?.status || '');
@@ -484,8 +523,10 @@ export default function SafetyEventsPage() {
                     {selectedEvent.media && selectedEvent.media.length > 0 ? (
                       <div className="space-y-4">
                         {selectedEvent.media.map((med: any) => {
-                          const base = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : 'http://localhost:3001';
-                          const mediaUrl = `${base}${med.fileUrl}`;
+                          const mediaUrl = resolveMediaUrl(med.fileUrl);
+                          const mp4Url = getCloudinaryMp4Url(mediaUrl);
+                          const isGoogleDrive = mediaUrl.includes('drive.google.com');
+                          const hasError = mediaErrors[med.id];
 
                           return (
                             <div key={med.id} className="bg-slate-950/50 border border-slate-800/80 rounded-2xl p-4 flex flex-col gap-3">
@@ -495,44 +536,144 @@ export default function SafetyEventsPage() {
                                   {med.type} File — {med.cameraFacing ? `${med.cameraFacing} camera` : ''} ({Math.round(med.fileSize / 1024 / 1024 * 10) / 10}MB)
                                 </span>
 
-                                <button
-                                  onClick={() => handleDeleteMedia(med.id)}
-                                  className="p-1.5 rounded-lg text-slate-500 hover:text-red-400 hover:bg-red-500/10 transition-all"
-                                  title="Delete Media"
-                                >
-                                  <Trash2 size={14} />
-                                </button>
+                                <div className="flex items-center gap-1">
+                                  {mediaUrl && (
+                                    <a
+                                      href={mediaUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="p-1.5 rounded-lg text-slate-400 hover:text-indigo-400 hover:bg-indigo-500/10 transition-all"
+                                      title="Open media in new tab"
+                                    >
+                                      <ExternalLink size={14} />
+                                    </a>
+                                  )}
+                                  {mediaUrl && !isGoogleDrive && (
+                                    <a
+                                      href={mediaUrl}
+                                      download
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="p-1.5 rounded-lg text-slate-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all"
+                                      title="Download media file"
+                                    >
+                                      <Download size={14} />
+                                    </a>
+                                  )}
+                                  <button
+                                    onClick={() => handleDeleteMedia(med.id)}
+                                    className="p-1.5 rounded-lg text-slate-500 hover:text-red-400 hover:bg-red-500/10 transition-all"
+                                    title="Delete Media"
+                                  >
+                                    <Trash2 size={14} />
+                                  </button>
+                                </div>
                               </div>
 
-                              {med.type === 'VIDEO' ? (
-                                <video
-                                  key={mediaUrl}
-                                  src={mediaUrl}
-                                  controls
-                                  playsInline
-                                  crossOrigin="anonymous"
-                                  className="w-full rounded-xl aspect-video bg-black border border-white/5 shadow-inner"
-                                  preload="auto"
-                                  onLoadedMetadata={(e) => {
-                                    const videoEl = e.currentTarget;
-                                    if (videoEl.duration === Infinity || isNaN(videoEl.duration)) {
-                                      videoEl.currentTime = 1e101;
-                                      videoEl.ontimeupdate = () => {
-                                        videoEl.ontimeupdate = null;
-                                        videoEl.currentTime = 0;
-                                      };
-                                    }
-                                  }}
-                                />
+                              {isGoogleDrive ? (
+                                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 text-center space-y-2">
+                                  <p className="text-xs text-slate-300">Evidence file is stored on Google Drive.</p>
+                                  <a
+                                    href={mediaUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold transition-all"
+                                  >
+                                    <ExternalLink size={14} />
+                                    View / Play in Google Drive
+                                  </a>
+                                </div>
+                              ) : med.type === 'VIDEO' ? (
+                                <div className="space-y-2">
+                                  <video
+                                    key={mediaUrl}
+                                    controls
+                                    playsInline
+                                    className="w-full rounded-xl aspect-video bg-black border border-white/5 shadow-inner"
+                                    preload="metadata"
+                                    onError={() => {
+                                      setMediaErrors((prev) => ({ ...prev, [med.id]: true }));
+                                    }}
+                                    onLoadedMetadata={(e) => {
+                                      const videoEl = e.currentTarget;
+                                      if (videoEl.duration === Infinity || isNaN(videoEl.duration)) {
+                                        videoEl.currentTime = 1e101;
+                                        videoEl.ontimeupdate = () => {
+                                          videoEl.ontimeupdate = null;
+                                          videoEl.currentTime = 0;
+                                        };
+                                      }
+                                    }}
+                                  >
+                                    {mp4Url && <source src={mp4Url} type="video/mp4" />}
+                                    <source src={mediaUrl} type={med.mimeType || 'video/webm'} />
+                                    Your browser does not support HTML5 video playback.
+                                  </video>
+
+                                  {hasError && (
+                                    <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 flex items-start gap-2.5 text-xs text-amber-200">
+                                      <AlertTriangle size={16} className="text-amber-400 shrink-0 mt-0.5" />
+                                      <div className="flex-1">
+                                        <p className="font-semibold">Unable to stream video directly in inline player.</p>
+                                        <p className="text-[11px] text-amber-300/80 mt-0.5">
+                                          This can occur if the browser codec does not support the video format or if cloud CORS prevents inline streaming.
+                                        </p>
+                                        <div className="mt-2 flex flex-wrap gap-3">
+                                          <a
+                                            href={mediaUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-1 text-indigo-400 font-bold hover:underline"
+                                          >
+                                            <ExternalLink size={12} /> Open in Cloudinary / New Tab
+                                          </a>
+                                          {mp4Url && (
+                                            <a
+                                              href={mp4Url}
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className="inline-flex items-center gap-1 text-emerald-400 font-bold hover:underline"
+                                            >
+                                              <Play size={12} /> Try Transcoded MP4
+                                            </a>
+                                          )}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
                               ) : (
-                                <audio
-                                  key={mediaUrl}
-                                  src={mediaUrl}
-                                  controls
-                                  crossOrigin="anonymous"
-                                  className="w-full bg-slate-900 rounded-xl"
-                                  preload="metadata"
-                                />
+                                <div className="space-y-2">
+                                  <audio
+                                    key={mediaUrl}
+                                    controls
+                                    className="w-full bg-slate-900 rounded-xl"
+                                    preload="metadata"
+                                    onError={() => {
+                                      setMediaErrors((prev) => ({ ...prev, [med.id]: true }));
+                                    }}
+                                  >
+                                    <source src={mediaUrl} type={med.mimeType || 'audio/webm'} />
+                                    Your browser does not support HTML5 audio playback.
+                                  </audio>
+
+                                  {hasError && (
+                                    <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-2.5 flex items-center justify-between text-xs text-amber-200">
+                                      <span className="flex items-center gap-2">
+                                        <AlertTriangle size={14} className="text-amber-400" />
+                                        Audio playback error
+                                      </span>
+                                      <a
+                                        href={mediaUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-indigo-400 font-bold hover:underline flex items-center gap-1"
+                                      >
+                                        <ExternalLink size={12} /> Open Audio
+                                      </a>
+                                    </div>
+                                  )}
+                                </div>
                               )}
 
                               <div className="flex items-center justify-between text-[10px] text-slate-500">

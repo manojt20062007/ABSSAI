@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABSSAI - Mini Project Review</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter',sans-serif;background:#080c18}
+
+/* ── Slides ── */
+.deck{position:relative;width:100vw;height:100vh}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:48px 72px;opacity:0;pointer-events:none;transition:opacity .5s ease,transform .5s ease;transform:scale(.96);background:linear-gradient(160deg,#080c18 0%,#0f1629 50%,#131a30 100%);color:#e2e8f0;overflow-y:auto;overflow-x:hidden}
+.slide.active{opacity:1;pointer-events:auto;transform:scale(1);z-index:2}
+
+/* ── College Banner ── */
+.college-banner{position:absolute;top:0;left:0;right:0;background:linear-gradient(90deg,#1e3a5f,#2d5a87,#1e3a5f);padding:8px 24px;text-align:center;font-size:.65rem;font-weight:700;color:#fbbf24;letter-spacing:1px;text-transform:uppercase;border-bottom:2px solid rgba(251,191,36,.3)}
+
+/* ── Typography ── */
+h1{font-size:3rem;font-weight:900;background:linear-gradient(135deg,#60a5fa,#818cf8,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px;line-height:1.1;text-align:center}
+h2{font-size:1.9rem;font-weight:800;color:#f1f5f9;margin-bottom:18px;text-align:center;letter-spacing:-.5px}
+.slide-label{font-size:.85rem;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:2.5px;margin-bottom:10px}
+p{font-size:.95rem;line-height:1.7;color:#94a3b8;max-width:850px;text-align:center}
+.subtitle{font-size:1.25rem;color:#94a3b8;font-weight:400;margin-bottom:20px;text-align:center}
+
+/* ── Tags ── */
+.tags{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.tag{display:inline-block;padding:5px 14px;border-radius:999px;font-size:.72rem;font-weight:600;margin:2px;border:1px solid rgba(255,255,255,.1)}
+.t-blue{background:rgba(96,165,250,.12);color:#60a5fa;border-color:rgba(96,165,250,.25)}
+.t-purple{background:rgba(129,140,248,.12);color:#818cf8;border-color:rgba(129,140,248,.25)}
+.t-pink{background:rgba(244,114,182,.12);color:#f472b6;border-color:rgba(244,114,182,.25)}
+.t-green{background:rgba(52,211,153,.12);color:#34d399;border-color:rgba(52,211,153,.25)}
+.t-amber{background:rgba(251,191,36,.12);color:#fbbf24;border-color:rgba(251,191,36,.25)}
+.t-cyan{background:rgba(34,211,238,.12);color:#22d3ee;border-color:rgba(34,211,238,.25)}
+
+/* ── Layout grids ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;width:100%;max-width:1000px;margin-top:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;width:100%;max-width:1080px;margin-top:16px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;width:100%;max-width:1000px;margin-top:14px}
+
+/* ── Cards ── */
+.card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:20px 18px;text-align:left;transition:all .25s}
+.card:hover{border-color:rgba(129,140,248,.35);transform:translateY(-2px)}
+.card h4{font-size:.92rem;font-weight:700;color:#f1f5f9;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+.card p,.card li{font-size:.8rem;color:#94a3b8;line-height:1.55}
+.card ul{padding-left:16px;margin:0}
+.card ul li{margin-bottom:3px}
+.ic{font-size:1.2rem}
+
+/* ── Architecture Diagrams ── */
+.arch{width:100%;max-width:1000px;margin-top:16px}
+.arch-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.arch-box{background:linear-gradient(135deg,rgba(96,165,250,.1),rgba(129,140,248,.08));border:1.5px solid rgba(129,140,248,.3);border-radius:12px;padding:12px 18px;text-align:center;min-width:120px;position:relative;transition:all .3s}
+.arch-box:hover{border-color:#818cf8;transform:scale(1.04)}
+.arch-box .ab-icon{font-size:1.6rem;display:block;margin-bottom:4px}
+.arch-box .ab-title{font-size:.78rem;font-weight:700;color:#e2e8f0;line-height:1.2}
+.arch-box .ab-sub{font-size:.65rem;color:#64748b;margin-top:2px}
+.arch-box.primary{background:linear-gradient(135deg,rgba(129,140,248,.2),rgba(192,132,252,.12));border-color:rgba(129,140,248,.5)}
+.arch-box.green{background:linear-gradient(135deg,rgba(52,211,153,.12),rgba(16,185,129,.08));border-color:rgba(52,211,153,.35)}
+.arch-box.pink{background:linear-gradient(135deg,rgba(244,114,182,.12),rgba(236,72,153,.08));border-color:rgba(244,114,182,.35)}
+.arch-box.amber{background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(245,158,11,.08));border-color:rgba(251,191,36,.35)}
+.arch-box.cyan{background:linear-gradient(135deg,rgba(34,211,238,.12),rgba(6,182,212,.08));border-color:rgba(34,211,238,.35)}
+.arch-arrow{color:#475569;font-size:1.3rem;font-weight:700;flex-shrink:0}
+.arch-arrow-down{color:#475569;font-size:1.1rem;text-align:center;margin:4px 0}
+
+/* ── Big Flow Diagram ── */
+.flow-diagram{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%;max-width:900px;margin-top:10px}
+.flow-row{display:flex;align-items:center;gap:10px;justify-content:center;width:100%}
+.flow-box{background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 16px;text-align:center;min-width:100px;font-size:.78rem;font-weight:600;color:#e2e8f0;transition:all .2s}
+.flow-box:hover{border-color:#818cf8}
+.flow-box.highlight-box{background:linear-gradient(135deg,rgba(129,140,248,.15),rgba(192,132,252,.1));border-color:rgba(129,140,248,.45);box-shadow:0 0 20px rgba(129,140,248,.15)}
+.flow-connector{width:2px;height:20px;background:linear-gradient(180deg,rgba(129,140,248,.5),rgba(129,140,248,.1));margin:0 auto}
+.flow-connector-h{width:30px;height:2px;background:linear-gradient(90deg,rgba(129,140,248,.5),rgba(129,140,248,.1))}
+
+/* ── Metric boxes ── */
+.metric{text-align:center;padding:16px 12px}
+.metric .num{font-size:2.4rem;font-weight:900;background:linear-gradient(135deg,#60a5fa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.metric .mlabel{font-size:.72rem;color:#64748b;margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+
+/* ── Table ── */
+table{width:100%;max-width:980px;border-collapse:collapse;margin-top:12px;font-size:.8rem}
+table th{background:rgba(129,140,248,.12);color:#818cf8;padding:8px 14px;text-align:left;border-bottom:2px solid rgba(129,140,248,.2);font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.5px}
+table td{padding:8px 14px;border-bottom:1px solid rgba(255,255,255,.04);color:#cbd5e1}
+table tr:hover td{background:rgba(255,255,255,.015)}
+
+/* ── Literature Review Table (Template Match) ── */
+.lit-header{font-size:1.8rem;font-weight:800;color:#3b82f6;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;text-align:left;width:100%;max-width:1100px;border-bottom:2.5px solid #2563eb;padding-bottom:6px}
+.lit-table{width:100%;max-width:1100px;border-collapse:collapse;margin-top:10px;font-size:.73rem;background:rgba(15,23,42,.7);border-radius:6px;overflow:hidden;border:1px solid rgba(59,130,246,.35)}
+.lit-table th{background:#2563eb;color:#ffffff;padding:9px 12px;text-align:left;font-weight:700;font-size:.78rem;border:1px solid #1d4ed8;letter-spacing:.3px}
+.lit-table td{padding:7px 10px;border:1px solid rgba(255,255,255,.08);color:#cbd5e1;vertical-align:top;line-height:1.4}
+.lit-table tr:nth-child(even) td{background:rgba(255,255,255,.025)}
+.lit-table tr:hover td{background:rgba(37,99,235,.1)}
+.lit-table .title-col{font-weight:600;color:#f8fafc;max-width:210px}
+.lit-table .author-col{color:#94a3b8;white-space:nowrap}
+.lit-table .year-col{color:#cbd5e1;text-align:center;font-weight:600}
+.lit-table .pub-col{color:#93c5fd;font-weight:500}
+.lit-table .tech-col{color:#c084fc;font-weight:500}
+.lit-table .pro-text{color:#34d399;display:block;margin-bottom:2px}
+.lit-table .con-text{color:#f87171;display:block}
+
+/* ── Progress & Nav ── */
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#60a5fa,#818cf8,#c084fc);z-index:100;transition:width .4s}
+.counter{position:fixed;bottom:20px;right:30px;font-size:.8rem;color:#475569;font-weight:600;z-index:100;font-family:'JetBrains Mono',monospace}
+.nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:100}
+.nav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:#64748b;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:1rem}
+.nav button:hover{background:rgba(129,140,248,.15);border-color:rgba(129,140,248,.3);color:#e2e8f0}
+
+/* ── Title slide specials ── */
+.title-badge{padding:6px 18px;border-radius:999px;font-size:.7rem;font-weight:700;background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.25);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.presenter-box{margin-top:32px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px 32px;text-align:center}
+.presenter-box .plabel{font-size:.65rem;text-transform:uppercase;letter-spacing:2px;color:#64748b;margin-bottom:6px;font-weight:700}
+.presenter-box .pname{font-size:1rem;font-weight:700;color:#f1f5f9}
+.presenter-box .pinfo{font-size:.8rem;color:#94a3b8;margin-top:2px}
+
+/* ── ER visual ── */
+.er-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;width:100%;max-width:1000px;margin-top:12px}
+.er-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:8px 10px;text-align:center;transition:all .2s}
+.er-item:hover{border-color:#818cf8;transform:scale(1.04)}
+.er-item .ei{font-size:1.1rem}
+.er-item .en{font-size:.7rem;font-weight:700;color:#e2e8f0;margin-top:2px}
+.er-item .es{font-size:.58rem;color:#64748b}
+
+/* ── GA visual boxes ── */
+.ga-flow{display:flex;align-items:stretch;gap:4px;width:100%;max-width:1050px;margin-top:14px;justify-content:center}
+.ga-step{flex:1;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px 10px;text-align:center;transition:all .2s;max-width:150px}
+.ga-step:hover{border-color:#818cf8}
+.ga-step .gs-num{font-size:.6rem;color:#818cf8;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.ga-step .gs-title{font-size:.78rem;font-weight:700;color:#e2e8f0;margin-bottom:3px}
+.ga-step .gs-desc{font-size:.65rem;color:#64748b;line-height:1.4}
+.ga-arrow{display:flex;align-items:center;color:#334155;font-size:1rem}
+
+/* ── Animations ── */
+.slide.active .fi{animation:fadeIn .5s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.d1{animation-delay:.08s!important}.d2{animation-delay:.16s!important}.d3{animation-delay:.24s!important}.d4{animation-delay:.32s!important}
+
+@media(max-width:900px){.slide{padding:24px 20px}h1{font-size:2rem}h2{font-size:1.4rem}.g2,.g3,.g4{grid-template-columns:1fr}.er-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+
+<div class="progress" id="prog"></div>
+<div class="counter" id="ctr"></div>
+<div class="nav"><button onclick="prev()">&#9664;</button><button onclick="next()">&#9654;</button></div>
+
+<div class="deck" id="deck">
+
+<!-- ═══════════ S1: TITLE ═══════════ -->
+<div class="slide active">
+  <div class="college-banner">Vel Tech High Tech Dr Rangarajan Dr Sakunthala Engineering College &mdash; An Autonomous Institution</div>
+  <div style="margin-top:24px"></div>
+  <div class="title-badge">Mini Project Review &bull; Batch 18</div>
+  <h1>&#x1F68C; ABSSAI</h1>
+  <p class="subtitle">AI-Powered Automated Bus Scheduling<br>&amp; Route Management System</p>
+  <p style="font-size:.85rem;color:#64748b;max-width:600px">SIH ID: SIH1612</p>
+  <div class="presenter-box" style="margin-top:28px">
+    <div class="plabel">Presented By</div>
+    <div class="pname">MANOJ. P</div>
+    <div class="pinfo">113024104081 &nbsp;|&nbsp; V Semester &nbsp;|&nbsp; VH13672</div>
+  </div>
+  <div style="margin-top:20px;display:flex;gap:28px;flex-wrap:wrap;justify-content:center">
+    <div style="text-align:center"><div style="font-size:.6rem;text-transform:uppercase;letter-spacing:1.5px;color:#475569;font-weight:700">Domain</div><div style="font-size:.85rem;color:#e2e8f0;font-weight:600;margin-top:2px">IoT &amp; AI</div></div>
+    <div style="text-align:center"><div style="font-size:.6rem;text-transform:uppercase;letter-spacing:1.5px;color:#475569;font-weight:700">Platform</div><div style="font-size:.85rem;color:#e2e8f0;font-weight:600;margin-top:2px">Web + Android</div></div>
+    <div style="text-align:center"><div style="font-size:.6rem;text-transform:uppercase;letter-spacing:1.5px;color:#475569;font-weight:700">Date</div><div style="font-size:.85rem;color:#e2e8f0;font-weight:600;margin-top:2px">September 2026</div></div>
+  </div>
+</div>
+
+<!-- ═══════════ S2: PROBLEM ═══════════ -->
+<div class="slide">
+  <div class="college-banner">Vel Tech High Tech Dr Rangarajan Dr Sakunthala Engineering College &mdash; An Autonomous Institution</div>
+  <div class="slide-label fi">Existing Challenges</div>
+  <h2 class="fi d1">Problem Statement</h2>
+  <div class="g3 fi d2">
+    <div class="card">
+      <h4><span class="ic">&#x1F4CB;</span> Manual Scheduling</h4>
+      <ul><li>Fixed schedules ignoring demand</li><li>Driver overwork &amp; fatigue</li><li>No dynamic reallocation</li></ul>
+    </div>
+    <div class="card">
+      <h4><span class="ic">&#x1F4CD;</span> No Real-Time Tracking</h4>
+      <ul><li>Zero GPS visibility</li><li>No ETA for passengers</li><li>Cannot respond to delays</li></ul>
+    </div>
+    <div class="card">
+      <h4><span class="ic">&#x26FD;</span> Operational Waste</h4>
+      <ul><li>Fuel wastage on bad routes</li><li>Overcrowding at peak hours</li><li>Empty buses off-peak</li></ul>
+    </div>
+  </div>
+  <div class="g3 fi d3" style="margin-top:12px">
+    <div class="card">
+      <h4><span class="ic">&#x1F3AB;</span> Paper Bus Passes</h4>
+      <ul><li>Easy to forge</li><li>No audit trail</li><li>Boarding bottlenecks</li></ul>
+    </div>
+    <div class="card">
+      <h4><span class="ic">&#x1F4CA;</span> No Analytics</h4>
+      <ul><li>No demand forecasting</li><li>No maintenance insights</li><li>No cost optimization</li></ul>
+    </div>
+    <div class="card">
+      <h4><span class="ic">&#x1F6A8;</span> Safety Gaps</h4>
+      <ul><li>No incident tracking</li><li>No driver monitoring</li><li>Slow emergency response</li></ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S3: LITERATURE REVIEW ═══════════ -->
+<div class="slide">
+  <div class="college-banner">Vel Tech High Tech Dr Rangarajan Dr Sakunthala Engineering College &mdash; An Autonomous Institution</div>
+  <div class="lit-header fi">LITERATURE REVIEW</div>
+  
+  <table class="lit-table fi d1">
+    <thead>
+      <tr>
+        <th style="width:25%">Title</th>
+        <th style="width:15%">Author</th>
+        <th style="width:6%">Year</th>
+        <th style="width:14%">Publication</th>
+        <th style="width:18%">Technique</th>
+        <th style="width:22%">Pros &amp; Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="title-col">Estimating Passenger Demand Using ML Models</td>
+        <td class="author-col">A. Boateng, C. Adams et al.</td>
+        <td class="year-col">2023</td>
+        <td class="pub-col">E3S Web of Conf.</td>
+        <td class="tech-col">Supervised ML (Random Forest, SVR)</td>
+        <td>
+          <span class="pro-text">Better accuracy, peak demand prediction</span>
+          <span class="con-text">No real-time dynamic re-routing</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="title-col">AI-based Neural Network Models for Bus Passenger Demand Forecasting</td>
+        <td class="author-col">S. Liyanage, H. Dia et al.</td>
+        <td class="year-col">2022</td>
+        <td class="pub-col">Elsevier (JUM)</td>
+        <td class="tech-col">Deep Learning (ANN &amp; LSTM)</td>
+        <td>
+          <span class="pro-text">Captures hourly &amp; sequential demand trends</span>
+          <span class="con-text">High computational training cost; black-box</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="title-col">AI-Driven Optimization of Urban Logistics and Fleet Routing in Smart Cities</td>
+        <td class="author-col">O. Mohsen</td>
+        <td class="year-col">2024</td>
+        <td class="pub-col">MDPI (Sustainability)</td>
+        <td class="tech-col">Genetic Algorithm (GA) &amp; Heuristics</td>
+        <td>
+          <span class="pro-text">Multi-objective optimization, cuts fuel costs</span>
+          <span class="con-text">Complex parameter tuning (crossover/mutation)</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="title-col">Real-Time Bus Arrival Prediction and Fleet Tracking via IoT Telematics</td>
+        <td class="author-col">Y. Bi, X. Sun, P. Zhou</td>
+        <td class="year-col">2024</td>
+        <td class="pub-col">IEEE Access</td>
+        <td class="tech-col">IoT Sensors + Kalman Filter</td>
+        <td>
+          <span class="pro-text">Sub-meter GPS precision, dynamic live ETA</span>
+          <span class="con-text">High network dependency &amp; sensor degradation</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="title-col">Energy and Emission Prediction for Mixed-Vehicle Transit Fleets</td>
+        <td class="author-col">M. Wilbur, A. Dubey et al.</td>
+        <td class="year-col">2021</td>
+        <td class="pub-col">Springer (ECML-PKDD)</td>
+        <td class="tech-col">Physics-Informed ML Regression</td>
+        <td>
+          <span class="pro-text">Accurate fuel forecasting &amp; eco-routing</span>
+          <span class="con-text">Requires OBD-II sensors, complex data pipeline</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="title-col">Automated Boarding Verification &amp; Headway Control in Institutional Transit</td>
+        <td class="author-col">S. Batool, Y.-C. Byun</td>
+        <td class="year-col">2024</td>
+        <td class="pub-col">IEEE Trans. on ITS</td>
+        <td class="tech-col">QR / RFID Digital Validation</td>
+        <td>
+          <span class="pro-text">Instant fraud-proof student verification</span>
+          <span class="con-text">Peak scan bottlenecks during student rush</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Research Gap summary note -->
+  <div class="card fi d2" style="max-width:1100px;margin-top:10px;padding:8px 16px;background:rgba(59,130,246,0.06);border-color:rgba(59,130,246,0.25)">
+    <p style="font-size:0.75rem;color:#93c5fd;text-align:left;line-height:1.5">
+      <strong style="color:#60a5fa">&#x1F50D; Research Gap Addressed:</strong> Existing literature addresses transit scheduling, demand forecasting, and IoT tracking in isolation. <strong>ABSSAI</strong> bridges this gap by unifying <em>Genetic Algorithm schedule optimization</em>, <em>real-time WebSocket GPS telemetry</em>, and <em>role-gated mobile boarding apps</em> into a single cohesive platform.
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════ S4: OBJECTIVES ═══════════ -->
+<div class="slide">
+  <div class="college-banner">Vel Tech High Tech Dr Rangarajan Dr Sakunthala Engineering College &mdash; An Autonomous Institution</div>
+  <div class="slide-label fi">Project Goals</div>
+  <h2 class="fi d1">Objectives</h2>
+  <div class="g2 fi d2" style="max-width:900px">
+    <div class="card"><h4><span class="ic">&#x1F9EC;</span> AI Scheduling</h4><p>Genetic Algorithm auto-generates optimized daily bus schedules</p></div>
+    <div class="card"><h4><span class="ic">&#x1F6F0;&#xFE0F;</span> GPS Tracking</h4><p>Real-time bus telemetry via WebSocket for fleet maps &amp; student tracking</p></div>
+    <div class="card"><h4><span class="ic">&#x1F4F1;</span> Digital QR Pass</h4><p>Encrypted QR code boarding with instant scan verification</p></div>
+    <div class="card"><h4><span class="ic">&#x1F4C8;</span> Demand Prediction</h4><p>Hourly passenger forecasting for smart bus allocation</p></div>
+  </div>
+  <!-- Mini architecture preview -->
+  <div class="arch-row fi d3" style="margin-top:28px">
+    <div class="arch-box cyan"><span class="ab-icon">&#x1F393;</span><span class="ab-title">Student App</span></div>
+    <div class="arch-arrow">&#x2192;</div>
+    <div class="arch-box primary"><span class="ab-icon">&#x2699;&#xFE0F;</span><span class="ab-title">AI Backend</span></div>
+    <div class="arch-arrow">&#x2190;</div>
+    <div class="arch-box amber"><span class="ab-icon">&#x1F697;</span><span class="ab-title">Driver App</span></div>
+    <div class="arch-arrow" style="margin:0 8px">|</div>
+    <div class="arch-box green"><span class="ab-icon">&#x1F3E2;</span><span class="ab-title">Admin Portal</span></div>
+  </div>
+</div>
+
+<!-- ═══════════ S4: SYSTEM ARCHITECTURE ═══════════ -->
+<div class="slide">
+  <div class="college-banner">Vel Tech High Tech Dr Rangarajan Dr Sakunthala Engineering College &mdash; An Autonomous Institution</div>
+  <div class="slide-label fi">High-Level Design</div>
+  <h2 class="fi d1">System Architecture</h2>
+
+  <!-- Main architecture diagram -->
+  <div class="arch fi d2">
+    <!-- Top layer: Users -->
+    <div class="arch-row">
+      <div class="arch-box cyan" style="min-width:150px"><span class="ab-icon">&#x1F393;</span><span class="ab-title">Students</span><span class="ab-sub">QR Pass &bull; Live Tracking</span></div>
+      <div class="arch-box amber" style="min-width:150px"><span class="ab-icon">&#x1F468;&#x200D;&#x2708;&#xFE0F;</span><span class="ab-title">Drivers</span><span class="ab-sub">GPS Broadcast &bull; QR Scan</span></div>
+      <div class="arch-box green" style="min-width:150px"><span class="ab-icon">&#x1F464;</span><span class="ab-title">Admins</span><span class="ab-sub">Dashboard &bull; Analytics</span></div>
+    </div>
+    <div class="arch-arrow-down">&#x25BC; &nbsp; API + WebSocket &nbsp; &#x25BC;</div>
+
+    <!-- Middle: Core Backend -->
+    <div class="arch-row">
+      <div class="arch-box primary" style="min-width:260px;padding:16px 24px">
+        <span class="ab-icon">&#x2699;&#xFE0F;</span>
+        <span class="ab-title">Backend Server (Express.js + Socket.IO)</span>
+        <span class="ab-sub">REST API &bull; JWT Auth &bull; RBAC &bull; Real-Time Engine</span>
+      </div>
+    </div>
+    <div class="arch-arrow-down">&#x25BC;</div>
+
+    <!-- Processing Layer -->
+    <div class="arch-row">
+      <div class="arch-box pink" style="min-width:140px"><span class="ab-icon">&#x1F9EC;</span><span class="ab-title">Genetic Algorithm</span><span class="ab-sub">Schedule Optimizer</span></div>
+      <div class="arch-box" style="min-width:140px"><span class="ab-icon">&#x1F4C8;</span><span class="ab-title">Demand Predictor</span><span class="ab-sub">ML Forecasting</span></div>
+      <div class="arch-box" style="min-width:140px"><span class="ab-icon">&#x1F6F0;&#xFE0F;</span><span class="ab-title">GPS Engine</span><span class="ab-sub">Telemetry Processor</span></div>
+      <div class="arch-box" style="min-width:140px"><span class="ab-icon">&#x1F6E1;&#xFE0F;</span><span class="ab-title">Risk Analyzer</span><span class="ab-sub">Safety AI</span></div>
+    </div>
+    <div class="arch-arrow-down">&#x25BC;</div>
+
+    <!-- Data Layer -->
+    <div class="arch-row">
+      <div class="arch-box green" style="min-width:180px"><span class="ab-icon">&#x1F418;</span><span class="ab-title">PostgreSQL</span><span class="ab-sub">18 Tables &bull; Prisma ORM</span></div>
+      <div class="arch-box" style="min-width:180px;border-color:rgba(239,68,68,.35);background:linear-gradient(135deg,rgba(239,68,68,.1),rgba(220,38,38,.06))"><span class="ab-icon">&#x26A1;</span><span class="ab-title">Redis Cache</span><span class="ab-sub">Sessions &bull; GPS Data</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S5: METHODOLOGY FLOW ═══════════ -->
+<div class="slide">
+  <div class="college-banner">Vel Tech High Tech Dr Rangarajan Dr Sakunthala Engineering College &mdash; An Autonomous Institution</div>
+  <div class="slide-label fi">Workflow</div>
+  <h2 class="fi d1">Proposed Methodology</h2>
+
+  <div class="ga-flow fi d2">
+    <div class="ga-step"><div class="gs-num">Step 1</div><div class="gs-title">&#x1F4E1; Data Collection</div><div class="gs-desc">GPS telemetry, boarding logs, traffic data, historical demand</div></div>
+    <div class="ga-arrow">&#x2192;</div>
+    <div class="ga-step"><div class="gs-num">Step 2</div><div class="gs-title">&#x2699;&#xFE0F; Processing</div><div class="gs-desc">Clean, validate, extract features via Prisma ORM pipeline</div></div>
+    <div class="ga-arrow">&#x2192;</div>
+    <div class="ga-step"><div class="gs-num">Step 3</div><div class="gs-title">&#x1F4C8; AI Prediction</div><div class="gs-desc">Demand forecasting by hour, peak detection, bus requirements</div></div>
+    <div class="ga-arrow">&#x2192;</div>
+    <div class="ga-step"><div class="gs-num">Step 4</div><div class="gs-title">&#x1F9EC; Optimization</div><div class="gs-desc">Genetic Algorithm generates optimal schedule &amp; routes</div></div>
+    <div class="ga-arrow">&#x2192;</div>
+    <div class="ga-step"><div class="gs-num">Step 5</div><div class="gs-title">&#x1F4F1; Deployment</div><div class="gs-desc">Schedules pushed to apps, GPS tracking goes live</div></div>
+    <div class="ga-arrow">&#x2192;</div>
+    <div class="ga-step" style="border-color:rgba(52,211,153,.4)"><div class="gs-num">Step 6</div><div class="gs-title">&#x1F50D; Monitor</div><div class="gs-desc">Real-time alerts, delay handling, feedback loop</div></div>
+  </div>
+
+  <!-- Data flow architecture -->
+  <div class="arch fi d3" style="margin-top:24px">
+    <div class="arch-row">
+      <div class="arch-box cyan"><span class="ab-icon">&#x1F4F1;</span><span class="ab-title">Phone GPS</span></div>
+      <div class="arch-arrow">&#x2192;</div>
+      <div class="arch-box primary"><span class="ab-icon">&#x1F50C;</span><span class="ab-title">Socket.IO</span><span class="ab-sub">3s intervals</span></div>
+      <div class="arch-arrow">&#x2192;</div>
+      <div class="arch-box green"><span class="ab-icon">&#x1F5FA;&#xFE0F;</span><span class="ab-title">Fleet Map</span></div>
+      <div class="arch-arrow">+</div>
+      <div class="arch-box amber"><span class="ab-icon">&#x1F4F1;</span><span class="ab-title">Student ETA</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S6: TECH STACK ═══════════ -->
+<div class="slide">
+  <div class="college-banner">Vel Tech High Tech Dr Rangarajan Dr Sakunthala Engineering College &mdash; An Autonomous Institution</div>
+  <div class="slide-label fi">Built With</div>
+  <h2 class="fi d1">Technology Stack</h2>
+
+  <!-- Visual tech stack architecture -->
+  <div class="g3 fi d2" style="max-width:960px">
+    <div class="card" style="border-color:rgba(96,165,250,.25)">
+      <h4 style="color:#60a5fa">&#x1F310; Frontend</h4>
+      <div class="tags"><span class="tag t-blue">React 19</span><span class="tag t-blue">Vite</span><span class="tag t-blue">TypeScript</span><span class="tag t-blue">Tailwind v4</span><span class="tag t-blue">Radix UI</span><span class="tag t-blue">Framer Motion</span></div>
+    </div>
+    <div class="card" style="border-color:rgba(52,211,153,.25)">
+      <h4 style="color:#34d399">&#x2699;&#xFE0F; Backend</h4>
+      <div class="tags"><span class="tag t-green">Node.js</span><span class="tag t-green">Express 5</span><span class="tag t-green">TypeScript</span><span class="tag t-green">Socket.IO</span><span class="tag t-green">Zod</span><span class="tag t-green">Winston</span></div>
+    </div>
+    <div class="card" style="border-color:rgba(251,191,36,.25)">
+      <h4 style="color:#fbbf24">&#x1F5C4;&#xFE0F; Database</h4>
+      <div class="tags"><span class="tag t-amber">PostgreSQL 16</span><span class="tag t-amber">Prisma ORM</span><span class="tag t-amber">Redis 7</span><span class="tag t-amber">Docker</span></div>
+    </div>
+  </div>
+  <div class="g3 fi d3" style="max-width:960px;margin-top:12px">
+    <div class="card" style="border-color:rgba(244,114,182,.25)">
+      <h4 style="color:#f472b6">&#x1F4F1; Mobile</h4>
+      <div class="tags"><span class="tag t-pink">Capacitor 8</span><span class="tag t-pink">Android APK</span><span class="tag t-pink">html5-qrcode</span><span class="tag t-pink">qrcode.react</span></div>
+    </div>
+    <div class="card" style="border-color:rgba(129,140,248,.25)">
+      <h4 style="color:#818cf8">&#x1F5FA;&#xFE0F; Mapping</h4>
+      <div class="tags"><span class="tag t-purple">Leaflet</span><span class="tag t-purple">React-Leaflet</span><span class="tag t-purple">GeoJSON</span><span class="tag t-purple">GPS Telemetry</span></div>
+    </div>
+    <div class="card" style="border-color:rgba(34,211,238,.25)">
+      <h4 style="color:#22d3ee">&#x1F4CA; Reports</h4>
+      <div class="tags"><span class="tag t-cyan">Recharts</span><span class="tag t-cyan">jsPDF</span><span class="tag t-cyan">XLSX Export</span><span class="tag t-cyan">Zustand</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S7: FEATURES ═══════════ -->
+<div class="slide">
+  <div class="college-banner">Vel Tech High Tech Dr Rangarajan Dr Sakunthala Engineering College &mdash; An Autonomous Institution</div>
+  <div class="slide-label fi">Capabilities</div>
+  <h2 class="fi d1">Key Features</h2>
+  <div class="g3 fi d2">
+    <div class="card"><h4 style="color:#34d399">Student Features</h4>
+      <ul><li>Live Bus Tracking</li><li>ETA &amp; Delay Alerts</li><li>Digital QR Bus Pass</li><li>Route Finder</li><li>Boarding History</li><li>Push Notifications</li></ul>
+    </div>
+    <div class="card"><h4 style="color:#818cf8">Admin Features</h4>
+      <ul><li>AI Schedule Generator</li><li>Fleet GPS Map</li><li>Analytics Dashboard</li><li>Route Planning (Leaflet)</li><li>Maintenance Tracking</li><li>PDF/Excel Reports</li></ul>
+    </div>
+    <div class="card"><h4 style="color:#fbbf24">Driver Features</h4>
+      <ul><li>Trip Execution View</li><li>QR Boarding Scanner</li><li>GPS Broadcasting</li><li>Shift Attendance</li><li>Emergency Reporting</li><li>Vehicle Status</li></ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S8: GENETIC ALGORITHM ═══════════ -->
+<div class="slide">
+  <div class="college-banner">Vel Tech High Tech Dr Rangarajan Dr Sakunthala Engineering College &mdash; An Autonomous Institution</div>
+  <div class="slide-label fi">Core AI</div>
+  <h2 class="fi d1">Genetic Algorithm &mdash; Schedule Optimizer</h2>
+
+  <div class="ga-flow fi d2" style="margin-top:12px">
+    <div class="ga-step"><div class="gs-num">&#x2460;</div><div class="gs-title">Initialize</div><div class="gs-desc">100 random chromosomes (trip arrays)</div></div>
+    <div class="ga-arrow">&#x2192;</div>
+    <div class="ga-step"><div class="gs-num">&#x2461;</div><div class="gs-title">Fitness</div><div class="gs-desc">Score based on conflicts, balance, coverage</div></div>
+    <div class="ga-arrow">&#x2192;</div>
+    <div class="ga-step"><div class="gs-num">&#x2462;</div><div class="gs-title">Selection</div><div class="gs-desc">Tournament k=3</div></div>
+    <div class="ga-arrow">&#x2192;</div>
+    <div class="ga-step"><div class="gs-num">&#x2463;</div><div class="gs-title">Crossover</div><div class="gs-desc">Two-point gene swap</div></div>
+    <div class="ga-arrow">&#x2192;</div>
+    <div class="ga-step"><div class="gs-num">&#x2464;</div><div class="gs-title">Mutate</div><div class="gs-desc">15% rate: swap, shift, remove</div></div>
+    <div class="ga-arrow">&#x2192;</div>
+    <div class="ga-step" style="border-color:rgba(52,211,153,.4)"><div class="gs-num">&#x2465;</div><div class="gs-title">Best Schedule</div><div class="gs-desc">300 gens, 10% elitism</div></div>
+  </div>
+
+  <div class="g2 fi d3" style="margin-top:18px;max-width:860px">
+    <div class="card">
+      <h4 style="color:#ef4444">&#x26A0;&#xFE0F; Penalties</h4>
+      <ul><li>Driver &gt; 8hrs &#x2192; <strong>-10</strong>/hr</li><li>Bus &gt; 12 trips &#x2192; <strong>-5</strong>/trip</li><li>Time conflict &#x2192; <strong>-15</strong></li><li>Workload imbalance &#x2192; <strong>-2&#xD7;variance</strong></li></ul>
+    </div>
+    <div class="card">
+      <h4 style="color:#34d399">&#x2705; Rewards</h4>
+      <ul><li>Fleet utilization &#x2192; <strong>+10&#xD7;rate</strong></li><li>Peak hour coverage &#x2192; <strong>+15&#xD7;ratio</strong></li><li>Balanced workload &#x2192; <strong>higher score</strong></li><li>Output saved to DB with metrics</li></ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S9: DATABASE ═══════════ -->
+<div class="slide">
+  <div class="college-banner">Vel Tech High Tech Dr Rangarajan Dr Sakunthala Engineering College &mdash; An Autonomous Institution</div>
+  <div class="slide-label fi">Data Layer</div>
+  <h2 class="fi d1">Database Schema &mdash; 18 Models</h2>
+  <p class="fi d1" style="font-size:.8rem;margin-bottom:8px">PostgreSQL + Prisma ORM &bull; Full relational integrity &bull; Indexed queries &bull; Audit logs</p>
+
+  <div class="er-grid fi d2">
+    <div class="er-item"><div class="ei">&#x1F464;</div><div class="en">User</div><div class="es">6 RBAC Roles</div></div>
+    <div class="er-item"><div class="ei">&#x1F68C;</div><div class="en">Bus</div><div class="es">Fleet tracking</div></div>
+    <div class="er-item"><div class="ei">&#x1F468;&#x200D;&#x2708;&#xFE0F;</div><div class="en">Driver</div><div class="es">License &amp; shifts</div></div>
+    <div class="er-item"><div class="ei">&#x1F393;</div><div class="en">Student</div><div class="es">Pass &amp; boarding</div></div>
+    <div class="er-item"><div class="ei">&#x1F6E4;&#xFE0F;</div><div class="en">Route</div><div class="es">Polyline &amp; freq</div></div>
+    <div class="er-item"><div class="ei">&#x1F4CD;</div><div class="en">BusStop</div><div class="es">Coordinates</div></div>
+    <div class="er-item"><div class="ei">&#x1F517;</div><div class="en">RouteStop</div><div class="es">Sequencing</div></div>
+    <div class="er-item"><div class="ei">&#x1F3ED;</div><div class="en">Depot</div><div class="es">Capacity</div></div>
+    <div class="er-item"><div class="ei">&#x1F4C5;</div><div class="en">Schedule</div><div class="es">Draft&#x2192;Active</div></div>
+    <div class="er-item"><div class="ei">&#x1F690;</div><div class="en">Trip</div><div class="es">Departure/delay</div></div>
+    <div class="er-item"><div class="ei">&#x1F4E1;</div><div class="en">GPSLog</div><div class="es">Telemetry</div></div>
+    <div class="er-item"><div class="ei">&#x1F527;</div><div class="en">Maintenance</div><div class="es">Service log</div></div>
+    <div class="er-item"><div class="ei">&#x26FD;</div><div class="en">FuelRecord</div><div class="es">Cost &amp; mileage</div></div>
+    <div class="er-item"><div class="ei">&#x1F4CB;</div><div class="en">Attendance</div><div class="es">Driver shifts</div></div>
+    <div class="er-item"><div class="ei">&#x1F3AB;</div><div class="en">BoardingLog</div><div class="es">QR scans</div></div>
+    <div class="er-item"><div class="ei">&#x1F514;</div><div class="en">Notification</div><div class="es">Alerts</div></div>
+    <div class="er-item"><div class="ei">&#x1F6E1;&#xFE0F;</div><div class="en">SafetyEvent</div><div class="es">Risk analysis</div></div>
+    <div class="er-item"><div class="ei">&#x1F4F9;</div><div class="en">Media</div><div class="es">Video/Audio</div></div>
+  </div>
+
+  <!-- ER relationship flow -->
+  <div class="arch fi d3" style="margin-top:16px">
+    <div class="arch-row">
+      <div class="arch-box" style="font-size:.7rem;padding:8px 14px"><span class="ab-title">User &#x2192; Driver &#x2192; Bus &#x2192; Trip</span></div>
+      <div class="arch-arrow">|</div>
+      <div class="arch-box" style="font-size:.7rem;padding:8px 14px"><span class="ab-title">Route &#x2192; RouteStop &#x2192; BusStop</span></div>
+      <div class="arch-arrow">|</div>
+      <div class="arch-box" style="font-size:.7rem;padding:8px 14px"><span class="ab-title">Student &#x2192; BoardingLog &#x2192; Trip</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S10: BENEFITS & INNOVATION ═══════════ -->
+<div class="slide">
+  <div class="college-banner">Vel Tech High Tech Dr Rangarajan Dr Sakunthala Engineering College &mdash; An Autonomous Institution</div>
+  <div class="slide-label fi">Impact</div>
+  <h2 class="fi d1">Benefits &amp; Innovation</h2>
+  <div class="g2 fi d2" style="max-width:900px">
+    <div class="card">
+      <h4 style="color:#34d399">&#x2705; Benefits</h4>
+      <ul>
+        <li>Reduced congestion &amp; fuel waste</li>
+        <li>Lower operational costs</li>
+        <li>Faster, predictable travel</li>
+        <li>Higher passenger satisfaction</li>
+        <li>Better resource utilization</li>
+        <li>Scalable for smart cities</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 style="color:#818cf8">&#x1F4A1; Innovation</h4>
+      <ul>
+        <li>AI-powered dynamic scheduling</li>
+        <li>Real-time adaptive routing</li>
+        <li>Demand forecasting with ML</li>
+        <li>Predictive maintenance</li>
+        <li>Live analytics dashboard</li>
+        <li>Automated decision-making</li>
+      </ul>
+    </div>
+  </div>
+  <!-- Key metrics -->
+  <div class="g4 fi d3" style="margin-top:16px;max-width:820px">
+    <div class="card metric"><div class="num">18</div><div class="mlabel">DB Models</div></div>
+    <div class="card metric"><div class="num">21</div><div class="mlabel">API Modules</div></div>
+    <div class="card metric"><div class="num">3</div><div class="mlabel">Applications</div></div>
+    <div class="card metric"><div class="num">6</div><div class="mlabel">User Roles</div></div>
+  </div>
+</div>
+
+<!-- ═══════════ S11: CONCLUSION ═══════════ -->
+<div class="slide">
+  <div class="college-banner">Vel Tech High Tech Dr Rangarajan Dr Sakunthala Engineering College &mdash; An Autonomous Institution</div>
+  <div class="slide-label fi">Summary</div>
+  <h2 class="fi d1">Conclusion</h2>
+  <div class="card fi d2" style="max-width:800px;margin-bottom:20px">
+    <p style="font-size:.92rem;line-height:1.8;color:#cbd5e1;text-align:center">
+      <strong style="color:#f1f5f9">ABSSAI</strong> enables
+      <strong style="color:#818cf8">dynamic scheduling</strong>,
+      <strong style="color:#60a5fa">optimized routes</strong>,
+      <strong style="color:#f472b6">digital boarding</strong>, and
+      <strong style="color:#34d399">predictive analytics</strong> &mdash;
+      making institutional bus transport more efficient, reliable, and ready for future smart-city deployments.
+    </p>
+  </div>
+
+  <!-- Architecture recap -->
+  <div class="arch fi d3" style="margin-bottom:20px">
+    <div class="arch-row">
+      <div class="arch-box cyan"><span class="ab-icon">&#x1F393;</span><span class="ab-title">Student</span></div>
+      <div class="arch-arrow">&#x2194;</div>
+      <div class="arch-box primary"><span class="ab-icon">&#x1F9EC;</span><span class="ab-title">AI Engine</span></div>
+      <div class="arch-arrow">&#x2194;</div>
+      <div class="arch-box amber"><span class="ab-icon">&#x1F697;</span><span class="ab-title">Driver</span></div>
+      <div class="arch-arrow">&#x2194;</div>
+      <div class="arch-box green"><span class="ab-icon">&#x1F3E2;</span><span class="ab-title">Admin</span></div>
+    </div>
+  </div>
+
+  <div style="text-align:center" class="fi d4">
+    <p style="font-size:1.5rem;font-weight:800;color:#f1f5f9;margin-bottom:6px">Thank You! &#x1F64F;</p>
+    <p style="font-size:.85rem;color:#64748b">Questions &amp; Feedback Welcome</p>
+  </div>
+</div>
+
+<!-- ═══════════ S12: REFERENCES ═══════════ -->
+<div class="slide">
+  <div class="college-banner">Vel Tech High Tech Dr Rangarajan Dr Sakunthala Engineering College &mdash; An Autonomous Institution</div>
+  <div class="slide-label fi">Citations</div>
+  <h2 class="fi d1">References</h2>
+  <div class="card fi d2" style="max-width:900px;text-align:left">
+    <ol style="padding-left:20px;font-size:.78rem;color:#94a3b8;line-height:2">
+      <li>Boateng, A., Adams, C., &amp; Akowuah, E. (2023). <em>Estimating Passenger Demand Using Machine Learning Models</em>. E3S Web of Conferences, 418. <span style="color:#64748b">Cited: 5</span></li>
+      <li>Liyanage, S., et al. (2022). <em>AI-based Neural Network Models for Bus Passenger Demand Forecasting</em>. Journal of Urban Management, 11(3). <span style="color:#64748b">Cited: 104</span></li>
+      <li>Mohsen, B. M. (2024). <em>AI-Driven Optimization of Urban Logistics in Smart Cities</em>. Sustainability, 16(24). <span style="color:#64748b">Cited: 157</span></li>
+      <li>Jayaraman, P. P., et al. (2018). <em>Internet of Things Platform for Smart Water Management</em>. IEEE IoT Journal, 5(6).</li>
+      <li>Wilbur, M., et al. (2021). <em>Energy and Emission Prediction for Mixed-Vehicle Transit Fleets</em>. ECML-PKDD 2021.</li>
+    </ol>
+  </div>
+</div>
+
+</div>
+
+<script>
+const S=document.querySelectorAll('.slide');let c=0;
+function go(n){if(n<0||n>=S.length)return;S[c].classList.remove('active');c=n;S[c].classList.add('active');document.getElementById('ctr').textContent=(c+1)+' / '+S.length;document.getElementById('prog').style.width=((c+1)/S.length*100)+'%'}
+function next(){go(c+1)}function prev(){go(c-1)}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){e.preventDefault();next()}if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();prev()}if(e.key==='Home'){e.preventDefault();go(0)}if(e.key==='End'){e.preventDefault();go(S.length-1)}});
+let tx=0;document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].clientX;if(Math.abs(d)>50){d>0?next():prev()}});
+go(0);
+</script>
+</body>
+</html>
